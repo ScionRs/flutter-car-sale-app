@@ -33,16 +33,38 @@ class Equipment{
   final String trunkVolume;
   // Привод
   final String driveUnit;
-
   // Дополнительные опции
   List<String> additionalOptions;
 
   Equipment({required this.id, required this.title, required this.seatUpholstery, required this.heatedSeats,
-    required this.airbags,required this.onBoardComputer,required this.power,required this.maxTorque,
+    required this.airbags,required this.onBoardComputer,required this.horsePower,required this.maxTorque,
     required this.typeOfFuel,required this.accelerationTime,required this.maxSpeed,
     required this.airConditioningSystem,required this.multifunctionSteeringWheel,
     required this.fuelTankVolume, required this.centralLocking, required this.trunkVolume,
     required this.driveUnit, required this.additionalOptions});
+
+  factory Equipment.fromJson(Map<String, dynamic> parsedJson){
+    return Equipment(
+      id: parsedJson['_id'],
+      title: parsedJson['title'],
+      seatUpholstery: parsedJson['seatUpholstery'],
+      heatedSeats: parsedJson['heatedSeats'],
+      airbags: parsedJson['airbags'],
+      onBoardComputer: parsedJson['onBoardComputer'],
+      horsePower: parsedJson['horsePower'],
+      maxTorque: parsedJson['maxTorque'],
+      typeOfFuel: parsedJson['typeOfFuel'],
+      accelerationTime: parsedJson['accelerationTime'],
+      maxSpeed: parsedJson['maxSpeed'],
+      airConditioningSystem: parsedJson['airConditioningSystem'],
+      multifunctionSteeringWheel: parsedJson['multifunctionSteeringWheel'],
+      fuelTankVolume: parsedJson['fuelTankVolume'],
+      centralLocking: parsedJson['centralLocking'],
+      trunkVolume: parsedJson['trunkVolume'],
+      driveUnit: parsedJson['driveUnit'],
+      additionalOptions: parsedJson['additionalOptions'],
+    );
+  }
 
 
 }
