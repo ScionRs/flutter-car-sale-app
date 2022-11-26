@@ -1,5 +1,7 @@
 
 
+import 'package:car_sale_app/model/MaintenanceCosts.dart';
+
 import 'Equipment.dart';
 
 class Car{
@@ -19,7 +21,8 @@ class Car{
   final double engineVolume;
   // Комплектация
   Equipment equipment;
-
+  // Затраты на обслуживание
+  MaintenanceCosts maintenanceCosts;
 
   Car({
      required this.id,
@@ -32,7 +35,9 @@ class Car{
     required this.transmission,
     required this.engineType,
     required this.engineVolume,
-    required this.equipment });
+    required this.equipment,
+    required this.maintenanceCosts
+  });
 
   factory Car.fromJson(Map<String, dynamic> parsedJson){
     return Car(
@@ -46,6 +51,8 @@ class Car{
         transmission: parsedJson['transmission'],
         engineType: parsedJson['engineType'],
         engineVolume: parsedJson['engineVolume'],
+        equipment: parsedJson['equipment'],
+        maintenanceCosts: parsedJson['maintenanceCosts'],
     );
   }
 }

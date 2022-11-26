@@ -12,7 +12,7 @@ class Equipment{
   // Бортовой компьютер
   final String onBoardComputer;
   // Мощность в лс
-  final String power;
+  final String horsePower;
   // Крутящий момент в нм
   final int maxTorque;
   // Вид топлива
@@ -33,10 +33,7 @@ class Equipment{
   final String trunkVolume;
   // Привод
   final String driveUnit;
-  // Расход в городском цикле
-  final int fuelConsumptionUrbanCycle;
-  // Расход в режиме трассы
-  final int extraUrbanFuelConsumption;
+
   // Дополнительные опции
   List<String> additionalOptions;
 
@@ -45,8 +42,7 @@ class Equipment{
     required this.typeOfFuel,required this.accelerationTime,required this.maxSpeed,
     required this.airConditioningSystem,required this.multifunctionSteeringWheel,
     required this.fuelTankVolume, required this.centralLocking, required this.trunkVolume,
-    required this.driveUnit, required this.fuelConsumptionUrbanCycle,
-    required this.extraUrbanFuelConsumption, required this.additionalOptions});
+    required this.driveUnit, required this.additionalOptions});
 
 
 }
