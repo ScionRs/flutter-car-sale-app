@@ -37,4 +37,22 @@ class MaintenanceCosts{
     required this.costHorsePower,
     required this.price,
     required this.taxPrice});
+
+  factory MaintenanceCosts.fromJson(Map<String, dynamic> parsedJson){
+    return MaintenanceCosts(
+      id: parsedJson['_id'],
+      fuelConsumptionUrbanCycle: parsedJson['fuelConsumptionUrbanCycle'],
+      extraUrbanFuelConsumption: parsedJson['extraUrbanFuelConsumption'],
+      combinedFuelConsumption: parsedJson['combinedFuelConsumption'],
+      costFuelConsumptionUrbanCycle: parsedJson['costFuelConsumptionUrbanCycle'],
+      costExtraUrbanFuelConsumption: parsedJson['costExtraUrbanFuelConsumption'],
+      costCombinedFuelConsumption: parsedJson['costCombinedFuelConsumption'],
+      travelDistance: parsedJson['travelDistance'],
+      horsePower: parsedJson['horsePower'],
+      costHorsePower: parsedJson['costHorsePower'],
+      price: parsedJson['price'],
+      taxPrice: parsedJson['taxPrice'],
+
+    );
+  }
 }
