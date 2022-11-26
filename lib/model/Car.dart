@@ -3,7 +3,7 @@
 import 'Equipment.dart';
 
 class Car{
-  final int id;
+  final String id;
   final String brand;
   final String model;
   final int price;
@@ -17,7 +17,9 @@ class Car{
   final String engineType;
   //Обьем двигателя
   final double engineVolume;
-  final List<Equipment> equipment;
+  // Комплектация
+  Equipment equipment;
+
 
   Car({
      required this.id,
@@ -31,4 +33,19 @@ class Car{
     required this.engineType,
     required this.engineVolume,
     required this.equipment });
+
+  factory Car.fromJson(Map<String, dynamic> parsedJson){
+    return Car(
+        id: parsedJson['_id'],
+        brand: parsedJson['brand'],
+        model: parsedJson['model'],
+        price: parsedJson['price'],
+        bodyColor: parsedJson['bodyColor'],
+        productionYear: parsedJson['productionYear'],
+        bodyType: parsedJson['bodyType'],
+        transmission: parsedJson['transmission'],
+        engineType: parsedJson['engineType'],
+        engineVolume: parsedJson['engineVolume'],
+    );
+  }
 }
