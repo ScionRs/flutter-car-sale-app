@@ -1,6 +1,6 @@
 
 
-import 'package:car_sale_app/model/MaintenanceCosts.dart';
+import 'package:car_sale_app/model/maintenance_costs.dart';
 
 import 'Equipment.dart';
 
