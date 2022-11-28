@@ -142,6 +142,14 @@ class _CitiesPageWidget extends StatelessWidget {
         Text("ГОРОД"),
         Text("ГОРОД"),
         Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
+        Text("ГОРОД"),
       ],
     );
   }
