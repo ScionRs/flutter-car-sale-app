@@ -12,13 +12,13 @@ class Equipment{
   // Бортовой компьютер
   final String onBoardComputer;
   // Мощность в лс
-  final String horsePower;
+  final int horsePower;
   // Крутящий момент в нм
   final int maxTorque;
   // Вид топлива
   final String typeOfFuel;
   // Время разгона
-  final String accelerationTime;
+  final double accelerationTime;
   // Максимальная скорость
   final String maxSpeed;
   // Климат контроль
