@@ -8,6 +8,7 @@ class Car{
   final String id;
   final String brand;
   final String model;
+  final String image;
   final int price;
   final String bodyColor;
   // Год создания
@@ -28,6 +29,7 @@ class Car{
      required this.id,
     required this.brand,
     required this.model,
+    required this.image,
     required this.price,
     required this.bodyColor,
     required this.productionYear,
@@ -44,6 +46,7 @@ class Car{
         id: parsedJson['_id'],
         brand: parsedJson['brand'],
         model: parsedJson['model'],
+        image: parsedJson['image'],
         price: parsedJson['price'],
         bodyColor: parsedJson['bodyColor'],
         productionYear: parsedJson['productionYear'],
