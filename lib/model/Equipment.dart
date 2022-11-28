@@ -20,7 +20,7 @@ class Equipment{
   // Время разгона
   final double accelerationTime;
   // Максимальная скорость
-  final String maxSpeed;
+  final int maxSpeed;
   // Климат контроль
   final String airConditioningSystem;
   // Мульти-руль
