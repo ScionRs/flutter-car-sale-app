@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
+import 'package:tab_container/tab_container.dart';
 import 'package:flutter/material.dart';
 
 List<String> listOfPictures = [
@@ -17,10 +19,10 @@ class MainScreenWidget extends StatelessWidget {
           const _AppBarWidget(),
           _CarouselWidget(),
           const _TabBarWidget(),
-          Container(
-            color: Colors.red,
-            height: 50,
-          )
+          // Container(
+          //   color: Colors.red,
+          //   height: 50,
+          // )
         ],
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -103,6 +105,7 @@ class _TabBarWidgetState extends State<_TabBarWidget>
       child: Column(
         children: [
           TabBar(
+            isScrollable: true,
             labelColor: Colors.black,
             controller: tabController,
             tabs: const [
@@ -114,8 +117,8 @@ class _TabBarWidgetState extends State<_TabBarWidget>
             child: TabBarView(
               controller: tabController,
               children: const [
-                _CitiesPageWidget(),
-                _CitiesPageWidget(),
+                _CarPageWidget(),
+                _CarPageWidget(),
               ],
             ),
           )
@@ -151,6 +154,39 @@ class _CitiesPageWidget extends StatelessWidget {
         Text("ГОРОД"),
         Text("ГОРОД"),
       ],
+    );
+  }
+}
+
+class _CarPageWidget extends StatelessWidget {
+  const _CarPageWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: GridView.builder(
+        itemCount: 22,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+        ),
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+              // color: const Color.fromRGBO(245, 245, 249, 1),
+              color: const Color.fromRGBO(0, 73, 183, 1),
+            ),
+          );
+        },
+      ),
     );
   }
 }
