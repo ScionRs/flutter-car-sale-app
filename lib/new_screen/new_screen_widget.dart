@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class NewScreenWidget extends StatelessWidget {
@@ -5,6 +7,8 @@ class NewScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("data"),
+    );
   }
 }
