@@ -35,7 +35,7 @@ class CommonData{
                         maxTorque: 208,
                         typeOfFuel: 'Бензин',
                         accelerationTime: 10.3,
-                        maxSpeed: '200',
+                        maxSpeed: 200,
                         airConditioningSystem: '2-х зонный',
                         multifunctionSteeringWheel: 'Управление аудиосистемой на рулевом колесе',
                         fuelTankVolume: 58,
