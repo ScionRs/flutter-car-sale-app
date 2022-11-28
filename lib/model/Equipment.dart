@@ -44,6 +44,8 @@ class Equipment{
     required this.driveUnit, required this.additionalOptions});
 
   factory Equipment.fromJson(Map<String, dynamic> parsedJson){
+    var additionalOptionsfromJson = parsedJson['additionalOptions'];
+    List<String> additionalOptionsList = additionalOptionsfromJson.cast<String>();
     return Equipment(
       id: parsedJson['_id'],
       title: parsedJson['title'],
@@ -62,7 +64,7 @@ class Equipment{
       centralLocking: parsedJson['centralLocking'],
       trunkVolume: parsedJson['trunkVolume'],
       driveUnit: parsedJson['driveUnit'],
-      additionalOptions: parsedJson['additionalOptions'],
+      additionalOptions: additionalOptionsList,
     );
   }
 
