@@ -3,22 +3,54 @@ import 'package:flutter/gestures.dart';
 import 'package:tab_container/tab_container.dart';
 import 'package:flutter/material.dart';
 
+import '../model/car_category.dart';
+import '../model/сommon_data.dart';
+import '../widgets/car_list_widget.dart';
+
 List<String> listOfPictures = [
   "https://cdn.papajohns.ru//images/banners/396ece6c32db5efbc4a7ca2f0b5bd285.jpg",
   "https://cdn.papajohns.ru//images/banners/31573ad2cc3b1f64ef793b1773320d2f.png",
 ];
 
-class MainScreenWidget extends StatelessWidget {
-  const MainScreenWidget({Key? key}) : super(key: key);
+Color borderColor = Colors.white;
+bool isSelected = false;
 
+class MainScreenWidget extends StatefulWidget {
+  const MainScreenWidget({Key? key}) : super(key: key);
+  @override
+  State<MainScreenWidget> createState() => _MainScreenWidgetState();
+}
+
+class _MainScreenWidgetState extends State<MainScreenWidget> {
+  bool isBtnSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        shrinkWrap: true,
         children: [
           const _AppBarWidget(),
           _CarouselWidget(),
-          const _TabBarWidget(),
+          Row(
+            children: [
+              TextButton(onPressed: () {
+                setState(() {
+                  isBtnSelected = true;
+                  print(isBtnSelected);
+                });
+              },
+                  child: Text('Города')),
+              TextButton(onPressed: () {
+                setState(() {
+                  isBtnSelected = false;
+                  print(isBtnSelected);
+                });
+              },
+                  child: Text('Автомобили')),
+            ],
+          ),
+          isBtnSelected ? buildCarList(CommonData.carCategoryList) : buildCarList(CommonData.carCategoryList2)
+          //const _TabBarWidget(),
           // Container(
           //   color: Colors.red,
           //   height: 50,
@@ -28,6 +60,35 @@ class MainScreenWidget extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
     );
   }
+
+  Widget buildCarList(List<CarCategory> carCategory) => GridView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: carCategory.length,
+      gridDelegate:
+      const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+      ),
+      itemBuilder: (BuildContext context, int index){
+        final car = carCategory[index];
+        return GestureDetector(
+            onTap: (){
+              setState(() {
+                isSelected = !isSelected;
+              });
+            },
+            child: CarCardWidget(carCategory: car,
+                isSelected: (bool value) {
+                  setState(() {
+                    if (value) {
+
+                    } else {
+
+                    }
+                  });
+                } )
+        );
+      });
 
   Widget _CarouselWidget() => CarouselSlider.builder(
         options: CarouselOptions(
