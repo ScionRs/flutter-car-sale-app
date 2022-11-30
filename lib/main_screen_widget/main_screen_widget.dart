@@ -1,6 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
-import 'package:tab_container/tab_container.dart';
 import 'package:flutter/material.dart';
 
 import '../model/car_category.dart';
@@ -30,86 +28,35 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         shrinkWrap: true,
         children: [
           const _AppBarWidget(),
-          _CarouselWidget(),
+          const _SliderWidget(),
           Row(
             children: [
-              TextButton(onPressed: () {
-                setState(() {
-                  isBtnSelected = true;
-                  print(isBtnSelected);
-                });
-              },
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isBtnSelected = true;
+                      print(isBtnSelected);
+                    });
+                  },
                   child: Text('Города')),
-              TextButton(onPressed: () {
-                setState(() {
-                  isBtnSelected = false;
-                  print(isBtnSelected);
-                });
-              },
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isBtnSelected = false;
+                      print(isBtnSelected);
+                    });
+                  },
                   child: Text('Автомобили')),
             ],
           ),
-          isBtnSelected ? buildCarList(CommonData.carCategoryList) : buildCarList(CommonData.carCategoryList2)
-          //const _TabBarWidget(),
-          // Container(
-          //   color: Colors.red,
-          //   height: 50,
-          // )
+          isBtnSelected
+              ? _BuildCarListWidget(CommonData.carCategoryList)
+              : _BuildCarListWidget(CommonData.carCategoryList2),
         ],
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
     );
   }
-
-  Widget buildCarList(List<CarCategory> carCategory) => GridView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: carCategory.length,
-      gridDelegate:
-      const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-      ),
-      itemBuilder: (BuildContext context, int index){
-        final car = carCategory[index];
-        return GestureDetector(
-            onTap: (){
-              setState(() {
-                isSelected = !isSelected;
-              });
-            },
-            child: CarCardWidget(carCategory: car,
-                isSelected: (bool value) {
-                  setState(() {
-                    if (value) {
-
-                    } else {
-
-                    }
-                  });
-                } )
-        );
-      });
-
-  Widget _CarouselWidget() => CarouselSlider.builder(
-        options: CarouselOptions(
-          viewportFraction: 1,
-          height: 350,
-          autoPlay: true,
-        ),
-        itemCount: listOfPictures.length,
-        itemBuilder: (context, index, realIndex) {
-          final urlImage = listOfPictures[index];
-          return buildImage(urlImage, index);
-        },
-      );
-
-  Widget buildImage(String urlImage, int index) => Container(
-      margin: const EdgeInsets.symmetric(horizontal: 0),
-      color: Colors.white,
-      child: Image.network(
-        urlImage,
-        fit: BoxFit.cover,
-      ));
 }
 
 class _AppBarWidget extends StatelessWidget {
@@ -131,123 +78,70 @@ class _AppBarWidget extends StatelessWidget {
   }
 }
 
-class _TabBarWidget extends StatefulWidget {
-  const _TabBarWidget({Key? key}) : super(key: key);
-
-  @override
-  State<_TabBarWidget> createState() => _TabBarWidgetState();
-}
-
-class _TabBarWidgetState extends State<_TabBarWidget>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
-
-  @override
-  void initState() {
-    tabController = TabController(length: 2, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
+class _SliderWidget extends StatelessWidget {
+  const _SliderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color.fromRGBO(215, 217, 223, 1),
-        ),
+    return CarouselSlider.builder(
+      options: CarouselOptions(
+        viewportFraction: 1,
+        height: 350,
+        autoPlay: true,
       ),
-      child: Column(
-        children: [
-          TabBar(
-            isScrollable: true,
-            labelColor: Colors.black,
-            controller: tabController,
-            tabs: const [
-              Tab(text: "Города"),
-              Tab(text: "Автомобили"),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: const [
-                _CarPageWidget(),
-                _CarPageWidget(),
-              ],
-            ),
-          )
-        ],
-      ),
+      itemCount: listOfPictures.length,
+      itemBuilder: (context, index, realIndex) {
+        final urlImage = listOfPictures[index];
+        return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 0),
+            color: Colors.white,
+            child: Image.network(
+              urlImage,
+              fit: BoxFit.cover,
+            ));
+        ;
+      },
     );
   }
 }
 
-class _CitiesPageWidget extends StatelessWidget {
-  const _CitiesPageWidget({Key? key}) : super(key: key);
+class _BuildCarListWidget extends StatefulWidget {
+  final List<CarCategory> carCategory;
+  const _BuildCarListWidget(
+    this.carCategory, {
+    Key? key,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-        Text("ГОРОД"),
-      ],
-    );
-  }
+  State<_BuildCarListWidget> createState() => _BuildCarListWidgetState();
 }
 
-class _CarPageWidget extends StatelessWidget {
-  const _CarPageWidget({Key? key}) : super(key: key);
-
+class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: GridView.builder(
-        itemCount: 22,
+    return GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: widget.carCategory.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
         ),
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                16,
-              ),
-              // color: const Color.fromRGBO(245, 245, 249, 1),
-              color: const Color.fromRGBO(0, 73, 183, 1),
-            ),
-          );
-        },
-      ),
-    );
+        itemBuilder: (BuildContext context, int index) {
+          final car = widget.carCategory[index];
+          return GestureDetector(
+              onTap: () {
+                setState(() {
+                  isSelected = !isSelected;
+                });
+              },
+              child: CarCardWidget(
+                  carCategory: car,
+                  isSelected: (bool value) {
+                    setState(() {
+                      if (value) {
+                      } else {}
+                    });
+                  }));
+        });
   }
 }
