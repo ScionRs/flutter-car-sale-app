@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../model/car_category.dart';
@@ -28,12 +26,12 @@ class _CarCardWidgetState extends State<CarCardWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          setState(() {
-            isSelected = !isSelected;
-            widget.isSelected(isSelected);
-          });
-        },
+      onTap: () {
+        setState(() {
+          isSelected = !isSelected;
+          widget.isSelected(isSelected);
+        });
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           side: BorderSide(
@@ -43,8 +41,8 @@ class _CarCardWidgetState extends State<CarCardWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildImage('${widget.carCategory.image}'),
-            Text('${widget.carCategory.name}')
+            buildImage(widget.carCategory.image),
+            Text(widget.carCategory.name)
           ],
         ),
       ),
