@@ -1,6 +1,5 @@
+import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
-
-String carPicture = "https://mazda.tts.ru/upload/iblock/677/mazda_6_sedan2.png";
 
 class CarListScreenWidget extends StatelessWidget {
   const CarListScreenWidget({Key? key}) : super(key: key);
@@ -10,39 +9,19 @@ class CarListScreenWidget extends StatelessWidget {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(55),
-        child: _AppBarWidget(),
+        child: AppBarWidget(),
       ),
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) =>
-            const _CarCardwidget(),
+            const _CarCardWidget(),
       ),
     );
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: const Text(
-        'CarMarket',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-      centerTitle: true,
-      backgroundColor: const Color.fromRGBO(0, 73, 183, 1),
-    );
-  }
-}
-
-class _CarCardwidget extends StatelessWidget {
-  const _CarCardwidget({Key? key}) : super(key: key);
+class _CarCardWidget extends StatelessWidget {
+  const _CarCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

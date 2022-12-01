@@ -1,4 +1,5 @@
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/city_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(55),
-        child: _AppBarWidget(),
+        child: AppBarWidget(),
       ),
       body: ListView(
         shrinkWrap: true,
@@ -83,25 +84,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
     );
-  }
-}
-
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-        title: const Text(
-          'CarMarket',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(0, 73, 183, 1));
   }
 }
 
