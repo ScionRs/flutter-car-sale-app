@@ -22,44 +22,57 @@ class MainScreenWidget extends StatefulWidget {
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
 
-
-
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   bool isBtnSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(55),
+        child: _AppBarWidget(),
+      ),
       body: ListView(
         shrinkWrap: true,
         children: [
-          const _AppBarWidget(),
           const _SliderWidget(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 OutlinedButton(
-                    style: isBtnSelected == true ? AppValue.customStyleBlue : AppValue.customStyleWhite,
+                    style: isBtnSelected == true
+                        ? AppValue.customStyleBlue
+                        : AppValue.customStyleWhite,
                     onPressed: () {
                       setState(() {
                         isBtnSelected = true;
                         print(isBtnSelected);
                       });
                     },
-                    child: Text('Города',
-                    style: isBtnSelected == true ? AppValue.customTextStyleWhite : AppValue.customTextStyleBlack,)),
+                    child: Text(
+                      'Города',
+                      style: isBtnSelected == true
+                          ? AppValue.customTextStyleWhite
+                          : AppValue.customTextStyleBlack,
+                    )),
                 OutlinedButton(
-                    style: isBtnSelected == false ? AppValue.customStyleBlue : AppValue.customStyleWhite,
+                    style: isBtnSelected == false
+                        ? AppValue.customStyleBlue
+                        : AppValue.customStyleWhite,
                     onPressed: () {
                       setState(() {
                         isBtnSelected = false;
                         print(isBtnSelected);
                       });
                     },
-                    child: Text('Автомобили',
-                      style: isBtnSelected == true ? AppValue.customTextStyleBlack : AppValue.customTextStyleWhite,)),
+                    child: Text(
+                      'Автомобили',
+                      style: isBtnSelected == true
+                          ? AppValue.customTextStyleBlack
+                          : AppValue.customTextStyleWhite,
+                    )),
               ],
             ),
           ),
@@ -162,9 +175,9 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
 class _BuildCityListWidget extends StatefulWidget {
   final List<City> cities;
   const _BuildCityListWidget(
-      this.cities, {
-        Key? key,
-      }) : super(key: key);
+    this.cities, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<_BuildCityListWidget> createState() => _BuildCityListWidgetState();
