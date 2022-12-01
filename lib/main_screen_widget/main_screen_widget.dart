@@ -30,6 +30,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
           const _AppBarWidget(),
           const _SliderWidget(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton(
                   onPressed: () {
