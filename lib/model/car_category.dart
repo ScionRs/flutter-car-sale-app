@@ -10,7 +10,7 @@ class CarCategory{
   CarCategory({required this.id,required this.name,required this.image, required this.cars});
 
   factory CarCategory.fromJson(Map<String, dynamic> parsedJson){
-    var carsListSize = parsedJson['size'] as List;
+    var carsListSize = parsedJson['cars'] as List;
     List<Car> carJsonList = carsListSize.map((e) => Car.fromJson(e)).toList();
     return CarCategory(
         id: parsedJson['_id'],
