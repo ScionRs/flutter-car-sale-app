@@ -62,7 +62,7 @@ class CommonData{
               ])
         ]),
     City(id: '1',
-        name: 'Москва',
+        name: 'Нижнекамск',
         autoShowList: [
           AutoShow(id: '1',
               name: 'Автосалон Mazda',
@@ -115,7 +115,7 @@ class CommonData{
               ])
         ]),
     City(id: '1',
-        name: 'Москва',
+        name: 'Казань',
         autoShowList: [
           AutoShow(id: '1',
               name: 'Автосалон Mazda',
@@ -168,7 +168,7 @@ class CommonData{
               ])
         ]),
     City(id: '1',
-        name: 'Москва',
+        name: 'Екатеринбург',
         autoShowList: [
           AutoShow(id: '1',
               name: 'Автосалон Mazda',
@@ -221,7 +221,7 @@ class CommonData{
               ])
         ]),
     City(id: '1',
-        name: 'Москва',
+        name: 'Новосибирск',
         autoShowList: [
           AutoShow(id: '1',
               name: 'Автосалон Mazda',

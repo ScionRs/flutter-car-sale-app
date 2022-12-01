@@ -1,7 +1,9 @@
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/widgets/city_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../model/City.dart';
 import '../model/car_category.dart';
 import '../model/сommon_data.dart';
 import '../widgets/car_list_widget.dart';
@@ -46,7 +48,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                   },
                   child: Text('Города',
                   style: isBtnSelected == true ? AppValue.customTextStyleWhite : AppValue.customTextStyleBlack,)),
-              TextButton(
+              OutlinedButton(
                   style: isBtnSelected == false ? AppValue.customStyleBlue : AppValue.customStyleWhite,
                   onPressed: () {
                     setState(() {
@@ -59,8 +61,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             ],
           ),
           isBtnSelected
-              ? _BuildCarListWidget(CommonData.carCategoryList)
-              : _BuildCarListWidget(CommonData.carCategoryList2),
+              ? _BuildCityListWidget(CommonData.listOfCities)
+              : _BuildCarListWidget(CommonData.carCategoryList),
         ],
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -108,7 +110,6 @@ class _SliderWidget extends StatelessWidget {
               urlImage,
               fit: BoxFit.cover,
             ));
-        ;
       },
     );
   }
@@ -145,6 +146,48 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
               },
               child: CarCardWidget(
                   carCategory: car,
+                  isSelected: (bool value) {
+                    setState(() {
+                      if (value) {
+                      } else {}
+                    });
+                  }));
+        });
+  }
+}
+
+class _BuildCityListWidget extends StatefulWidget {
+  final List<City> cities;
+  const _BuildCityListWidget(
+      this.cities, {
+        Key? key,
+      }) : super(key: key);
+
+  @override
+  State<_BuildCityListWidget> createState() => _BuildCityListWidgetState();
+}
+
+class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: widget.cities.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisExtent: 100.0,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          final city = widget.cities[index];
+          return GestureDetector(
+              onTap: () {
+                setState(() {
+                  isSelected = !isSelected;
+                });
+              },
+              child: CityCardWidget(
+                  city: city,
                   isSelected: (bool value) {
                     setState(() {
                       if (value) {
