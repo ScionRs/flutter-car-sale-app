@@ -1,3 +1,4 @@
+import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,8 @@ class MainScreenWidget extends StatefulWidget {
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
 
+
+
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   bool isBtnSelected = false;
   @override
@@ -33,22 +36,26 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextButton(
+              OutlinedButton(
+                  style: isBtnSelected == true ? AppValue.customStyleBlue : AppValue.customStyleWhite,
                   onPressed: () {
                     setState(() {
                       isBtnSelected = true;
                       print(isBtnSelected);
                     });
                   },
-                  child: Text('Города')),
+                  child: Text('Города',
+                  style: isBtnSelected == true ? AppValue.customTextStyleWhite : AppValue.customTextStyleBlack,)),
               TextButton(
+                  style: isBtnSelected == false ? AppValue.customStyleBlue : AppValue.customStyleWhite,
                   onPressed: () {
                     setState(() {
                       isBtnSelected = false;
                       print(isBtnSelected);
                     });
                   },
-                  child: Text('Автомобили')),
+                  child: Text('Автомобили',
+                    style: isBtnSelected == true ? AppValue.customTextStyleBlack : AppValue.customTextStyleWhite,)),
             ],
           ),
           isBtnSelected
