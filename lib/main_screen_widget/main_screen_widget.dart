@@ -34,31 +34,34 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         children: [
           const _AppBarWidget(),
           const _SliderWidget(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              OutlinedButton(
-                  style: isBtnSelected == true ? AppValue.customStyleBlue : AppValue.customStyleWhite,
-                  onPressed: () {
-                    setState(() {
-                      isBtnSelected = true;
-                      print(isBtnSelected);
-                    });
-                  },
-                  child: Text('Города',
-                  style: isBtnSelected == true ? AppValue.customTextStyleWhite : AppValue.customTextStyleBlack,)),
-              OutlinedButton(
-                  style: isBtnSelected == false ? AppValue.customStyleBlue : AppValue.customStyleWhite,
-                  onPressed: () {
-                    setState(() {
-                      isBtnSelected = false;
-                      print(isBtnSelected);
-                    });
-                  },
-                  child: Text('Автомобили',
-                    style: isBtnSelected == true ? AppValue.customTextStyleBlack : AppValue.customTextStyleWhite,)),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                OutlinedButton(
+                    style: isBtnSelected == true ? AppValue.customStyleBlue : AppValue.customStyleWhite,
+                    onPressed: () {
+                      setState(() {
+                        isBtnSelected = true;
+                        print(isBtnSelected);
+                      });
+                    },
+                    child: Text('Города',
+                    style: isBtnSelected == true ? AppValue.customTextStyleWhite : AppValue.customTextStyleBlack,)),
+                OutlinedButton(
+                    style: isBtnSelected == false ? AppValue.customStyleBlue : AppValue.customStyleWhite,
+                    onPressed: () {
+                      setState(() {
+                        isBtnSelected = false;
+                        print(isBtnSelected);
+                      });
+                    },
+                    child: Text('Автомобили',
+                      style: isBtnSelected == true ? AppValue.customTextStyleBlack : AppValue.customTextStyleWhite,)),
+              ],
+            ),
           ),
           isBtnSelected
               ? _BuildCityListWidget(CommonData.listOfCities)
