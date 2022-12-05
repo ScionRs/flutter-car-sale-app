@@ -35,6 +35,7 @@ class _CarCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -46,7 +47,7 @@ class _CarCardWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-           BuildImage(url: carCategory.cars[index].giveCarImage(index)),
+           BuildImage(url: carCategory.cars[index].giveCarImage()),
             SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -56,14 +57,14 @@ class _CarCardWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${carCategory.cars[index].giveCarBrand(index)}",
+                        "${carCategory.cars[index].giveCarBrand()}",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        " ${carCategory.cars[index].giveCarModel(index)}",
+                        " ${carCategory.cars[index].giveCarModel()}",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -72,7 +73,14 @@ class _CarCardWidget extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  Text("Количество:${carCategory.cars[index].carList.length}")
+                  Text("Количество:${carCategory.cars[index].carList.length}"),
+                  Row(
+                    children: [
+                      Text("Цена от:${carCategory.cars[index].giveMinPriceFromCar()} ₽"),
+
+                    ],
+                  ),
+
                 ],
               ),
             ),

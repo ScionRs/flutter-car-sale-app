@@ -18,16 +18,16 @@ class CarIntermediate{
     );
   }
 
-  String giveCarImage(int index){
-    return carList[index].image;
+  String giveCarImage(){
+    return carList[0].image;
   }
 
-  String giveCarBrand(int index){
-    return carList[index].brand;
+  String giveCarBrand(){
+    return carList[0].brand;
   }
 
-  String giveCarModel(int index){
-    return carList[index].model;
+  String giveCarModel(){
+    return carList[0].model;
   }
   
   int giveMaxPriceFromCar(){
