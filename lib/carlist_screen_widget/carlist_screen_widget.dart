@@ -1,3 +1,4 @@
+import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
@@ -20,7 +21,15 @@ class CarListScreenWidget extends StatelessWidget {
       body: ListView.builder(
         itemCount: carCategory.cars.length,
         itemBuilder: (BuildContext context, int index) =>
-             _CarCardWidget(carCategory: carCategory, index: index),
+             GestureDetector(
+                 onTap: (){
+                   Navigator.push(context,
+                       MaterialPageRoute(
+                         builder: (context) =>
+                             CarIntermediateWidget(carIntermediate: carCategory.cars[index]),
+                       ));
+                 },
+                 child: _CarCardWidget(carCategory: carCategory, index: index)),
       ),
       );
   }
