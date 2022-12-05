@@ -1,4 +1,5 @@
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/city_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -79,7 +80,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
           ),
           isBtnSelected
               ? _BuildCityListWidget(CommonData.listOfCities)
-              : _BuildCarListWidget(CommonData.carCategoryList),
+              : _BuildCarListWidget(CommonData.carCategoryList)
         ],
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -146,6 +147,11 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
                   carCategory: car,
                   isSelected: (bool value) {
                     setState(() {
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CarListScreenWidget(carCategory: car),
+                          ));
                       if (value) {
                       } else {}
                     });
@@ -195,3 +201,35 @@ class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
         });
   }
 }
+
+/*
+GridView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: CommonData.carCategoryList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                final car = CommonData.carCategoryList[index];
+                return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
+                    },
+                    child: CarCardWidget(
+                        carCategory: car,
+                        isSelected: (bool value) {
+                          setState(() {
+                            Navigator.push(context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      CarListScreenWidget(carCategory: car),
+                                ));
+                            if (value) {
+                            } else {}
+                          });
+                        }));
+              }),
+ */
