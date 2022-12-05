@@ -35,6 +35,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       ),
       body: ListView(
         shrinkWrap: true,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
           const _SliderWidget(),
           Padding(
@@ -129,6 +130,7 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: widget.carCategory.length,
@@ -175,6 +177,7 @@ class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: widget.cities.length,
