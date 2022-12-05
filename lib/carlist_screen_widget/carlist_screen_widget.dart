@@ -1,8 +1,14 @@
+import 'package:car_sale_app/model/car_category.dart';
+import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 class CarListScreenWidget extends StatelessWidget {
-  const CarListScreenWidget({Key? key}) : super(key: key);
+ final CarCategory carCategory;
+
+
+  const CarListScreenWidget({required this.carCategory, Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,7 @@ class CarListScreenWidget extends StatelessWidget {
         child: AppBarWidget(),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: carCategory.cars.length,
         itemBuilder: (BuildContext context, int index) =>
             const _CarCardWidget(),
       ),
