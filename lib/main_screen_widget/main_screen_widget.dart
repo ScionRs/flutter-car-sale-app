@@ -1,5 +1,6 @@
 import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
+import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/city_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -149,7 +150,8 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
                   carCategory: car,
                   isSelected: (bool value) {
                     setState(() {
-                      Navigator.push(context,
+                      Navigator.push(
+                          context,
                           MaterialPageRoute(
                             builder: (context) =>
                                 CarListScreenWidget(carCategory: car),
@@ -197,6 +199,12 @@ class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
                   city: city,
                   isSelected: (bool value) {
                     setState(() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const DealerListScreenWidget(),
+                          ));
                       if (value) {
                       } else {}
                     });

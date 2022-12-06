@@ -6,15 +6,16 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: const Text(
-          'CarMarket',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+      title: const Text(
+        'CarMarket',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(0, 73, 183, 1));
+      ),
+      centerTitle: true,
+      backgroundColor: const Color.fromRGBO(0, 73, 183, 1),
+    );
   }
 }
