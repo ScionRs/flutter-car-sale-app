@@ -3,6 +3,7 @@ import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CarListScreenWidget extends StatelessWidget {
   final CarCategory carCategory;
@@ -49,6 +50,7 @@ class _CarCardWidget extends StatelessWidget {
         "${carCategory.cars[index].giveCarBrand()} ${carCategory.cars[index].giveCarModel()}";
     var price = carCategory.cars[index].giveMinPriceFromCar();
     // var carsNumber = carCategory.cars[index].carList.length;
+    var formatPrice = NumberFormat("#,###,###", "en_US");
 
     return Container(
       height: 130,
@@ -84,7 +86,7 @@ class _CarCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "$price₽",
+                      "${formatPrice.format(price).replaceAll(',', ' ')} ₽",
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
