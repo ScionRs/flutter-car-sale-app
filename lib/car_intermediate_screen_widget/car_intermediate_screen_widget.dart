@@ -2,6 +2,7 @@
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
 class CarIntermediateWidget extends StatelessWidget {
@@ -11,9 +12,11 @@ class CarIntermediateWidget extends StatelessWidget {
   CarIntermediateWidget({Key? key, required this.carIntermediate}) : super(key: key);
 
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
-
+  var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
+  var formatPrice = NumberFormat("###.0#", "en_US");
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -32,14 +35,17 @@ class CarIntermediateWidget extends StatelessWidget {
               ),
             ),
             BuildImage(url: carIntermediate.carList[0].image),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('${carIntermediate.giveMinPriceFromCar()} ',style: textStyle,),
-                Text('-'),
-                Text('${carIntermediate.giveExpMaxPriceFromCar()}',style: textStyle),
-              ],
-            )
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('${carIntermediate.giveMinPriceFromCar()} ₽ ',style: textStylePrice,),
+                  Text('-', style: textStylePrice,),
+                  Text(' ${carIntermediate.giveExpMaxPriceFromCar()} ₽',style: textStylePrice),
+                ],
+              ),
+            ),
 
           ],
         ),
