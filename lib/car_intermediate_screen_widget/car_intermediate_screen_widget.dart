@@ -1,4 +1,5 @@
 
+import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:car_sale_app/model/Car.dart';
@@ -29,6 +30,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
+
   
   String defaultImage = '';
 
@@ -93,6 +95,8 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
       }
   );
 
+
+
   @override
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
@@ -126,6 +130,16 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
               ),
             ),
                 buildColorBtn(distinctIds),
+             SizedBox(height: 10,),
+             ExpansionTile(
+              title: Text('Смотреть ${widget.carIntermediate.carList.length} авто '),
+               collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+              collapsedTextColor: Colors.white,
+              textColor: Color.fromRGBO(0, 73, 183, 1),
+              children: <Widget>[
+                ListTile(title: Text('Здесь будут автомобили')),
+              ],
+            ),
           ],
         ),
       )
