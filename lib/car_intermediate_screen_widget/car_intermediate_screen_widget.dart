@@ -13,10 +13,10 @@ class CarIntermediateWidget extends StatelessWidget {
 
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
-  var formatPrice = NumberFormat("###.0#", "en_US");
+
   @override
   Widget build(BuildContext context) {
-
+    var formatPrice = NumberFormat("#,###,###", "en_US");
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -40,9 +40,9 @@ class CarIntermediateWidget extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('${carIntermediate.giveMinPriceFromCar()} ₽ ',style: textStylePrice,),
+                  Text('${formatPrice.format(carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                   Text('-', style: textStylePrice,),
-                  Text(' ${carIntermediate.giveExpMaxPriceFromCar()} ₽',style: textStylePrice),
+                  Text(' ${formatPrice.format(carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
                 ],
               ),
             ),
