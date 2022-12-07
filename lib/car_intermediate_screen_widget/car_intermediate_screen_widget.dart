@@ -64,10 +64,10 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children:[
               Row(children: [
-              if (btnItem == 'Красный')...[
+              if (btnItem == 'Белый')...[
               FloatingActionButton(
-                heroTag: "btnRed",
-                backgroundColor: Colors.red,
+                heroTag: "btnWhite",
+                backgroundColor: Colors.white,
                 onPressed: () {
                   setState(() {
                     defaultImage = btnItem;
@@ -75,10 +75,11 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   });
                 },
                 child: const Text(''),
-              ),] else if(btnItem == 'Желтый')...[
+              ),]
+              else if(btnItem == 'Красный')...[
                 FloatingActionButton(
-                  heroTag: "btnYellow",
-                  backgroundColor: Colors.amberAccent,
+                  heroTag: "btnRed",
+                  backgroundColor: Colors.red,
                   onPressed: () {
                     setState(() {
                       defaultImage = btnItem;
@@ -87,7 +88,33 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   },
                   child: const Text(''),
                 ),
-              ],
+              ]
+              else if(btnItem == 'Серый')...[
+                  FloatingActionButton(
+                    heroTag: "btnGrey",
+                    backgroundColor: Colors.grey,
+                    onPressed: () {
+                      setState(() {
+                        defaultImage = btnItem;
+                        print(defaultImage);
+                      });
+                    },
+                    child: const Text(''),
+                  ),
+                ]
+                else if(btnItem == 'Черный')...[
+                    FloatingActionButton(
+                      heroTag: "btnBlack",
+                      backgroundColor: Colors.black,
+                      onPressed: () {
+                        setState(() {
+                          defaultImage = btnItem;
+                          print(defaultImage);
+                        });
+                      },
+                      child: const Text(''),
+                    ),
+                  ]
                 ]),
             ],
           ),
@@ -132,7 +159,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 buildColorBtn(distinctIds),
              SizedBox(height: 10,),
              ExpansionTile(
-              title: Text('Смотреть ${widget.carIntermediate.carList.length} авто '),
+              title: Text('Смотреть ${widget.carIntermediate.carList.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
               collapsedTextColor: Colors.white,
               textColor: Color.fromRGBO(0, 73, 183, 1),
