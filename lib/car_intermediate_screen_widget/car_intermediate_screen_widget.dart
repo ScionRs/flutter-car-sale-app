@@ -1,18 +1,97 @@
 
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
+import 'package:car_sale_app/model/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 
-class CarIntermediateWidget extends StatelessWidget {
+class CarIntermediateWidget extends StatefulWidget {
   final CarIntermediate carIntermediate;
-
 
   CarIntermediateWidget({Key? key, required this.carIntermediate}) : super(key: key);
 
+  @override
+  State<CarIntermediateWidget> createState() => _CarIntermediateWidgetState();
+}
+
+class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
+
+  var ids = [];
+  List<dynamic> distinctIds = [];
+
+  @override
+  void initState() {
+    ids = widget.carIntermediate.carList.map((e) => e.bodyColor).toList();
+    distinctIds = ids.toSet().toList();
+  }
+
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
+
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
+  
+  String defaultImage = '';
+
+  String selectImage(String defaultValue){
+    setState(() {});
+      if(defaultValue != '') {
+        Car newValue = widget.carIntermediate.carList.firstWhere((e) =>
+        e.bodyColor == defaultValue);
+        return newValue.image;
+      } else {
+        return widget.carIntermediate.carList[0].image;
+      }
+  }
+
+  Widget buildColorBtn(List<dynamic> btn) => GridView.builder(
+      shrinkWrap: true,
+      itemCount: btn.length,
+      gridDelegate:
+      const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        childAspectRatio: 1.96,
+        crossAxisSpacing: 6,
+        mainAxisSpacing: 6,
+      ),
+      itemBuilder: (BuildContext context, int index){
+        final btnItem = btn[index];
+        return Padding(
+          padding: const EdgeInsets.only(top: 10,bottom: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+              Row(children: [
+              if (btnItem == 'Красный')...[
+              FloatingActionButton(
+                heroTag: "btnRed",
+                backgroundColor: Colors.red,
+                onPressed: () {
+                  setState(() {
+                    defaultImage = btnItem;
+                    print(selectImage(defaultImage));
+                  });
+                },
+                child: const Text(''),
+              ),] else if(btnItem == 'Желтый')...[
+                FloatingActionButton(
+                  heroTag: "btnYellow",
+                  backgroundColor: Colors.amberAccent,
+                  onPressed: () {
+                    setState(() {
+                      defaultImage = btnItem;
+                      print(defaultImage);
+                    });
+                  },
+                  child: const Text(''),
+                ),
+              ],
+                ]),
+            ],
+          ),
+        );
+      }
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +108,24 @@ class CarIntermediateWidget extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('${carIntermediate.carList[0].brand} ',style: textStyle,),
-                  Text(carIntermediate.carList[0].model,style: textStyle,),
+                  Text('${widget.carIntermediate.carList[0].brand} ',style: textStyle,),
+                  Text(widget.carIntermediate.carList[0].model,style: textStyle,),
                 ],
               ),
             ),
-            BuildImage(url: carIntermediate.carList[0].image),
+            defaultImage != '' ? BuildImage(url: selectImage(defaultImage)) : BuildImage(url: widget.carIntermediate.carList[0].image),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('${formatPrice.format(carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
+                  Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                   Text('-', style: textStylePrice,),
-                  Text(' ${formatPrice.format(carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
+                  Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
                 ],
               ),
             ),
-
+                buildColorBtn(distinctIds),
           ],
         ),
       )
