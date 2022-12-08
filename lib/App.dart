@@ -11,6 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       routes: mainNavigation.routes,
       initialRoute: mainNavigation.initialRoute,
+      onGenerateRoute: mainNavigation.onGenerateRoute,
     );
   }
 }

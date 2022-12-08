@@ -3,6 +3,7 @@ import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/city_card.dart';
+import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -131,36 +132,32 @@ class _BuildCarListWidgetState extends State<_BuildCarListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: widget.carCategory.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          final car = widget.carCategory[index];
-          return GestureDetector(
-              onTap: () {
-                setState(() {
-                  isSelected = !isSelected;
-                });
-              },
-              child: CarCardWidget(
-                  carCategory: car,
-                  isSelected: (bool value) {
-                    setState(() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                CarListScreenWidget(carCategory: car),
-                          ));
-                      if (value) {
-                      } else {}
-                    });
-                  }));
-        });
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: widget.carCategory.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        final car = widget.carCategory[index];
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              isSelected = !isSelected;
+            });
+          },
+          child: CarCardWidget(
+            carCategory: car,
+            isSelected: (bool value) {
+              Navigator.of(context).pushNamed(
+                  MainNavigationRouteName.carListScreen,
+                  arguments: car);
+            },
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -179,37 +176,32 @@ class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: widget.cities.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisExtent: 100.0,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          final city = widget.cities[index];
-          return GestureDetector(
-              onTap: () {
-                setState(() {
-                  isSelected = !isSelected;
-                });
-              },
-              child: CityCardWidget(
-                  city: city,
-                  isSelected: (bool value) {
-                    setState(() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const DealerListScreenWidget(),
-                          ));
-                      if (value) {
-                      } else {}
-                    });
-                  }));
-        });
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: widget.cities.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1,
+        mainAxisExtent: 100.0,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        final city = widget.cities[index];
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              isSelected = !isSelected;
+            });
+          },
+          child: CityCardWidget(
+            city: city,
+            isSelected: (bool value) {
+              Navigator.of(context)
+                  .pushNamed(MainNavigationRouteName.dealerListScreen);
+            },
+          ),
+        );
+      },
+    );
   }
 }
 

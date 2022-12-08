@@ -2,6 +2,7 @@ import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_scr
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
+import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,12 +24,9 @@ class CarListScreenWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         itemBuilder: (BuildContext context, int index) => GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CarIntermediateWidget(
-                        carIntermediate: carCategory.cars[index]),
-                  ));
+              Navigator.of(context).pushNamed(
+                  MainNavigationRouteName.carIntermediateScreen,
+                  arguments: carCategory.cars[index]);
             },
             child: _CarCardWidget(carCategory: carCategory, index: index)),
         separatorBuilder: (BuildContext context, int index) =>
