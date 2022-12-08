@@ -195,8 +195,9 @@ class _BuildCityListWidgetState extends State<_BuildCityListWidget> {
           child: CityCardWidget(
             city: city,
             isSelected: (bool value) {
-              Navigator.of(context)
-                  .pushNamed(MainNavigationRouteName.dealerListScreen);
+              Navigator.of(context).pushNamed(
+                  MainNavigationRouteName.dealerListScreen,
+                  arguments: city);
             },
           ),
         );

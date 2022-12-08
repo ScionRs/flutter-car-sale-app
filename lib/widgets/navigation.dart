@@ -2,6 +2,7 @@ import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_scr
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/main_screen_widget/main_screen_widget.dart';
+import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,6 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.mainScreen: (context) => const MainScreenWidget(),
-    MainNavigationRouteName.dealerListScreen: (context) =>
-        const DealerListScreenWidget(),
   };
 
   Route<Object>? onGenerateRoute(RouteSettings settings) {
@@ -34,6 +33,11 @@ class MainNavigation {
         return MaterialPageRoute(
           builder: (context) =>
               CarIntermediateWidget(carIntermediate: carIntermediate),
+        );
+      case MainNavigationRouteName.dealerListScreen:
+        final city = settings.arguments as City;
+        return MaterialPageRoute(
+          builder: (context) => DealerListScreenWidget(city: city),
         );
       default:
         const widget = Text("Navigation Error!!!");
