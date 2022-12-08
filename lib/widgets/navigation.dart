@@ -1,6 +1,7 @@
 import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
+import 'package:car_sale_app/main_screen_widget/main_screen_widget.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,11 @@ abstract class MainNavigationRouteName {
   static const carIntermediateScreen = "/carList/carIntermediate";
 }
 
-class Navigation {
+class MainNavigation {
   final initialRoute = MainNavigationRouteName.mainScreen;
 
   final routes = <String, Widget Function(BuildContext)>{
+    MainNavigationRouteName.mainScreen: (context) => const MainScreenWidget(),
     MainNavigationRouteName.dealerListScreen: (context) =>
         const DealerListScreenWidget(),
   };
