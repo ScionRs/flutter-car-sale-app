@@ -1,4 +1,4 @@
-import 'package:car_sale_app/model/Autoshow.dart';
+import 'package:car_sale_app/model/Dealer.dart';
 import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +31,7 @@ class DealerListScreenWidget extends StatelessWidget {
 }
 
 class _DealerCardWidget extends StatelessWidget {
-  final AutoShow dealer;
+  final Dealer dealer;
   const _DealerCardWidget({required this.dealer});
 
   @override
