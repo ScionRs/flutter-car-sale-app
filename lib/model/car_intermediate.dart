@@ -5,19 +5,22 @@ import 'Car.dart';
 
 class CarIntermediate{
   String id;
-  List<Car> carList;
+  String brand;
+  String model;
+  String image;
 
-  CarIntermediate({required this.id,required this.carList});
+  CarIntermediate({required this.id,required this.brand,required this.model, required this.image});
 
   factory CarIntermediate.fromJson(Map<String, dynamic> parsedJson){
-    var carsListSize = parsedJson['carList'] as List;
-    List<Car> carJsonList = carsListSize.map((e) => Car.fromJson(e)).toList();
     return CarIntermediate(
         id: parsedJson['_id'],
-        carList: carJsonList
+        brand: parsedJson['brand'],
+        model: parsedJson['model'],
+        image: parsedJson['image'],
     );
   }
 
+  /*
   String giveCarImage(){
     return carList[0].image;
   }
@@ -43,5 +46,5 @@ class CarIntermediate{
   int giveExpMaxPriceFromCar() => carList.map((e) => e.price).reduce(max);
 
   int giveMinPriceFromCar() => carList.map((e) => e.price).reduce(min);
-
+*/
 }

@@ -1,10 +1,12 @@
 
 import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
+import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 
 class CarIntermediateWidget extends StatefulWidget {
@@ -21,11 +23,13 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   var ids = [];
   List<dynamic> distinctIds = [];
 
+  /*
   @override
   void initState() {
     ids = widget.carIntermediate.carList.map((e) => e.bodyColor).toList();
     distinctIds = ids.toSet().toList();
   }
+   */
 
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
@@ -34,6 +38,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   
   String defaultImage = '';
 
+  /*
   String selectImage(String defaultValue){
     setState(() {});
       if(defaultValue != '') {
@@ -44,6 +49,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
         return widget.carIntermediate.carList[0].image;
       }
   }
+   */
 
   Widget buildColorBtn(List<dynamic> btn) => GridView.builder(
       shrinkWrap: true,
@@ -71,7 +77,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 onPressed: () {
                   setState(() {
                     defaultImage = btnItem;
-                    print(selectImage(defaultImage));
+                    print(defaultImage);
                   });
                 },
                 child: const Text(''),
@@ -122,52 +128,95 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
       }
   );
 
-
+  Widget buildCar(List<Car> car) => ListView.builder(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemCount: car.length,
+      itemBuilder: (BuildContext context, int index){
+        final carItem = car[index];
+        return GestureDetector(
+          onTap: () {
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10,bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                const SizedBox(width: 10,),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${carItem.model}',
+                        style: const TextStyle(fontSize:18, fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,),
+                      const SizedBox(height: 10,),
+                      Text('${carItem.price}',
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+  );
 
   @override
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
+    var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
+    var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
+    //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('${widget.carIntermediate.carList[0].brand} ',style: textStyle,),
-                  Text(widget.carIntermediate.carList[0].model,style: textStyle,),
+      body: ChangeNotifierProvider(
+        create: (context) => CarProvider(),
+        child: Container(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('${widget.carIntermediate.brand} ',style: textStyle,),
+                    Text(widget.carIntermediate.model,style: textStyle,),
+                  ],
+                ),
+              ),
+             // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    /*
+                    Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
+                    Text('-', style: textStylePrice,),
+                    Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
+                     */
+                  ],
+                ),
+              ),
+                  buildColorBtn(colors),
+               SizedBox(height: 10,),
+               ExpansionTile(
+                title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                 collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+                collapsedTextColor: Colors.white,
+                textColor: Color.fromRGBO(0, 73, 183, 1),
+                children: <Widget>[
+                  buildCar(model),
                 ],
               ),
-            ),
-            defaultImage != '' ? BuildImage(url: selectImage(defaultImage)) : BuildImage(url: widget.carIntermediate.carList[0].image),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
-                  Text('-', style: textStylePrice,),
-                  Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
-                ],
-              ),
-            ),
-                buildColorBtn(distinctIds),
-             SizedBox(height: 10,),
-             ExpansionTile(
-              title: Text('Смотреть ${widget.carIntermediate.carList.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-               collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
-              collapsedTextColor: Colors.white,
-              textColor: Color.fromRGBO(0, 73, 183, 1),
-              children: <Widget>[
-                ListTile(title: Text('Здесь будут автомобили')),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       )
     );

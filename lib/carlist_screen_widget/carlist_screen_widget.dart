@@ -45,8 +45,7 @@ class _CarCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var modelName =
-        "${carCategory.cars[index].giveCarBrand()} ${carCategory.cars[index].giveCarModel()}";
-    var price = carCategory.cars[index].giveMinPriceFromCar();
+        "${carCategory.cars[index].brand} ${carCategory.cars[index].model}";
     // var carsNumber = carCategory.cars[index].carList.length;
     var formatPrice = NumberFormat("#,###,###", "en_US");
 
@@ -59,7 +58,7 @@ class _CarCardWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          BuildImage(url: carCategory.cars[index].giveCarImage()),
+          BuildImage(url: carCategory.cars[index].image),
           const SizedBox(width: 20),
           Expanded(
             child: Column(
@@ -83,14 +82,14 @@ class _CarCardWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
+                    /*Text(
                       "${formatPrice.format(price).replaceAll(',', ' ')} ₽",
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
                 // const SizedBox(height: 4),
