@@ -77,7 +77,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 onPressed: () {
                   setState(() {
                     defaultImage = btnItem;
-                    //print(selectImage(defaultImage));
+                    print(defaultImage);
                   });
                 },
                 child: const Text(''),
@@ -169,6 +169,8 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
+    var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
+    //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
       appBar: AppBar(),
       body: ChangeNotifierProvider(
@@ -188,7 +190,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   ],
                 ),
               ),
-              //defaultImage != '' ? BuildImage(url: selectImage(defaultImage)) : BuildImage(url: widget.carIntermediate.carList[0].image),
+             // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -202,7 +204,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   ],
                 ),
               ),
-                  buildColorBtn(distinctIds),
+                  buildColorBtn(colors),
                SizedBox(height: 10,),
                ExpansionTile(
                 title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),

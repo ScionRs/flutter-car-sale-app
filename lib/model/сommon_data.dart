@@ -22,7 +22,7 @@ class CommonData {
       image:
       'https://www.tts.ru/upload/iblock/91d/mazda-cx-5-vnedorozhnik-seryy-0.jpg',
       price: 3202964,
-      bodyColor: 'Красный',
+      bodyColor: 'Серый',
       productionYear: 2022,
       bodyType: 'Кроссовер',
       transmission: 'АКПП',
