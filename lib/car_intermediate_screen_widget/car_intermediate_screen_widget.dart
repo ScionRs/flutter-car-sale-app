@@ -23,11 +23,13 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   var ids = [];
   List<dynamic> distinctIds = [];
 
+  /*
   @override
   void initState() {
     ids = widget.carIntermediate.carList.map((e) => e.bodyColor).toList();
     distinctIds = ids.toSet().toList();
   }
+   */
 
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
@@ -36,6 +38,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   
   String defaultImage = '';
 
+  /*
   String selectImage(String defaultValue){
     setState(() {});
       if(defaultValue != '') {
@@ -46,6 +49,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
         return widget.carIntermediate.carList[0].image;
       }
   }
+   */
 
   Widget buildColorBtn(List<dynamic> btn) => GridView.builder(
       shrinkWrap: true,
@@ -73,7 +77,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 onPressed: () {
                   setState(() {
                     defaultImage = btnItem;
-                    print(selectImage(defaultImage));
+                    //print(selectImage(defaultImage));
                   });
                 },
                 child: const Text(''),
@@ -164,7 +168,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   @override
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
-    var model = context.read<CarProvider>();
+    var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
     return Scaffold(
       appBar: AppBar(),
       body: ChangeNotifierProvider(
@@ -179,32 +183,34 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('${widget.carIntermediate.carList[0].brand} ',style: textStyle,),
-                    Text(widget.carIntermediate.carList[0].model,style: textStyle,),
+                    Text('${widget.carIntermediate.brand} ',style: textStyle,),
+                    Text(widget.carIntermediate.model,style: textStyle,),
                   ],
                 ),
               ),
-              defaultImage != '' ? BuildImage(url: selectImage(defaultImage)) : BuildImage(url: widget.carIntermediate.carList[0].image),
+              //defaultImage != '' ? BuildImage(url: selectImage(defaultImage)) : BuildImage(url: widget.carIntermediate.carList[0].image),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    /*
                     Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                     Text('-', style: textStylePrice,),
                     Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
+                     */
                   ],
                 ),
               ),
                   buildColorBtn(distinctIds),
                SizedBox(height: 10,),
                ExpansionTile(
-                title: Text('Смотреть ${widget.carIntermediate.carList.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                  collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
                 collapsedTextColor: Colors.white,
                 textColor: Color.fromRGBO(0, 73, 183, 1),
                 children: <Widget>[
-                  buildCar(model.searchCarModel('Cx-5')),
+                  buildCar(model),
                 ],
               ),
             ],
