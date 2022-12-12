@@ -1,9 +1,13 @@
+import 'package:car_sale_app/model/Dealer.dart';
+import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
 class DealerListScreenWidget extends StatelessWidget {
-  const DealerListScreenWidget({Key? key}) : super(key: key);
+  final City city;
+  const DealerListScreenWidget({Key? key, required this.city})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +17,11 @@ class DealerListScreenWidget extends StatelessWidget {
         child: AppBarWidget(),
       ),
       body: ListView.separated(
-        itemCount: 10,
+        itemCount: city.autoShowList.length,
         padding: const EdgeInsets.all(16),
         itemBuilder: (BuildContext context, int index) => GestureDetector(
           onTap: () {},
-          child: const _CityCardWidget(),
+          child: _DealerCardWidget(dealer: city.autoShowList[index]),
         ),
         separatorBuilder: (BuildContext context, int index) =>
             const SizedBox(height: 16),
@@ -26,8 +30,9 @@ class DealerListScreenWidget extends StatelessWidget {
   }
 }
 
-class _CityCardWidget extends StatelessWidget {
-  const _CityCardWidget();
+class _DealerCardWidget extends StatelessWidget {
+  final Dealer dealer;
+  const _DealerCardWidget({required this.dealer});
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +55,17 @@ class _CityCardWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  "Название автосалона",
-                  style: TextStyle(
+                  dealer.name,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
-                  "Пельменная, 26 ",
+                  dealer.address,
                 ),
               ],
             ),
