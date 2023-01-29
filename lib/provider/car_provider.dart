@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 
 class CarProvider with ChangeNotifier{
 
+  String imageCar = '';
+
+  // Поиск выбранной модели
   List<Car> searchCarModel(String searchValue){
     List<Car> filterCarList = CommonData.globalCarList.where((element) => element.model == searchValue).toList();
     return filterCarList;
   }
 
+  // Поиск всех цветов данной модели
   List<dynamic> changeColor(String searchValue){
     List<Car> filterCarList = CommonData.globalCarList.where((element) => element.model == searchValue).toList();
     var ids = filterCarList.map((e) => e.bodyColor).toList();
@@ -18,10 +22,7 @@ class CarProvider with ChangeNotifier{
     return distinctIds;
   }
 
-  String selectImage(List<Car> carList, String defaultValue){
-      Car newValue = carList.firstWhere((e) =>
-      e.bodyColor == defaultValue);
-      return newValue.image;
+
   }
-}
+
 

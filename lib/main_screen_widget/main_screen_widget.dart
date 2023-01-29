@@ -13,8 +13,9 @@ import '../model/сommon_data.dart';
 import '../widgets/car_list_widget.dart';
 
 List<String> listOfPictures = [
-  "https://cdn.papajohns.ru//images/banners/396ece6c32db5efbc4a7ca2f0b5bd285.jpg",
-  "https://cdn.papajohns.ru//images/banners/31573ad2cc3b1f64ef793b1773320d2f.png",
+  "https://autoreview.ru/images/Article/1751/Article_175162_860_575.jpg",
+  "https://autoreview.ru/images/Article/1750/Article_175096_860_575.jpg",
+  "https://autoreview.ru/images/Article/1751/Article_175121_860_575.jpg"
 ];
 
 Color borderColor = Colors.white;
