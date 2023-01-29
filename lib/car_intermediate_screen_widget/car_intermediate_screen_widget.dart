@@ -23,14 +23,6 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   var ids = [];
   List<dynamic> distinctIds = [];
 
-  /*
-  @override
-  void initState() {
-    ids = widget.carIntermediate.carList.map((e) => e.bodyColor).toList();
-    distinctIds = ids.toSet().toList();
-  }
-   */
-
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
@@ -38,96 +30,8 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   
   String defaultImage = '';
 
-  /*
-  String selectImage(String defaultValue){
-    setState(() {});
-      if(defaultValue != '') {
-        Car newValue = widget.carIntermediate.carList.firstWhere((e) =>
-        e.bodyColor == defaultValue);
-        return newValue.image;
-      } else {
-        return widget.carIntermediate.carList[0].image;
-      }
-  }
-   */
 
-  Widget buildColorBtn(List<dynamic> btn) => GridView.builder(
-      shrinkWrap: true,
-      itemCount: btn.length,
-      gridDelegate:
-      const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        childAspectRatio: 1.96,
-        crossAxisSpacing: 6,
-        mainAxisSpacing: 6,
-      ),
-      itemBuilder: (BuildContext context, int index){
-        final btnItem = btn[index];
-        return Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:[
-              Row(children: [
-              if (btnItem == 'Белый')...[
-              FloatingActionButton(
-                heroTag: "btnWhite",
-                backgroundColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    defaultImage = btnItem;
-                    print(defaultImage);
-                  });
-                },
-                child: const Text(''),
-              ),]
-              else if(btnItem == 'Красный')...[
-                FloatingActionButton(
-                  heroTag: "btnRed",
-                  backgroundColor: Colors.red,
-                  onPressed: () {
-                    setState(() {
-                      defaultImage = btnItem;
-                      print(defaultImage);
-                    });
-                  },
-                  child: const Text(''),
-                ),
-              ]
-              else if(btnItem == 'Серый')...[
-                  FloatingActionButton(
-                    heroTag: "btnGrey",
-                    backgroundColor: Colors.grey,
-                    onPressed: () {
-                      setState(() {
-                        defaultImage = btnItem;
-                        print(defaultImage);
-                      });
-                    },
-                    child: const Text(''),
-                  ),
-                ]
-                else if(btnItem == 'Черный')...[
-                    FloatingActionButton(
-                      heroTag: "btnBlack",
-                      backgroundColor: Colors.black,
-                      onPressed: () {
-                        setState(() {
-                          defaultImage = btnItem;
-                          print(defaultImage);
-                        });
-                      },
-                      child: const Text(''),
-                    ),
-                  ]
-                ]),
-            ],
-          ),
-        );
-      }
-  );
-
+  // Вертска карточки автомобиля
   Widget buildCar(List<Car> car) => ListView.builder(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
@@ -170,6 +74,22 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
     var formatPrice = NumberFormat("#,###,###", "en_US");
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
     var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
+    var image = context.read<CarProvider>().imageCar;
+
+    String selectImageCar(String defaultValue){
+      // Поиск изображения среди автомобилей
+      setState(() {});
+      if(defaultValue != '') {
+        print("Collection from car provider: ${model}");
+        Car newValue = model.firstWhere((e) =>
+        e.bodyColor == defaultValue);
+        print(newValue.image);
+        return newValue.image;
+      } else {
+        return model[0].image;
+      }
+    }
+
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
       appBar: AppBar(),
@@ -191,6 +111,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 ),
               ),
              // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
+                defaultImage != '' ? BuildImage(url: selectImageCar(defaultImage)) : BuildImage(url: widget.carIntermediate.image),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -204,7 +125,86 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   ],
                 ),
               ),
-                  buildColorBtn(colors),
+        GridView.builder(
+            shrinkWrap: true,
+            itemCount: colors.length,
+            gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              childAspectRatio: 1.96,
+              crossAxisSpacing: 6,
+              mainAxisSpacing: 6,
+            ),
+            itemBuilder: (BuildContext context, int index){
+              final btnItem = colors[index];
+              return Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                    Row(children: [
+                      if (btnItem == 'Белый')...[
+                        FloatingActionButton(
+                          heroTag: "btnWhite",
+                          backgroundColor: Colors.white,
+                          onPressed: () {
+                            setState(() {
+                              image = btnItem;
+                              defaultImage = btnItem;
+                              print("Tech $image");
+                            });
+                          },
+                          child: const Text(''),
+                        ),]
+                      else if(btnItem == 'Красный')...[
+                        FloatingActionButton(
+                          heroTag: "btnRed",
+                          backgroundColor: Colors.red,
+                          onPressed: () {
+                            setState(() {
+                              image = btnItem;
+                              defaultImage = btnItem;
+                              print(defaultImage);
+                            });
+                          },
+                          child: const Text(''),
+                        ),
+                      ]
+                      else if(btnItem == 'Серый')...[
+                          FloatingActionButton(
+                            heroTag: "btnGrey",
+                            backgroundColor: Colors.grey,
+                            onPressed: () {
+                              setState(() {
+                                image = btnItem;
+                                defaultImage = btnItem;
+                                print(defaultImage);
+                              });
+                            },
+                            child: const Text(''),
+                          ),
+                        ]
+                        else if(btnItem == 'Черный')...[
+                            FloatingActionButton(
+                              heroTag: "btnBlack",
+                              backgroundColor: Colors.black,
+                              onPressed: () {
+                                setState(() {
+                                  image = btnItem;
+                                  defaultImage = btnItem;
+                                  print(defaultImage);
+                                });
+                              },
+                              child: const Text(''),
+                            ),
+                          ]
+                    ]),
+                  ],
+                ),
+              );
+            }
+        ),
                SizedBox(height: 10,),
                ExpansionTile(
                 title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
