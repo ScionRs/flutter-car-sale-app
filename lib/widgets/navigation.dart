@@ -19,7 +19,8 @@ class MainNavigation {
   final initialRoute = MainNavigationRouteName.mainScreen;
 
   final routes = <String, Widget Function(BuildContext)>{
-    MainNavigationRouteName.mainScreen: (context) => const MainScreenWidget(),
+    MainNavigationRouteName.mainScreen: (context) =>
+        RedesignedMainScreenWidget(),
   };
 
   Route<Object>? onGenerateRoute(RouteSettings settings) {

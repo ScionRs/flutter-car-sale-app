@@ -151,6 +151,8 @@ class _TopBrandsWidgetState extends State<_TopBrandsWidget> {
     return Column(
       children: const [
         _TopBrandsTitleWidget(),
+        SizedBox(height: 16),
+        _TopBrandsRowWidget(),
       ],
     );
   }
@@ -192,6 +194,9 @@ class _TopBrandsRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      itemCount: 3,
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
       ),
@@ -214,18 +219,34 @@ class __BrandCardWidgetState extends State<_BrandCardWidget> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        side: BorderSide(
+        side: const BorderSide(
           color: Color.fromRGBO(243, 244, 246, 1),
+          width: 2,
         ),
+        borderRadius: BorderRadius.circular(14),
       ),
+      elevation: 0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 100,
-            child: Container(),
+          Flexible(
+            flex: 2,
+            child: SizedBox(
+              width: 50,
+              child: SvgPicture.asset('images/bmw.svg'),
+            ),
           ),
-          Text("БМВ")
+          const Flexible(
+            flex: 1,
+            child: Text(
+              "BMW",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(15, 23, 42, 1),
+              ),
+            ),
+          )
         ],
       ),
     );
