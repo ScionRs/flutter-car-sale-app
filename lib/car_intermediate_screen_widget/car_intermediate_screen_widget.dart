@@ -150,7 +150,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
             Container(
             width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -267,6 +267,25 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                     buildCar(model),
                   ],
                 ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                      ), textAlign: TextAlign.left),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  child: Text('${widget.carIntermediate.description}',style: TextStyle(
+                    fontSize: 17.0,
+                  ), textAlign: TextAlign.justify,),
+                )
               ],
             ),
           ),
