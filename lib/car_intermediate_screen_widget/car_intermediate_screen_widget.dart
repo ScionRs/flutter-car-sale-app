@@ -1,9 +1,11 @@
 
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:car_sale_app/model/Car.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +31,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
   
   String defaultImage = '';
-
+  var formatPrice = NumberFormat("#,###,###", "en_US");
 
   // Вертска карточки автомобиля
   Widget buildCar(List<Car> car) => ListView.builder(
@@ -42,27 +44,73 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
           onTap: () {
           },
           child: Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
-                const SizedBox(width: 10,),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${carItem.model}',
-                        style: const TextStyle(fontSize:18, fontWeight: FontWeight.bold),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,),
-                      const SizedBox(height: 10,),
-                      Text('${carItem.price}',
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,),
-                    ],
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20))
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BuildImage(url: carItem.image),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(carItem.equipment.title,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Divider(
+                        color: Colors.grey
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0, bottom: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Icon(MyFlutterApp.engine, size: 30.0,),
+                            ),
+                            Text('${carItem.equipment.horsePower} лс',
+                            style: TextStyle(
+                                fontSize: 15.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold
+                            ),),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Row(
+                            children: [
+                              Icon(MyFlutterApp.gearshift, size: 30.0,),
+                              Text('${carItem.transmission}',
+                                style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold
+                                ),),
+                            ],
+                          ),
+                        ),
+                        Text('${formatPrice.format(carItem.price).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -95,86 +143,76 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
       appBar: AppBar(),
       body: ChangeNotifierProvider(
         create: (context) => CarProvider(),
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('${widget.carIntermediate.brand} ',style: textStyle,),
-                    Text(widget.carIntermediate.model,style: textStyle,),
-                  ],
+        child: ListView(
+          shrinkWrap: true,
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          children:[
+            Container(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('${widget.carIntermediate.brand} ',style: textStyle,),
+                      Text(widget.carIntermediate.model,style: textStyle,),
+                    ],
+                  ),
                 ),
-              ),
-             // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
-                defaultImage != '' ? BuildImage(url: selectImageCar(defaultImage)) : BuildImage(url: widget.carIntermediate.image),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    /*
-                    Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
-                    Text('-', style: textStylePrice,),
-                    Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
-                     */
-                  ],
+               // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
+                  defaultImage != '' ? BuildImage(url: selectImageCar(defaultImage)) : BuildImage(url: widget.carIntermediate.image),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      /*
+                      Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
+                      Text('-', style: textStylePrice,),
+                      Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
+                       */
+                    ],
+                  ),
                 ),
+          GridView.builder(
+              shrinkWrap: true,
+              itemCount: colors.length,
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                childAspectRatio: 1.96,
+                crossAxisSpacing: 6,
+                mainAxisSpacing: 6,
               ),
-        GridView.builder(
-            shrinkWrap: true,
-            itemCount: colors.length,
-            gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              childAspectRatio: 1.96,
-              crossAxisSpacing: 6,
-              mainAxisSpacing: 6,
-            ),
-            itemBuilder: (BuildContext context, int index){
-              final btnItem = colors[index];
-              return Padding(
-                padding: const EdgeInsets.only(top: 10,bottom: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:[
-                    Row(children: [
-                      if (btnItem == 'Белый')...[
-                        FloatingActionButton(
-                          heroTag: "btnWhite",
-                          backgroundColor: Colors.white,
-                          onPressed: () {
-                            setState(() {
-                              image = btnItem;
-                              defaultImage = btnItem;
-                              print("Tech $image");
-                            });
-                          },
-                          child: const Text(''),
-                        ),]
-                      else if(btnItem == 'Красный')...[
-                        FloatingActionButton(
-                          heroTag: "btnRed",
-                          backgroundColor: Colors.red,
-                          onPressed: () {
-                            setState(() {
-                              image = btnItem;
-                              defaultImage = btnItem;
-                              print(defaultImage);
-                            });
-                          },
-                          child: const Text(''),
-                        ),
-                      ]
-                      else if(btnItem == 'Серый')...[
+              itemBuilder: (BuildContext context, int index){
+                final btnItem = colors[index];
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10,bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      Row(children: [
+                        if (btnItem == 'Белый')...[
                           FloatingActionButton(
-                            heroTag: "btnGrey",
-                            backgroundColor: Colors.grey,
+                            heroTag: "btnWhite",
+                            backgroundColor: Colors.white,
+                            onPressed: () {
+                              setState(() {
+                                image = btnItem;
+                                defaultImage = btnItem;
+                                print("Tech $image");
+                              });
+                            },
+                            child: const Text(''),
+                          ),]
+                        else if(btnItem == 'Красный')...[
+                          FloatingActionButton(
+                            heroTag: "btnRed",
+                            backgroundColor: Colors.red,
                             onPressed: () {
                               setState(() {
                                 image = btnItem;
@@ -185,10 +223,10 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                             child: const Text(''),
                           ),
                         ]
-                        else if(btnItem == 'Черный')...[
+                        else if(btnItem == 'Серый')...[
                             FloatingActionButton(
-                              heroTag: "btnBlack",
-                              backgroundColor: Colors.black,
+                              heroTag: "btnGrey",
+                              backgroundColor: Colors.grey,
                               onPressed: () {
                                 setState(() {
                                   image = btnItem;
@@ -199,24 +237,40 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                               child: const Text(''),
                             ),
                           ]
-                    ]),
+                          else if(btnItem == 'Черный')...[
+                              FloatingActionButton(
+                                heroTag: "btnBlack",
+                                backgroundColor: Colors.black,
+                                onPressed: () {
+                                  setState(() {
+                                    image = btnItem;
+                                    defaultImage = btnItem;
+                                    print(defaultImage);
+                                  });
+                                },
+                                child: const Text(''),
+                              ),
+                            ]
+                      ]),
+                    ],
+                  ),
+                );
+              }
+          ),
+                 SizedBox(height: 10,),
+                 ExpansionTile(
+                  title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                   collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+                  collapsedTextColor: Colors.white,
+                  textColor: Color.fromRGBO(0, 73, 183, 1),
+                  children: <Widget>[
+                    buildCar(model),
                   ],
                 ),
-              );
-            }
-        ),
-               SizedBox(height: 10,),
-               ExpansionTile(
-                title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                 collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
-                collapsedTextColor: Colors.white,
-                textColor: Color.fromRGBO(0, 73, 183, 1),
-                children: <Widget>[
-                  buildCar(model),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
+        ],
         ),
       )
     );
