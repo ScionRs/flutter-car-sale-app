@@ -8,8 +8,9 @@ class CarIntermediate{
   String brand;
   String model;
   String image;
+  String description;
 
-  CarIntermediate({required this.id,required this.brand,required this.model, required this.image});
+  CarIntermediate({required this.id,required this.brand,required this.model, required this.image, required this.description});
 
   factory CarIntermediate.fromJson(Map<String, dynamic> parsedJson){
     return CarIntermediate(
@@ -17,6 +18,7 @@ class CarIntermediate{
         brand: parsedJson['brand'],
         model: parsedJson['model'],
         image: parsedJson['image'],
+        description: parsedJson['description']
     );
   }
 
