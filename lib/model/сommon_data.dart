@@ -30,7 +30,7 @@ class CommonData {
       engineVolume: 2.0,
       equipment: Equipment(
           id: '1',
-          title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+          title: 'DRIVE 2WD',
           seatUpholstery: 'Alcantara',
           heatedSeats: 'Подогрев передних сидений',
           airbags: '7 подушек безопасности',
@@ -78,7 +78,7 @@ class CommonData {
       engineVolume: 2.0,
       equipment: Equipment(
           id: '1',
-          title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+          title: 'ACTIVE 2WD/4WD',
           seatUpholstery: 'Alcantara',
           heatedSeats: 'Подогрев передних сидений',
           airbags: '7 подушек безопасности',
@@ -126,7 +126,7 @@ class CommonData {
       engineVolume: 2.0,
       equipment: Equipment(
           id: '1',
-          title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+          title: 'Supreme 4WD',
           seatUpholstery: 'Alcantara',
           heatedSeats: 'Подогрев передних сидений',
           airbags: '7 подушек безопасности',
@@ -174,7 +174,7 @@ class CommonData {
       engineVolume: 2.0,
       equipment: Equipment(
           id: '1',
-          title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+          title: 'Executive 4WD',
           seatUpholstery: 'Alcantara',
           heatedSeats: 'Подогрев передних сидений',
           airbags: '7 подушек безопасности',
