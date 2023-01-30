@@ -67,6 +67,11 @@ flutter:
     - images/mazda_6.png
     - images/logo.svg
 
+  fonts:
+    - family: MyFlutterApp # the name of your font family
+      fonts:
+        - asset: assets/MyFlutterApp.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

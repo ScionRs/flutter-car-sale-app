@@ -1,5 +1,6 @@
 
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
@@ -76,18 +77,33 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text('${carItem.equipment.horsePower} лс',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold
-                        ),),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Icon(MyFlutterApp.engine, size: 30.0,),
+                            ),
+                            Text('${carItem.equipment.horsePower} лс',
+                            style: TextStyle(
+                                fontSize: 15.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold
+                            ),),
+                          ],
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 5.0),
-                          child: Text('${carItem.transmission}',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold
-                            ),),
+                          child: Row(
+                            children: [
+                              Icon(MyFlutterApp.gearshift, size: 30.0,),
+                              Text('${carItem.transmission}',
+                                style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold
+                                ),),
+                            ],
+                          ),
                         ),
                         Text('${formatPrice.format(carItem.price).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                       ],
