@@ -146,6 +146,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
         child: ListView(
           shrinkWrap: true,
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          physics: const BouncingScrollPhysics(),
           children:[
             Container(
             width: double.infinity,
@@ -180,6 +181,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
           GridView.builder(
               shrinkWrap: true,
               itemCount: colors.length,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,

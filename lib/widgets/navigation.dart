@@ -20,7 +20,7 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.mainScreen: (context) =>
-        RedesignedMainScreenWidget(),
+        MainScreenWidget(),
   };
 
   Route<Object>? onGenerateRoute(RouteSettings settings) {
