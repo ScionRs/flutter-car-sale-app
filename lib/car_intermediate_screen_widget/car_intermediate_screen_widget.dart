@@ -53,7 +53,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
             padding: const EdgeInsets.all(15.0),
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppValue.customBackgroundGreyCard,
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
               child: Column(
@@ -146,6 +146,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
+      backgroundColor: AppValue.customBackgroundWhite,
       appBar: AppBar(),
       body: ChangeNotifierProvider(
         create: (context) => CarProvider(),
