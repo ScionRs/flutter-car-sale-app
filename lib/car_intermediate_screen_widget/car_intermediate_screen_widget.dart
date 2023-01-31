@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/build_local_image.dart';
 import '../widgets/navigation.dart';
 
 
@@ -58,7 +59,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BuildImage(url: carItem.image),
+                  BuildLocalImage(url: carItem.image),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(carItem.equipment.title,
@@ -169,7 +170,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   ),
                 ),
                // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
-                  defaultImage != '' ? BuildImage(url: selectImageCar(defaultImage)) : BuildImage(url: widget.carIntermediate.image),
+                  defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
