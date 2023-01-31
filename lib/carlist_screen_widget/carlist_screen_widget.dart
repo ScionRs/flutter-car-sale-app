@@ -6,6 +6,8 @@ import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/build_local_image.dart';
+
 class CarListScreenWidget extends StatelessWidget {
   final CarCategory carCategory;
 
@@ -58,7 +60,7 @@ class _CarCardWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          BuildImage(url: carCategory.cars[index].image),
+          BuildLocalImage(url: carCategory.cars[index].image),
           const SizedBox(width: 20),
           Expanded(
             child: Column(

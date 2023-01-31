@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/build_local_image.dart';
+import '../widgets/navigation.dart';
+
 
 class CarIntermediateWidget extends StatefulWidget {
   final CarIntermediate carIntermediate;
@@ -42,18 +45,21 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
         final carItem = car[index];
         return GestureDetector(
           onTap: () {
+            Navigator.of(context).pushNamed(
+                MainNavigationRouteName.carIndividual,
+                arguments: car[index]);
           },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppValue.customBackgroundGreyCard,
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BuildImage(url: carItem.image),
+                  BuildLocalImage(url: carItem.image),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(carItem.equipment.title,
@@ -140,12 +146,14 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
+      backgroundColor: AppValue.customBackgroundWhite,
       appBar: AppBar(),
       body: ChangeNotifierProvider(
         create: (context) => CarProvider(),
         child: ListView(
           shrinkWrap: true,
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          physics: const BouncingScrollPhysics(),
           children:[
             Container(
             width: double.infinity,
@@ -163,7 +171,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   ),
                 ),
                // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
-                  defaultImage != '' ? BuildImage(url: selectImageCar(defaultImage)) : BuildImage(url: widget.carIntermediate.image),
+                  defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
@@ -180,6 +188,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
           GridView.builder(
               shrinkWrap: true,
               itemCount: colors.length,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
