@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/navigation.dart';
+
 
 class CarIntermediateWidget extends StatefulWidget {
   final CarIntermediate carIntermediate;
@@ -42,6 +44,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
         final carItem = car[index];
         return GestureDetector(
           onTap: () {
+            Navigator.of(context).pushNamed(
+                MainNavigationRouteName.carIndividual,
+                arguments: car[index]);
           },
           child: Padding(
             padding: const EdgeInsets.all(15.0),

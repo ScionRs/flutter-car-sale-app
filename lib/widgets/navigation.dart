@@ -1,7 +1,9 @@
+import 'package:car_sale_app/car_individual_page/car_individual_screen_widget.dart';
 import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/main_screen_widget/main_screen_widget.dart';
+import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
@@ -13,6 +15,7 @@ abstract class MainNavigationRouteName {
   static const dealerListScreen = "/dealerList";
   static const carListScreen = "/carList";
   static const carIntermediateScreen = "/carList/carIntermediate";
+  static const carIndividual = '/carIndividual';
 }
 
 class MainNavigation {
@@ -35,6 +38,12 @@ class MainNavigation {
         return MaterialPageRoute(
           builder: (context) =>
               CarIntermediateWidget(carIntermediate: carIntermediate),
+        );
+      case MainNavigationRouteName.carIndividual:
+        final carIndividual = settings.arguments as Car;
+        return MaterialPageRoute(
+            builder: (context) =>
+                CarIndividualWidget(car: carIndividual)
         );
       case MainNavigationRouteName.dealerListScreen:
         final city = settings.arguments as City;
