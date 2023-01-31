@@ -1,3 +1,4 @@
+import 'package:car_sale_app/theme/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,11 +17,9 @@ class _RedesignedMainScreenWidgetState
     return Scaffold(
       appBar: AppBar(
         title: const _LocationWidget(),
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         elevation: 0,
         toolbarHeight: 78,
       ),
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: const [
@@ -62,14 +61,13 @@ class _LocationIconWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(
-            color: const Color.fromRGBO(243, 244, 246, 1),
+            color: AppColors.lightGrey,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(14)),
       padding: const EdgeInsets.all(8),
       child: const Icon(
         Icons.place_outlined,
-        color: Color.fromRGBO(15, 23, 42, 1),
       ),
     );
   }
@@ -80,24 +78,18 @@ class _LocationNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text(
           'Местонахождение',
-          style: TextStyle(
-            fontSize: 14,
-            color: Color.fromRGBO(156, 163, 175, 1),
-          ),
+          style: textTheme.labelLarge,
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           'Москва',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(15, 23, 42, 1),
-          ),
+          style: textTheme.titleMedium,
         ),
       ],
     );
@@ -114,25 +106,12 @@ class _SearchWidget extends StatefulWidget {
 class _SearchWidgetState extends State<_SearchWidget> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return const TextField(
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(20),
         hintText: "Поиск автомобилей...",
-        hintStyle: const TextStyle(color: Color.fromRGBO(156, 163, 175, 1)),
-        suffixIcon: const Icon(Icons.search),
-        suffixIconColor: const Color.fromRGBO(15, 23, 42, 1),
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(14),
+        suffixIcon: Icon(
+          Icons.search,
         ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Color.fromRGBO(48, 55, 120, 1),
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14)),
-        fillColor: const Color.fromRGBO(252, 252, 253, 1),
-        filled: true,
       ),
     );
   }
@@ -163,26 +142,21 @@ class _TopBrandsTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Row(
-      children: const [
+      children: [
         Expanded(
           child: Text(
             'Топ бренды',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(15, 23, 42, 1),
-            ),
+            style: textTheme.titleLarge,
           ),
         ),
         Text(
           'Посмотреть все',
-          style: TextStyle(
-            fontSize: 14,
+          style: textTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(156, 163, 175, 1),
           ),
-        )
+        ),
       ],
     );
   }
@@ -201,7 +175,7 @@ class _TopBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return _BrandCardWidget();
+        return const _BrandCardWidget();
       },
     );
   }
@@ -217,10 +191,11 @@ class _BrandCardWidget extends StatefulWidget {
 class __BrandCardWidgetState extends State<_BrandCardWidget> {
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
       shape: RoundedRectangleBorder(
         side: const BorderSide(
-          color: Color.fromRGBO(243, 244, 246, 1),
+          color: AppColors.lightGrey,
           width: 2,
         ),
         borderRadius: BorderRadius.circular(14),
@@ -236,17 +211,13 @@ class __BrandCardWidgetState extends State<_BrandCardWidget> {
               child: SvgPicture.asset('images/bmw.svg'),
             ),
           ),
-          const Flexible(
+          Flexible(
             flex: 1,
             child: Text(
               "BMW",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(15, 23, 42, 1),
-              ),
+              style: textTheme.titleSmall,
             ),
-          )
+          ),
         ],
       ),
     );
