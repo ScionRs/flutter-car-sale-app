@@ -67,6 +67,7 @@ flutter:
     - images/mazda_6.png
     - images/logo.svg
     - images/bmw.svg
+    - images/img_car
 
   fonts:
     - family: MyFlutterApp # the name of your font family
