@@ -1,5 +1,6 @@
 
 import 'package:car_sale_app/app_values/AppValue.dart';
+import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
@@ -32,8 +33,52 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
           _ImageContainerWidget(car: widget.car),
+          Container(
+            color: AppColors.lightnessGrey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _ColumnWidget(car: widget.car.equipment.horsePower.toString(), icon: MyFlutterApp.engine, description: 'лс', textTheme: textTheme),
+                  _ColumnWidget(car: widget.car.equipment.driveUnit.toString(), icon: MyFlutterApp.engine, description: 'привод', textTheme: textTheme),
+                  _ColumnWidget(car: widget.car.equipment.accelerationTime.toString(), icon: MyFlutterApp.engine, description: 'до 100 км/ч', textTheme: textTheme),
+                ],
+              ),
+            ),
+          ),
+
         ],
       )
+    );
+  }
+}
+
+// Колонка с характеристикой
+class _ColumnWidget extends StatelessWidget{
+  final String car;
+  final IconData icon;
+  final String description;
+  final TextTheme textTheme;
+
+  _ColumnWidget({
+    Key? key,
+    required this.car,
+    required this.icon,
+    required this.description,
+    required this.textTheme
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(icon, size: 45.0),
+        Text('${car}', style: textTheme.titleLarge,),
+        Text('${description}', style: textTheme.labelLarge,),
+      ],
     );
   }
 }
