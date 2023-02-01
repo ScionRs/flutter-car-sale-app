@@ -22,6 +22,8 @@ class AppValue {
                 width: 1.5),
           ))
   );
+
+  static const textBigTitle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
   static final customTextStyleWhite = TextStyle(color: Colors.white);
   static final customTextStyleBlack = TextStyle(color: Colors.black);
   static final customBackgroundWhite = Color.fromRGBO(255, 255, 255, 1);
