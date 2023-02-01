@@ -1,5 +1,6 @@
 
 import 'package:car_sale_app/model/Car.dart';
+import 'package:car_sale_app/theme/constants.dart';
 import 'package:flutter/material.dart';
 
 class CarIndividualWidget extends StatefulWidget {
@@ -15,8 +16,18 @@ class CarIndividualWidget extends StatefulWidget {
 class _CarIndividualState extends State<CarIndividualWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      appBar: AppBar(),
+      body: ListView(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        children: [
+          
+        ],
+      )
     );
   }
 }
