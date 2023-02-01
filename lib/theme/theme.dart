@@ -11,12 +11,12 @@ ThemeData setTheme() {
         color: AppColors.black,
       ),
       titleMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.bold,
         color: AppColors.black,
       ),
       titleSmall: TextStyle(
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
         color: AppColors.black,
       ),
@@ -27,6 +27,12 @@ ThemeData setTheme() {
     ),
     appBarTheme: const AppBarTheme(
       color: AppColors.white,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: AppColors.black,
+      ),
+      centerTitle: true,
       elevation: 0,
       toolbarHeight: 78,
       iconTheme: IconThemeData(color: AppColors.black),
@@ -34,6 +40,7 @@ ThemeData setTheme() {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(20),
       hintStyle: const TextStyle(
+        fontSize: 16,
         color: Color.fromRGBO(156, 163, 175, 1),
       ),
       border: OutlineInputBorder(
