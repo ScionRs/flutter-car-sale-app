@@ -60,39 +60,39 @@ class MaintenanceCosts{
   }
 
   // Расчет налога на мощность
-  double horsePowerCalc(double customValue){
+  int horsePowerCalc(int customValue){
     if (customValue > 0) {
       if (customValue < 100) {
-        double price = 12 * customValue;
+        int price = 12 * customValue;
         return price;
       } else if (customValue > 100 && customValue < 125) {
-        double price = 25 * customValue;
+        int price = 25 * customValue;
         return price;
       } else if (customValue > 125 && customValue < 150) {
-        double price = 35 * customValue;
+        int price = 35 * customValue;
         return price;
       } else if (customValue > 150 && customValue < 175) {
-        double price = 45 * customValue;
+        int price = 45 * customValue;
         return price;
       } else if (customValue > 175 && customValue < 200) {
-        double price = 50 * customValue;
+        int price = 50 * customValue;
         return price;
       } else if (customValue > 200 && customValue < 225) {
-        double price = 65 * customValue;
+        int price = 65 * customValue;
         return price;
       } else if (customValue > 225 && customValue < 250) {
-        double price = 75 * customValue;
+        int price = 75 * customValue;
         return price;
       } else if (customValue > 250) {
-        double price = 150 * customValue;
+        int price = 150 * customValue;
         return price;
       }
       else {
-        double price = 150 * customValue;
+        int price = 150 * customValue;
         return price;
       }
     } else {
-      double price = 150 * customValue;
+      int price = 150 * customValue;
       return price;
     }
   }
