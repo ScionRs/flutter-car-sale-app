@@ -5,9 +5,11 @@ import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CarIndividualWidget extends StatefulWidget {
   final Car car;
+
 
 
   CarIndividualWidget({Key? key, required this.car}) : super(key: key);
@@ -18,12 +20,33 @@ class CarIndividualWidget extends StatefulWidget {
 
 class _CarIndividualState extends State<CarIndividualWidget> {
 
+  final Widget engineIcon = SvgPicture.asset(
+      'images/engine.svg',
+      color: Colors.black,
+      semanticsLabel: 'Engine',
+      width: 30,
+  );
+
+  final Widget allWheelDriveIcon = SvgPicture.asset(
+      'images/all_wheel_drive.svg',
+      color: Colors.black,
+      semanticsLabel: 'Wheel',
+      width: 30,
+  );
+
+  final Widget speedIcon = SvgPicture.asset(
+      'images/speed.svg',
+      color: Colors.black,
+      semanticsLabel: 'speed',
+      width: 30,
+  );
 
   @override
   Widget build(BuildContext context) {
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
     double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption);
     double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption);
+
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список дополнительных опций автомобиля
     var tableListRowEquipment = [
@@ -126,9 +149,9 @@ class _CarIndividualState extends State<CarIndividualWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _ColumnWidget(car: widget.car.equipment.horsePower.toString(), icon: MyFlutterApp.engine, description: 'лс', textTheme: textTheme),
-                  _ColumnWidget(car: widget.car.equipment.driveUnit.toString(), icon: MyFlutterApp.engine, description: 'привод', textTheme: textTheme),
-                  _ColumnWidget(car: widget.car.equipment.accelerationTime.toString(), icon: MyFlutterApp.engine, description: 'до 100 км/ч', textTheme: textTheme),
+                  _ColumnWidget(car: widget.car.equipment.horsePower.toString(), icon: engineIcon, description: 'лс', textTheme: textTheme),
+                  _ColumnWidget(car: widget.car.equipment.driveUnit.toString(), icon: allWheelDriveIcon, description: 'привод', textTheme: textTheme),
+                  _ColumnWidget(car: widget.car.equipment.accelerationTime.toString(), icon: speedIcon, description: 'до 100 км/ч', textTheme: textTheme),
                 ],
               ),
             ),
@@ -159,6 +182,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
   }
 }
 
+// Диаграмма расходов топлива
 class _DiagramFuelWidget extends StatelessWidget {
   const _DiagramFuelWidget({
     Key? key,
@@ -350,7 +374,7 @@ class _TableWidget extends StatelessWidget {
 // Колонка с характеристикой
 class _ColumnWidget extends StatelessWidget{
   final String car;
-  final IconData icon;
+  final Widget icon;
   final String description;
   final TextTheme textTheme;
 
@@ -368,7 +392,10 @@ class _ColumnWidget extends StatelessWidget{
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(icon, size: 45.0),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: icon,
+        ),
         Text('${car}', style: textTheme.titleLarge,),
         Text('${description}', style: textTheme.labelLarge,),
       ],

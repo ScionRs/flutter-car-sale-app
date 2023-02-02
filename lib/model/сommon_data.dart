@@ -6,8 +6,12 @@ import 'package:car_sale_app/model/Equipment.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/model/maintenance_costs.dart';
+import 'package:flutter/material.dart';
+
+import '../car_individual_page/car_individual_screen_widget.dart';
 
 class CommonData {
+
 
   static List<Car> globalCarList = [
     mazdaCx5Grey1,
@@ -436,4 +440,5 @@ class CommonData {
           ),
         ]),
   ];
+
 }
