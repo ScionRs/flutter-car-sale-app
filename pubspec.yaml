@@ -39,7 +39,7 @@ dependencies:
   intl: ^0.17.0
   flutter_svg: ^1.1.6
   provider: ^6.0.4
-  syncfusion_flutter_charts: ^20.4.48
+  d_chart: ^1.0.1
 
 dev_dependencies:
   flutter_test:

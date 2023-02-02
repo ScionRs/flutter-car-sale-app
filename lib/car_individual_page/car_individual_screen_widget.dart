@@ -4,7 +4,7 @@ import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 
 class CarIndividualWidget extends StatefulWidget {
@@ -122,12 +122,40 @@ class _CarIndividualState extends State<CarIndividualWidget> {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: _ExpansionTileWidget(name:"Основные характеристики", tableListRowDefaultCarOptions: tableListRowDefaultCarOptions),
           ),
-          _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
-        ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
+          ),
+          Container(
+            height: 320.0,
+            child: DChartBar(
+              data: [
+                {
+                  'id': 'Bar',
+                  'data': [
+                    {'domain': '2020', 'measure': 3},
+                    {'domain': '2021', 'measure': 4},
+                    {'domain': '2022', 'measure': 6},
+                    {'domain': '2023', 'measure': 0.3},
+                  ],
+                },
+              ],
+              domainLabelPaddingToAxisLine: 16,
+              axisLineTick: 2,
+              axisLinePointTick: 2,
+              axisLinePointWidth: 10,
+              axisLineColor: Colors.green,
+              measureLabelPaddingToAxisLine: 16,
+              barColor: (barData, index, id) => Colors.green,
+              showBarValue: true,
+            ),
+          ),
+          ],
       )
     );
   }
 }
+
 
 class _TableRowCustomWidget extends StatelessWidget {
   final String description;
