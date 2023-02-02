@@ -1,5 +1,4 @@
 
-import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';

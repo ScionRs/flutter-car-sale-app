@@ -1,4 +1,3 @@
-import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/theme/constants.dart';
