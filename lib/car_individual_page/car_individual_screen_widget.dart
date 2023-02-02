@@ -25,86 +25,86 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
     double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption);
     double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption);
-    print(cityFuel);
     TextTheme textTheme = Theme.of(context).textTheme;
-    // Список опций автомобиля по умолчанию
+    // Список дополнительных опций автомобиля
     var tableListRowEquipment = [
       TableRow(children: [
-        _TableRowCustomWidget(description: "Название комплектации:", car: widget.car.equipment.title.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Название комплектации:", car: widget.car.equipment.title.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Привод:", car: widget.car.equipment.driveUnit.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Привод:", car: widget.car.equipment.driveUnit.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Мощность(лс):", car: widget.car.equipment.horsePower.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Мощность(лс):", car: widget.car.equipment.horsePower.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Время разгона:", car: widget.car.equipment.accelerationTime.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Время разгона:", car: widget.car.equipment.accelerationTime.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обороты:", car: widget.car.equipment.maxTorque.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обороты:", car: widget.car.equipment.maxTorque.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Типо топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Типо топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Подушки безопасности:", car: widget.car.equipment.airbags.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Подушки безопасности:", car: widget.car.equipment.airbags.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем бензобака:", car: widget.car.equipment.fuelTankVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем бензобака:", car: widget.car.equipment.fuelTankVolume.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем багажника:", car: widget.car.equipment.trunkVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем багажника:", car: widget.car.equipment.trunkVolume.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Климат контроль:", car: widget.car.equipment.airConditioningSystem.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Климат контроль:", car: widget.car.equipment.airConditioningSystem.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Бортовой компьютер:", car: widget.car.equipment.onBoardComputer.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Бортовой компьютер:", car: widget.car.equipment.onBoardComputer.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Центральный замок:", car: widget.car.equipment.centralLocking.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Центральный замок:", car: widget.car.equipment.centralLocking.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Подогрев сидений:", car: widget.car.equipment.heatedSeats.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Подогрев сидений:", car: widget.car.equipment.heatedSeats.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Максимальная скорость:", car: widget.car.equipment.maxSpeed.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Максимальная скорость:", car: widget.car.equipment.maxSpeed.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Мультируль:", car: widget.car.equipment.multifunctionSteeringWheel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Мультируль:", car: widget.car.equipment.multifunctionSteeringWheel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обивка сидений:", car: widget.car.equipment.seatUpholstery.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обивка сидений:", car: widget.car.equipment.seatUpholstery.toString(), textTheme: textTheme)
       ]),
     ];
+    // Опции по "умолчанию"
     var tableListRowDefaultCarOptions = [
       TableRow(children: [
-        _TableRowCustomWidget(description: "Год выпуска:", car: widget.car.productionYear.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Год выпуска:", car: widget.car.productionYear.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Тип кузова:", car: widget.car.bodyType.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Тип кузова:", car: widget.car.bodyType.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Трансмиссия:", car: widget.car.transmission.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Трансмиссия:", car: widget.car.transmission.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Тип двигателя:", car: widget.car.engineType.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Тип двигателя:", car: widget.car.engineType.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем двигателя", car: widget.car.engineVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем двигателя", car: widget.car.engineVolume.toString(), textTheme: textTheme)
       ]),
     ];
-
+    // Диаграмма расходов
     var tableListRowDiagramFuel = [
       TableRow(children: [
-        _TableRowCustomWidget(description: "Город:", car: cityFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Город:", car: cityFuel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Трасса:", car: higwayFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Трасса:", car: higwayFuel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Смешанный:", car: combinedFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Смешанный:", car: combinedFuel.toString(), textTheme: textTheme)
       ]),
     ];
 
@@ -219,12 +219,12 @@ class _DiagramFuelWidget extends StatelessWidget {
 }
 
 
-class _TableRowCustomWidget extends StatelessWidget {
+class TableRowCustomWidget extends StatelessWidget {
   final String description;
   final String car;
   final TextTheme textTheme;
 
-  const _TableRowCustomWidget({
+  const TableRowCustomWidget({
     Key? key,
     required this.description,
     required this.car,
