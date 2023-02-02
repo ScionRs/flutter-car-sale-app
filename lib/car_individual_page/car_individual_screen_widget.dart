@@ -23,6 +23,8 @@ class _CarIndividualState extends State<CarIndividualWidget> {
   @override
   Widget build(BuildContext context) {
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
+    double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption);
+    double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption);
     print(cityFuel);
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список опций автомобиля по умолчанию
@@ -94,6 +96,18 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       ]),
     ];
 
+    var tableListRowDiagramFuel = [
+      TableRow(children: [
+        _TableRowCustomWidget(description: "Город:", car: cityFuel.toString(), textTheme: textTheme)
+      ]),
+      TableRow(children: [
+        _TableRowCustomWidget(description: "Трасса:", car: higwayFuel.toString(), textTheme: textTheme)
+      ]),
+      TableRow(children: [
+        _TableRowCustomWidget(description: "Смешанный:", car: combinedFuel.toString(), textTheme: textTheme)
+      ]),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -128,7 +142,43 @@ class _CarIndividualState extends State<CarIndividualWidget> {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
           ),
-          Container(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _ExpansionTileDiagramWidget(name:"Расходы на обслуживание",
+              tableListRowDefaultCarOptions: tableListRowDiagramFuel,
+              textTheme: textTheme,
+              diagramFuelWidget: _DiagramFuelWidget(
+                cityFuel: cityFuel,
+                higwayFuel: higwayFuel,
+                combinedFuel: combinedFuel,
+              )
+              ,),
+          )
+          ],
+      )
+    );
+  }
+}
+
+class _DiagramFuelWidget extends StatelessWidget {
+  const _DiagramFuelWidget({
+    Key? key,
+    required this.cityFuel,
+    required this.higwayFuel,
+    required this.combinedFuel,
+  }) : super(key: key);
+
+  final double cityFuel;
+  final double higwayFuel;
+  final double combinedFuel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          SizedBox(
             height: 320.0,
             child: DChartBar(
               data: [
@@ -136,23 +186,34 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                   'id': 'Bar',
                   'data': [
                     {'domain': 'Город', 'measure': cityFuel},
-                    {'domain': 'Трасса', 'measure': 4},
-                    {'domain': 'Смешанный', 'measure': 6},
+                    {'domain': 'Трасса', 'measure': higwayFuel},
+                    {'domain': 'Смешанный', 'measure': combinedFuel},
                   ],
                 },
               ],
               domainLabelPaddingToAxisLine: 16,
-              axisLineTick: 2,
+              axisLineTick: 3,
               axisLinePointTick: 2,
               axisLinePointWidth: 10,
-              axisLineColor: Colors.green,
-              measureLabelPaddingToAxisLine: 16,
-              barColor: (barData, index, id) => Colors.green,
+              axisLineColor: Colors.blue,
+              measureLabelPaddingToAxisLine: 20,
               showBarValue: true,
+              showDomainLine: true,
+              showMeasureLine: true,
+              barColor: (barData, index, id) {
+                switch (index) {
+                  case 1:
+                    return Colors.green;
+                  case 2:
+                    return Colors.orange;
+                  default:
+                    return Colors.red;
+                }
+              },
             ),
           ),
-          ],
-      )
+        ],
+      ),
     );
   }
 }
@@ -200,6 +261,7 @@ class _ExpansionTileWidget extends StatelessWidget {
   final String name;
   final List<TableRow> tableListRowDefaultCarOptions;
 
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -212,7 +274,51 @@ class _ExpansionTileWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Container(
             padding: const EdgeInsets.all(6.0),
-              child: _TableWidget(tableRowList: tableListRowDefaultCarOptions,)),
+              child: Column(
+                children: [
+                  _TableWidget(tableRowList: tableListRowDefaultCarOptions,),
+                ],
+              )),
+        ),
+      ],
+    );
+  }
+}
+
+// раскрывающийся список для диаграммы
+class _ExpansionTileDiagramWidget extends StatelessWidget {
+  const _ExpansionTileDiagramWidget({
+    Key? key,
+    required this.name,
+    required this.tableListRowDefaultCarOptions,
+    required this.diagramFuelWidget,
+    required this.textTheme
+  }) : super(key: key);
+  final String name;
+  final List<TableRow> tableListRowDefaultCarOptions;
+  final _DiagramFuelWidget diagramFuelWidget;
+  final TextTheme textTheme;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      title: Text('${name}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+      collapsedTextColor: Colors.white,
+      textColor: Color.fromRGBO(0, 73, 183, 1),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Container(
+              padding: const EdgeInsets.all(6.0),
+              child: Column(
+                children: [
+                  Text('Стоимость пробега на 100км в различных режимах',textAlign: TextAlign.center, style: textTheme.titleLarge),
+                  _TableWidget(tableRowList: tableListRowDefaultCarOptions,),
+                  diagramFuelWidget
+                ],
+              )),
         ),
       ],
     );
