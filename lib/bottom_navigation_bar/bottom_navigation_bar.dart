@@ -11,31 +11,19 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
+    const homeIcon = Icon(Icons.home_rounded);
+    const favoriteIcon = Icon(Icons.favorite_outlined);
     return BottomNavigationBar(
-      items: [],
+      items: [
+        getItem(homeIcon, "Главная"),
+        getItem(favoriteIcon, "Желаемое"),
+      ],
     );
-  }
-}
-
-class HomeIcon extends StatelessWidget {
-  const HomeIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const BottomNavigationBarItem(icon: Icon(Icons.home_rounded));
   }
 }
 
 BottomNavigationBarItem getItem(Icon icon, String? label) =>
     BottomNavigationBarItem(
-      icon: Icon(Icons.home_rounded),
+      label: label,
+      icon: icon,
     );
-
-class FavoritesIcon extends StatelessWidget {
-  const FavoritesIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBarItem(icon: null);
-  }
-}
