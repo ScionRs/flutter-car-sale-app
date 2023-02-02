@@ -16,3 +16,26 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     );
   }
 }
+
+class HomeIcon extends StatelessWidget {
+  const HomeIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const BottomNavigationBarItem(icon: Icon(Icons.home_rounded));
+  }
+}
+
+BottomNavigationBarItem getItem(Icon icon, String? label) =>
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home_rounded),
+    );
+
+class FavoritesIcon extends StatelessWidget {
+  const FavoritesIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBarItem(icon: null);
+  }
+}
