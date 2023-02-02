@@ -423,8 +423,8 @@ class _TitleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('${car.brand} ', style: AppValue.textBigTitle),
-        Text('${car.model}', style: AppValue.textBigTitle)
+        Text('${car.brand} ', style: AppColors.textBigTitle),
+        Text('${car.model}', style: AppColors.textBigTitle)
       ],
     );
   }
