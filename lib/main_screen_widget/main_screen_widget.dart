@@ -1,6 +1,7 @@
 import 'package:car_sale_app/app_values/AppValue.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
+import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/city_card.dart';
 import 'package:car_sale_app/widgets/navigation.dart';
@@ -49,8 +50,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
               children: [
                 OutlinedButton(
                     style: isBtnSelected == true
-                        ? AppValue.customStyleBlue
-                        : AppValue.customStyleWhite,
+                        ? AppColors.customStyleBlue
+                        : AppColors.customStyleWhite,
                     onPressed: () {
                       setState(() {
                         isBtnSelected = true;
@@ -60,13 +61,13 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                     child: Text(
                       'Города',
                       style: isBtnSelected == true
-                          ? AppValue.customTextStyleWhite
-                          : AppValue.customTextStyleBlack,
+                          ? AppColors.customTextStyleWhite
+                          : AppColors.customTextStyleBlack,
                     )),
                 OutlinedButton(
                     style: isBtnSelected == false
-                        ? AppValue.customStyleBlue
-                        : AppValue.customStyleWhite,
+                        ? AppColors.customStyleBlue
+                        : AppColors.customStyleWhite,
                     onPressed: () {
                       setState(() {
                         isBtnSelected = false;
@@ -76,8 +77,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                     child: Text(
                       'Автомобили',
                       style: isBtnSelected == true
-                          ? AppValue.customTextStyleBlack
-                          : AppValue.customTextStyleWhite,
+                          ? AppColors.customTextStyleBlack
+                          : AppColors.customTextStyleWhite,
                     )),
               ],
             ),

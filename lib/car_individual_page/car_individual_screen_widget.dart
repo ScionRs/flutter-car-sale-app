@@ -4,7 +4,7 @@ import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 
 class CarIndividualWidget extends StatefulWidget {
@@ -22,73 +22,89 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
+    double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption);
+    double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption);
     TextTheme textTheme = Theme.of(context).textTheme;
-    // Список опций автомобиля по умолчанию
+    // Список дополнительных опций автомобиля
     var tableListRowEquipment = [
       TableRow(children: [
-        _TableRowCustomWidget(description: "Название комплектации:", car: widget.car.equipment.title.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Название комплектации:", car: widget.car.equipment.title.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Привод:", car: widget.car.equipment.driveUnit.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Привод:", car: widget.car.equipment.driveUnit.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Мощность(лс):", car: widget.car.equipment.horsePower.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Мощность(лс):", car: widget.car.equipment.horsePower.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Время разгона:", car: widget.car.equipment.accelerationTime.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Время разгона:", car: widget.car.equipment.accelerationTime.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обороты:", car: widget.car.equipment.maxTorque.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обороты:", car: widget.car.equipment.maxTorque.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Типо топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Типо топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Подушки безопасности:", car: widget.car.equipment.airbags.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Подушки безопасности:", car: widget.car.equipment.airbags.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем бензобака:", car: widget.car.equipment.fuelTankVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем бензобака:", car: widget.car.equipment.fuelTankVolume.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем багажника:", car: widget.car.equipment.trunkVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем багажника:", car: widget.car.equipment.trunkVolume.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Климат контроль:", car: widget.car.equipment.airConditioningSystem.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Климат контроль:", car: widget.car.equipment.airConditioningSystem.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Бортовой компьютер:", car: widget.car.equipment.onBoardComputer.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Бортовой компьютер:", car: widget.car.equipment.onBoardComputer.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Центральный замок:", car: widget.car.equipment.centralLocking.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Центральный замок:", car: widget.car.equipment.centralLocking.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Подогрев сидений:", car: widget.car.equipment.heatedSeats.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Подогрев сидений:", car: widget.car.equipment.heatedSeats.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Максимальная скорость:", car: widget.car.equipment.maxSpeed.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Максимальная скорость:", car: widget.car.equipment.maxSpeed.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Мультируль:", car: widget.car.equipment.multifunctionSteeringWheel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Мультируль:", car: widget.car.equipment.multifunctionSteeringWheel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обивка сидений:", car: widget.car.equipment.seatUpholstery.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обивка сидений:", car: widget.car.equipment.seatUpholstery.toString(), textTheme: textTheme)
       ]),
     ];
+    // Опции по "умолчанию"
     var tableListRowDefaultCarOptions = [
       TableRow(children: [
-        _TableRowCustomWidget(description: "Год выпуска:", car: widget.car.productionYear.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Год выпуска:", car: widget.car.productionYear.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Тип кузова:", car: widget.car.bodyType.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Тип кузова:", car: widget.car.bodyType.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Трансмиссия:", car: widget.car.transmission.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Трансмиссия:", car: widget.car.transmission.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Тип двигателя:", car: widget.car.engineType.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Тип двигателя:", car: widget.car.engineType.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        _TableRowCustomWidget(description: "Обьем двигателя", car: widget.car.engineVolume.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Обьем двигателя", car: widget.car.engineVolume.toString(), textTheme: textTheme)
+      ]),
+    ];
+    // Диаграмма расходов
+    var tableListRowDiagramFuel = [
+      TableRow(children: [
+        TableRowCustomWidget(description: "Город:", car: cityFuel.toString(), textTheme: textTheme)
+      ]),
+      TableRow(children: [
+        TableRowCustomWidget(description: "Трасса:", car: higwayFuel.toString(), textTheme: textTheme)
+      ]),
+      TableRow(children: [
+        TableRowCustomWidget(description: "Смешанный:", car: combinedFuel.toString(), textTheme: textTheme)
       ]),
     ];
 
@@ -122,19 +138,93 @@ class _CarIndividualState extends State<CarIndividualWidget> {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: _ExpansionTileWidget(name:"Основные характеристики", tableListRowDefaultCarOptions: tableListRowDefaultCarOptions),
           ),
-          _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
-        ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _ExpansionTileDiagramWidget(name:"Расходы на обслуживание",
+              tableListRowDefaultCarOptions: tableListRowDiagramFuel,
+              textTheme: textTheme,
+              diagramFuelWidget: _DiagramFuelWidget(
+                cityFuel: cityFuel,
+                higwayFuel: higwayFuel,
+                combinedFuel: combinedFuel,
+              )
+              ,),
+          )
+          ],
       )
     );
   }
 }
 
-class _TableRowCustomWidget extends StatelessWidget {
+class _DiagramFuelWidget extends StatelessWidget {
+  const _DiagramFuelWidget({
+    Key? key,
+    required this.cityFuel,
+    required this.higwayFuel,
+    required this.combinedFuel,
+  }) : super(key: key);
+
+  final double cityFuel;
+  final double higwayFuel;
+  final double combinedFuel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 320.0,
+            child: DChartBar(
+              data: [
+                {
+                  'id': 'Bar',
+                  'data': [
+                    {'domain': 'Город', 'measure': cityFuel},
+                    {'domain': 'Трасса', 'measure': higwayFuel},
+                    {'domain': 'Смешанный', 'measure': combinedFuel},
+                  ],
+                },
+              ],
+              domainLabelPaddingToAxisLine: 16,
+              axisLineTick: 3,
+              axisLinePointTick: 2,
+              axisLinePointWidth: 10,
+              axisLineColor: Colors.blue,
+              measureLabelPaddingToAxisLine: 20,
+              showBarValue: true,
+              showDomainLine: true,
+              showMeasureLine: true,
+              barColor: (barData, index, id) {
+                switch (index) {
+                  case 1:
+                    return Colors.green;
+                  case 2:
+                    return Colors.orange;
+                  default:
+                    return Colors.red;
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class TableRowCustomWidget extends StatelessWidget {
   final String description;
   final String car;
   final TextTheme textTheme;
 
-  const _TableRowCustomWidget({
+  const TableRowCustomWidget({
     Key? key,
     required this.description,
     required this.car,
@@ -171,6 +261,7 @@ class _ExpansionTileWidget extends StatelessWidget {
   final String name;
   final List<TableRow> tableListRowDefaultCarOptions;
 
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -183,7 +274,51 @@ class _ExpansionTileWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Container(
             padding: const EdgeInsets.all(6.0),
-              child: _TableWidget(tableRowList: tableListRowDefaultCarOptions,)),
+              child: Column(
+                children: [
+                  _TableWidget(tableRowList: tableListRowDefaultCarOptions,),
+                ],
+              )),
+        ),
+      ],
+    );
+  }
+}
+
+// раскрывающийся список для диаграммы
+class _ExpansionTileDiagramWidget extends StatelessWidget {
+  const _ExpansionTileDiagramWidget({
+    Key? key,
+    required this.name,
+    required this.tableListRowDefaultCarOptions,
+    required this.diagramFuelWidget,
+    required this.textTheme
+  }) : super(key: key);
+  final String name;
+  final List<TableRow> tableListRowDefaultCarOptions;
+  final _DiagramFuelWidget diagramFuelWidget;
+  final TextTheme textTheme;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      title: Text('${name}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+      collapsedTextColor: Colors.white,
+      textColor: Color.fromRGBO(0, 73, 183, 1),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Container(
+              padding: const EdgeInsets.all(6.0),
+              child: Column(
+                children: [
+                  Text('Стоимость пробега на 100км в различных режимах',textAlign: TextAlign.center, style: textTheme.titleLarge),
+                  _TableWidget(tableRowList: tableListRowDefaultCarOptions,),
+                  diagramFuelWidget
+                ],
+              )),
         ),
       ],
     );
@@ -288,8 +423,8 @@ class _TitleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('${car.brand} ', style: AppValue.textBigTitle),
-        Text('${car.model}', style: AppValue.textBigTitle)
+        Text('${car.brand} ', style: AppColors.textBigTitle),
+        Text('${car.model}', style: AppColors.textBigTitle)
       ],
     );
   }
