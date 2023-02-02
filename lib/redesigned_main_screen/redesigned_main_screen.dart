@@ -1,4 +1,5 @@
 import 'package:car_sale_app/theme/constants.dart';
+import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -151,10 +152,17 @@ class _TopBrandsTitleWidget extends StatelessWidget {
             style: textTheme.titleLarge,
           ),
         ),
-        Text(
-          'Посмотреть все',
-          style: textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              MainNavigationRouteName.brandListScreen,
+            );
+          },
+          child: Text(
+            'Посмотреть все',
+            style: textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
@@ -175,20 +183,20 @@ class _TopBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return const _BrandCardWidget();
+        return const _BrandCardShortWidget();
       },
     );
   }
 }
 
-class _BrandCardWidget extends StatefulWidget {
-  const _BrandCardWidget({super.key});
+class _BrandCardShortWidget extends StatefulWidget {
+  const _BrandCardShortWidget({super.key});
 
   @override
-  State<_BrandCardWidget> createState() => __BrandCardWidgetState();
+  State<_BrandCardShortWidget> createState() => _BrandCardShortWidgetState();
 }
 
-class __BrandCardWidgetState extends State<_BrandCardWidget> {
+class _BrandCardShortWidgetState extends State<_BrandCardShortWidget> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
