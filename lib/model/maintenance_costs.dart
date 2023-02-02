@@ -41,7 +41,7 @@ class MaintenanceCosts{
   }
 
   // Стоимость на 100км в выбранном цикле
-   double calculateCycle(String compareValue, int customValue){
+   double calculateCycle(String compareValue, double customValue){
     if (compareValue.toLowerCase() == "аи-95") {
       double finalPrice = customValue * 52.79;
       return finalPrice;

@@ -22,6 +22,8 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
+    print(cityFuel);
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список опций автомобиля по умолчанию
     var tableListRowEquipment = [
@@ -133,10 +135,9 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                 {
                   'id': 'Bar',
                   'data': [
-                    {'domain': '2020', 'measure': 3},
-                    {'domain': '2021', 'measure': 4},
-                    {'domain': '2022', 'measure': 6},
-                    {'domain': '2023', 'measure': 0.3},
+                    {'domain': 'Город', 'measure': cityFuel},
+                    {'domain': 'Трасса', 'measure': 4},
+                    {'domain': 'Смешанный', 'measure': 6},
                   ],
                 },
               ],
