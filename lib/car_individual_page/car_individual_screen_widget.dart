@@ -145,6 +145,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
+                  width: width,
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -152,7 +153,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                       const BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
-                      BottomDialogButtonWidget(onTap: (){}),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в телеграмм',),
                       Divider(),
                       Text("b"),
                       Divider(),
@@ -247,8 +248,10 @@ class BottomDialogButtonWidget extends StatelessWidget {
   BottomDialogButtonWidget({
     Key? key,
     required this.onTap,
+    required this.textCustom,
   }) : super(key: key);
 
+  String textCustom;
   final Function()? onTap;
 
   @override
@@ -258,10 +261,9 @@ class BottomDialogButtonWidget extends StatelessWidget {
     },
         style: ButtonStyle(
           minimumSize: MaterialStateProperty.all(Size(70, 70)),
-          backgroundColor: MaterialStateProperty.all(
-              const Color.fromRGBO(0, 73, 183, 1)),
+          backgroundColor: MaterialStateProperty.all(Colors.blue),
           padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0)),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0)),
           shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(0),
@@ -272,12 +274,12 @@ class BottomDialogButtonWidget extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text('Позвонить',
-              style: TextStyle(color: AppColors.white, fontSize: 23.0),
+          children: [
+            Text(textCustom,
+              style: TextStyle(color: AppColors.white, fontSize: 20.0),
               textAlign: TextAlign.center,),
             SizedBox(width: 5.0,),
-            Icon(Icons.call, color: AppColors.white, size: 34.0,),
+            Icon(Icons.call, color: AppColors.white, size: 30.0,),
           ],)
     );
   }
