@@ -15,7 +15,6 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
       appBar: AppBar(
         title: const Text('Желаемое'),
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }

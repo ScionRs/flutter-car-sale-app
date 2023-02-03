@@ -12,9 +12,9 @@ class NavigationListWidget extends StatefulWidget {
 }
 
 class _NavigationListWidgetState extends State<NavigationListWidget> {
-  int _selectedTab = 1;
+  int _selectedTab = 0;
 
-  void onSelectedTab(int index) {
+  void _onSelectedTab(int index) {
     if (_selectedTab == index) return;
     setState(
       () {
@@ -28,12 +28,15 @@ class _NavigationListWidgetState extends State<NavigationListWidget> {
     return Scaffold(
       body: IndexedStack(
         index: _selectedTab,
-        children: [
+        children: const [
           RedesignedMainScreenWidget(),
           FavoritesScreenWidget(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        currentIndex: _selectedTab,
+        onTap: _onSelectedTab,
+      ),
     );
   }
 }
