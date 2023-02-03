@@ -27,6 +27,7 @@ class _NavigationListWidgetState extends State<NavigationListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
+        index: _selectedTab,
         children: [
           RedesignedMainScreenWidget(),
           FavoritesScreenWidget(),
