@@ -3,6 +3,7 @@ import 'package:car_sale_app/car_individual_page/car_individual_screen_widget.da
 import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
+import 'package:car_sale_app/favorites_screen/favorites_screen_widget.dart';
 import 'package:car_sale_app/main_screen_widget/main_screen_widget.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/model/City.dart';
@@ -12,12 +13,13 @@ import 'package:car_sale_app/redesigned_main_screen/redesigned_main_screen.dart'
 import 'package:flutter/material.dart';
 
 abstract class MainNavigationRouteName {
-  static const mainScreen = "/";
-  static const dealerListScreen = "/dealerList";
-  static const brandListScreen = "/brandList";
-  static const carListScreen = "/carList";
-  static const carIntermediateScreen = "/carList/carIntermediate";
-  static const carIndividual = '/carIndividual';
+  static const mainScreen = "main";
+  static const favoritesScreen = 'favorites';
+  static const dealerListScreen = "main/dealerList";
+  static const brandListScreen = "main/brandList";
+  static const carListScreen = "main/carList";
+  static const carIntermediateScreen = "main/carList/carIntermediate";
+  static const carIndividual = 'main/carIndividual';
 }
 
 class MainNavigation {
@@ -25,7 +27,9 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.mainScreen: (context) =>
-        RedesignedMainScreenWidget(),
+        const RedesignedMainScreenWidget(),
+    MainNavigationRouteName.favoritesScreen: (context) =>
+        const FavoritesScreenWidget(),
     MainNavigationRouteName.brandListScreen: (context) =>
         const BrandListScreenWidget(),
   };
