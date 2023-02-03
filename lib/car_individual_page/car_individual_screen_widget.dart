@@ -4,6 +4,7 @@ import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -136,6 +137,28 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         title: _TitleWidget(car: widget.car),
         centerTitle: true,
       ),
+      bottomNavigationBar:
+          OutlinedButton(onPressed: (){},
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(70, 70)),
+                backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0, 73, 183, 1)),
+                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0)),
+                shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(0),
+                      topLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    )),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Позвонить', style: TextStyle(color: AppColors.white,fontSize: 22.0),textAlign: TextAlign.center,),
+                  SizedBox(width: 5.0,),
+                  Icon(Icons.call, color: AppColors.white, size: 34.0,),
+                ],)
+          ),
       body: ListView(
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
