@@ -31,7 +31,6 @@ class _RedesignedMainScreenWidgetState
           _TopBrandsWidget(),
         ],
       ),
-      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }
