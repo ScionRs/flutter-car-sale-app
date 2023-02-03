@@ -152,7 +152,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                       const BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
-                      Text("a"),
+                      BottomDialogButtonWidget(onTap: (){}),
                       Divider(),
                       Text("b"),
                       Divider(),
@@ -237,6 +237,48 @@ class _CarIndividualState extends State<CarIndividualWidget> {
           )
           ],
       )
+    );
+  }
+}
+
+// Кнопка для всплывающего окна
+class BottomDialogButtonWidget extends StatelessWidget {
+
+  BottomDialogButtonWidget({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(onPressed: () {
+      onTap;
+    },
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(Size(70, 70)),
+          backgroundColor: MaterialStateProperty.all(
+              const Color.fromRGBO(0, 73, 183, 1)),
+          padding: MaterialStateProperty.all(
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0)),
+          shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(0),
+                topLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
+              )),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text('Позвонить',
+              style: TextStyle(color: AppColors.white, fontSize: 23.0),
+              textAlign: TextAlign.center,),
+            SizedBox(width: 5.0,),
+            Icon(Icons.call, color: AppColors.white, size: 34.0,),
+          ],)
     );
   }
 }
