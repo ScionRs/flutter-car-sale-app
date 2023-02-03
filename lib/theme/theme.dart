@@ -37,6 +37,11 @@ ThemeData setTheme() {
       toolbarHeight: 78,
       iconTheme: IconThemeData(color: AppColors.black),
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.white,
+      selectedItemColor: AppColors.primary,
+      elevation: 5,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(20),
       hintStyle: const TextStyle(
