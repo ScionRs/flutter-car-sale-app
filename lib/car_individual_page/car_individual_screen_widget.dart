@@ -154,11 +154,11 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                       const BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в Telegram', colorCustom: Colors.blue,),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в Telegram', colorCustom: Colors.blue, icon: Icons.messenger,),
                       Divider(),
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,icon: Icons.messenger,),
                       Divider(),
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Позвонить', colorCustom: Colors.red)
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Позвонить', colorCustom: Colors.red,icon: Icons.call,)
                     ],
                   ),
                 ),
@@ -251,11 +251,13 @@ class BottomDialogButtonWidget extends StatelessWidget {
     required this.onTap,
     required this.textCustom,
     required this.colorCustom,
+    required this.icon
   }) : super(key: key);
 
   String textCustom;
   final Function()? onTap;
   Color colorCustom;
+  IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +286,7 @@ class BottomDialogButtonWidget extends StatelessWidget {
               style: TextStyle(color: colorCustom, fontSize: 20.0),
               textAlign: TextAlign.center,),
             SizedBox(width: 5.0,),
-            Icon(Icons.call, color: AppColors.white, size: 30.0,),
+            Icon(icon, color: AppColors.white, size: 30.0,),
           ],)
     );
   }
