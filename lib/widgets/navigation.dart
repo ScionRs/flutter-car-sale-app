@@ -16,13 +16,13 @@ import 'package:flutter/material.dart';
 
 abstract class MainNavigationRouteName {
   static const navigationList = '/';
-  static const mainScreen = "/main";
-  static const favoritesScreen = '/favorites';
-  static const dealerListScreen = "/main/dealerList";
-  static const brandListScreen = "/main/brandList";
-  static const carListScreen = "/main/carList";
-  static const carIntermediateScreen = "/main/carList/carIntermediate";
-  static const carIndividual = '/main/carIndividual';
+  // static const mainScreen = "/main";
+  // static const favoritesScreen = '/favorites';
+  static const dealerListScreen = "/dealerList";
+  static const brandListScreen = "/brandList";
+  static const carListScreen = "/carList";
+  static const carIntermediateScreen = "/carList/carIntermediate";
+  static const carIndividual = '/carIndividual';
 }
 
 class MainNavigation {
@@ -31,12 +31,12 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.navigationList: (context) =>
         const NavigationListWidget(),
-    MainNavigationRouteName.mainScreen: (context) =>
-        const RedesignedMainScreenWidget(),
-    MainNavigationRouteName.dealerListScreen: (context) =>
+    // MainNavigationRouteName.mainScreen: (context) =>
+    //     const RedesignedMainScreenWidget(),
+    MainNavigationRouteName.brandListScreen: (context) =>
         const BrandListScreenWidget(),
-    MainNavigationRouteName.favoritesScreen: (context) =>
-        const FavoritesScreenWidget(),
+    // MainNavigationRouteName.favoritesScreen: (context) =>
+    //     const FavoritesScreenWidget(),
   };
 
   Route<Object>? onGenerateRoute(RouteSettings settings) {
