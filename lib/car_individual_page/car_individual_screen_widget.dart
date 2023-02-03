@@ -4,6 +4,7 @@ import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/build_local_image.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -130,12 +131,71 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       ]),
     ];
 
+    Future openDialog() => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        double width = MediaQuery.of(context).size.width;
+        double height = MediaQuery.of(context).size.height;
+        return AlertDialog(
+            backgroundColor: Colors.transparent,
+            contentPadding: EdgeInsets.zero,
+            elevation: 0.0,
+            // title: Center(child: Text("Evaluation our APP")),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: width,
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(10.0))),
+                  child: Column(
+                    children: [
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в телеграмм',),
+                      Divider(),
+                      Text("b"),
+                      Divider(),
+                      Text("c"),
+                    ],
+                  ),
+                ),
+              ],
+            ));
+      },
+    );
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: _TitleWidget(car: widget.car),
         centerTitle: true,
       ),
+      bottomNavigationBar:
+          OutlinedButton(onPressed: (){
+            openDialog();
+          },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(70, 70)),
+                backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0, 73, 183, 1)),
+                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0)),
+                shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(0),
+                      topLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    )),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Позвонить', style: TextStyle(color: AppColors.white,fontSize: 23.0),textAlign: TextAlign.center,),
+                  SizedBox(width: 5.0,),
+                  Icon(Icons.call, color: AppColors.white, size: 34.0,),
+                ],)
+          ),
       body: ListView(
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
@@ -178,6 +238,49 @@ class _CarIndividualState extends State<CarIndividualWidget> {
           )
           ],
       )
+    );
+  }
+}
+
+// Кнопка для всплывающего окна
+class BottomDialogButtonWidget extends StatelessWidget {
+
+  BottomDialogButtonWidget({
+    Key? key,
+    required this.onTap,
+    required this.textCustom,
+  }) : super(key: key);
+
+  String textCustom;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(onPressed: () {
+      onTap;
+    },
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(Size(70, 70)),
+          backgroundColor: MaterialStateProperty.all(Colors.blue),
+          padding: MaterialStateProperty.all(
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0)),
+          shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(0),
+                topLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
+              )),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(textCustom,
+              style: TextStyle(color: AppColors.white, fontSize: 20.0),
+              textAlign: TextAlign.center,),
+            SizedBox(width: 5.0,),
+            Icon(Icons.call, color: AppColors.white, size: 30.0,),
+          ],)
     );
   }
 }
