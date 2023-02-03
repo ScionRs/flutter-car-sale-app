@@ -7,6 +7,7 @@ import 'package:d_chart/d_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class CarIndividualWidget extends StatefulWidget {
@@ -132,6 +133,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       ]),
     ];
 
+
     Future openDialog() => showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -154,11 +156,11 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                       const BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в Telegram', colorCustom: Colors.blue, icon: Icons.messenger,),
+                      BottomDialogButtonWidget(textCustom: 'Написать в Telegram', colorCustom: Colors.blue, icon: Icons.messenger,),
                       Divider(),
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,icon: Icons.messenger,),
+                      BottomDialogButtonWidget(textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,icon: Icons.messenger,),
                       Divider(),
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Позвонить', colorCustom: Colors.red,icon: Icons.call,)
+                      BottomDialogButtonWidget(textCustom: 'Позвонить', colorCustom: Colors.red,icon: Icons.call,)
                     ],
                   ),
                 ),
@@ -248,21 +250,23 @@ class BottomDialogButtonWidget extends StatelessWidget {
 
   BottomDialogButtonWidget({
     Key? key,
-    required this.onTap,
     required this.textCustom,
     required this.colorCustom,
     required this.icon
   }) : super(key: key);
 
   String textCustom;
-  final Function()? onTap;
   Color colorCustom;
   IconData icon;
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: () {
-      onTap;
+    return OutlinedButton(onPressed: () async {
+      final Uri url = Uri(
+          scheme: 'tel',
+          path: '+796111111'
+      );
+      await launchUrl(url);
     },
         style: ButtonStyle(
           side:  MaterialStateProperty.all(
