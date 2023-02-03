@@ -1,3 +1,4 @@
+import 'package:car_sale_app/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesScreenWidget extends StatefulWidget {
@@ -14,6 +15,7 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
       appBar: AppBar(
         title: const Text('Желаемое'),
       ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }
