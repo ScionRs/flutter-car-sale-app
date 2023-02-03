@@ -1,3 +1,4 @@
+import 'package:car_sale_app/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _RedesignedMainScreenWidgetState
           _TopBrandsWidget(),
         ],
       ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }

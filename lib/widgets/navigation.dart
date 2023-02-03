@@ -24,7 +24,8 @@ class MainNavigation {
   final initialRoute = MainNavigationRouteName.mainScreen;
 
   final routes = <String, Widget Function(BuildContext)>{
-    MainNavigationRouteName.mainScreen: (context) => MainScreenWidget(),
+    MainNavigationRouteName.mainScreen: (context) =>
+        RedesignedMainScreenWidget(),
     MainNavigationRouteName.brandListScreen: (context) =>
         const BrandListScreenWidget(),
   };
