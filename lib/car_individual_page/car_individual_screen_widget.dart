@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+
 class CarIndividualWidget extends StatefulWidget {
   final Car car;
 
@@ -145,7 +146,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: width,
+                  width: double.infinity,
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -153,11 +154,11 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                       const BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
-                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в телеграмм',),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в Telegram', colorCustom: Colors.blue,),
                       Divider(),
-                      Text("b"),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,),
                       Divider(),
-                      Text("c"),
+                      BottomDialogButtonWidget(onTap: (){}, textCustom: 'Позвонить', colorCustom: Colors.red)
                     ],
                   ),
                 ),
@@ -249,10 +250,12 @@ class BottomDialogButtonWidget extends StatelessWidget {
     Key? key,
     required this.onTap,
     required this.textCustom,
+    required this.colorCustom,
   }) : super(key: key);
 
   String textCustom;
   final Function()? onTap;
+  Color colorCustom;
 
   @override
   Widget build(BuildContext context) {
@@ -260,10 +263,12 @@ class BottomDialogButtonWidget extends StatelessWidget {
       onTap;
     },
         style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(Size(70, 70)),
-          backgroundColor: MaterialStateProperty.all(Colors.blue),
+          side:  MaterialStateProperty.all(
+              BorderSide(color: Colors.transparent,)),
+          minimumSize: MaterialStateProperty.all(const Size(50, 50)),
+          backgroundColor: MaterialStateProperty.all(AppColors.white),
           padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0)),
+              const EdgeInsets.symmetric(vertical: 8.0, horizontal: 25.0)),
           shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(0),
@@ -276,7 +281,7 @@ class BottomDialogButtonWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(textCustom,
-              style: TextStyle(color: AppColors.white, fontSize: 20.0),
+              style: TextStyle(color: colorCustom, fontSize: 20.0),
               textAlign: TextAlign.center,),
             SizedBox(width: 5.0,),
             Icon(Icons.call, color: AppColors.white, size: 30.0,),

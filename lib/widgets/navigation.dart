@@ -4,6 +4,7 @@ import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_scr
 import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
 import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
 import 'package:car_sale_app/main_screen_widget/main_screen_widget.dart';
+import 'package:car_sale_app/model/%D1%81ommon_data.dart';
 import 'package:car_sale_app/model/Car.dart';
 import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/model/car_category.dart';
@@ -25,7 +26,7 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.mainScreen: (context) =>
-        RedesignedMainScreenWidget(),
+        MainScreenWidget(),
     MainNavigationRouteName.brandListScreen: (context) =>
         const BrandListScreenWidget(),
   };
