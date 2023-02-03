@@ -29,7 +29,6 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.mainScreen: (context) =>
         BrandListScreenWidget(),
-        const RedesignedMainScreenWidget(),
     MainNavigationRouteName.favoritesScreen: (context) =>
         const FavoritesScreenWidget(),
   };
