@@ -10,6 +10,10 @@ class FavoritesScreenWidget extends StatefulWidget {
 class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Желаемое'),
+      ),
+    );
   }
 }
