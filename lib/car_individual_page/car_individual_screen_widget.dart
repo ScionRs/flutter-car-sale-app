@@ -131,6 +131,40 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       ]),
     ];
 
+    Future openDialog() => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        double width = MediaQuery.of(context).size.width;
+        double height = MediaQuery.of(context).size.height;
+        return AlertDialog(
+            backgroundColor: Colors.transparent,
+            contentPadding: EdgeInsets.zero,
+            elevation: 0.0,
+            // title: Center(child: Text("Evaluation our APP")),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(10.0))),
+                  child: Column(
+                    children: [
+                      Text("a"),
+                      Divider(),
+                      Text("b"),
+                      Divider(),
+                      Text("c"),
+                    ],
+                  ),
+                ),
+              ],
+            ));
+      },
+    );
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -138,7 +172,9 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         centerTitle: true,
       ),
       bottomNavigationBar:
-          OutlinedButton(onPressed: (){},
+          OutlinedButton(onPressed: (){
+            openDialog();
+          },
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(Size(70, 70)),
                 backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0, 73, 183, 1)),
@@ -154,7 +190,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('Позвонить', style: TextStyle(color: AppColors.white,fontSize: 22.0),textAlign: TextAlign.center,),
+                  Text('Позвонить', style: TextStyle(color: AppColors.white,fontSize: 23.0),textAlign: TextAlign.center,),
                   SizedBox(width: 5.0,),
                   Icon(Icons.call, color: AppColors.white, size: 34.0,),
                 ],)
