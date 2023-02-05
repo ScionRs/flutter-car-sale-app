@@ -261,12 +261,14 @@ class BottomDialogButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: () async {
-      final Uri url = Uri(
-          scheme: 'tel',
-          path: '+796111111'
-      );
-      await launchUrl(url);
+    return OutlinedButton(onPressed: () {
+      if (textCustom.contains('Позвонить')) {
+        Uri url = Uri(
+            scheme: 'tel',
+            path: '+796111111'
+        );
+        launchUrl(url);
+      }
     },
         style: ButtonStyle(
           side:  MaterialStateProperty.all(
