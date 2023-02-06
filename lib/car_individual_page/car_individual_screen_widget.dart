@@ -269,6 +269,22 @@ class BottomDialogButtonWidget extends StatelessWidget {
         );
         launchUrl(url);
       }
+      else if (textCustom.contains('Telegram')){
+        var telegram_link = 'https://t.me/+796111111';
+        final Uri app_link_uri = Uri.parse(telegram_link);
+        launchUrl(
+          app_link_uri,
+          mode: LaunchMode.externalApplication,
+        );
+      }
+      else if (textCustom.contains('WhatsApp')){
+        var whatsapp_link = "whatsapp://send?phone=" + '+796111111' + "&text=hellooo";
+        final Uri app_link_uri = Uri.parse(whatsapp_link);
+        launchUrl(
+          app_link_uri,
+          mode: LaunchMode.externalApplication,
+        );
+      }
     },
         style: ButtonStyle(
           side:  MaterialStateProperty.all(
