@@ -42,9 +42,9 @@ class MainNavigation {
   Route<Object>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case MainNavigationRouteName.carListScreen:
-        final carCategory = settings.arguments as CarCategory;
+        final cars = settings.arguments as List<CarIntermediate>;
         return MaterialPageRoute(
-          builder: (context) => CarListScreenWidget(carCategory: carCategory),
+          builder: (context) => CarListScreenWidget(cars: cars),
         );
       case MainNavigationRouteName.carIntermediateScreen:
         final carIntermediate = settings.arguments as CarIntermediate;
