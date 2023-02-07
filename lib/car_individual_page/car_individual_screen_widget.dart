@@ -46,9 +46,9 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle);
-    double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption);
-    double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption);
+    double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle).roundToDouble();
+    double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption).roundToDouble();
+    double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption).roundToDouble();
 
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список дополнительных опций автомобиля
@@ -173,7 +173,6 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: _TitleWidget(car: widget.car),
-        centerTitle: true,
       ),
       bottomNavigationBar:
           OutlinedButton(onPressed: (){
@@ -373,7 +372,7 @@ class _DiagramFuelWidget extends StatelessWidget {
   }
 }
 
-
+// Кастомное оформление строк
 class TableRowCustomWidget extends StatelessWidget {
   final String description;
   final String car;
@@ -577,13 +576,6 @@ class _TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('${car.brand} ', style: AppColors.textBigTitle),
-        Text('${car.model}', style: AppColors.textBigTitle)
-      ],
-    );
+    return Text('${car.brand} ${car.model}', style: AppColors.textBigTitle);
   }
 }
