@@ -7,7 +7,11 @@ import 'package:d_chart/d_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:like_button/like_button.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../provider/car_provider.dart';
 
 
 class CarIndividualWidget extends StatefulWidget {
@@ -49,7 +53,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle).roundToDouble();
     double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption).roundToDouble();
     double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption).roundToDouble();
-
+    var carList = context.read<CarProvider>().favoriteCarList;
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список дополнительных опций автомобиля
     var tableListRowEquipment = [
@@ -169,10 +173,42 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       },
     );
 
+    Future<bool> onLikeButtonTapped(bool isLiked) async{
+      if(isLiked == true) {
+        carList.remove(widget.car);
+      }
+      else {
+        carList.add(widget.car);
+      }
+      print(carList.length);
+      return !isLiked;
+    }
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: _TitleWidget(car: widget.car),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: LikeButton(
+              onTap: onLikeButtonTapped,
+              size: 34.0,
+              circleColor: CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+              bubblesColor: BubblesColor(
+                dotPrimaryColor: Color(0xff33b5e5),
+                dotSecondaryColor: Color(0xff0099cc),
+              ),
+              likeBuilder: (bool isLiked) {
+                return Icon(
+                  Icons.favorite,
+                  color: isLiked ? Colors.red : Colors.grey,
+                  size: 34.0,
+                );
+              },
+            ),
+          )
+        ],
       ),
       bottomNavigationBar:
           OutlinedButton(onPressed: (){
@@ -198,47 +234,50 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                   Icon(Icons.call, color: AppColors.white, size: 34.0,),
                 ],)
           ),
-      body: ListView(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        children: [
-          _ImageContainerWidget(car: widget.car),
-          Container(
-            color: AppColors.lightnessGrey,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _ColumnWidget(car: widget.car.equipment.horsePower.toString(), icon: engineIcon, description: 'лс', textTheme: textTheme),
-                  _ColumnWidget(car: widget.car.equipment.driveUnit.toString(), icon: allWheelDriveIcon, description: 'привод', textTheme: textTheme),
-                  _ColumnWidget(car: widget.car.equipment.accelerationTime.toString(), icon: speedIcon, description: 'до 100 км/ч', textTheme: textTheme),
-                ],
+      body: ChangeNotifierProvider(
+        create: (context) => CarProvider(),
+        child: ListView(
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          children: [
+            _ImageContainerWidget(car: widget.car),
+            Container(
+              color: AppColors.lightnessGrey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _ColumnWidget(car: widget.car.equipment.horsePower.toString(), icon: engineIcon, description: 'лс', textTheme: textTheme),
+                    _ColumnWidget(car: widget.car.equipment.driveUnit.toString(), icon: allWheelDriveIcon, description: 'привод', textTheme: textTheme),
+                    _ColumnWidget(car: widget.car.equipment.accelerationTime.toString(), icon: speedIcon, description: 'до 100 км/ч', textTheme: textTheme),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: _ExpansionTileWidget(name:"Основные характеристики", tableListRowDefaultCarOptions: tableListRowDefaultCarOptions),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: _ExpansionTileDiagramWidget(name:"Расходы на обслуживание",
-              tableListRowDefaultCarOptions: tableListRowDiagramFuel,
-              textTheme: textTheme,
-              diagramFuelWidget: _DiagramFuelWidget(
-                cityFuel: cityFuel,
-                higwayFuel: higwayFuel,
-                combinedFuel: combinedFuel,
-              )
-              ,),
-          )
-          ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: _ExpansionTileWidget(name:"Основные характеристики", tableListRowDefaultCarOptions: tableListRowDefaultCarOptions),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: _ExpansionTileWidget(name:"Комплектация", tableListRowDefaultCarOptions: tableListRowEquipment),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: _ExpansionTileDiagramWidget(name:"Расходы на обслуживание",
+                tableListRowDefaultCarOptions: tableListRowDiagramFuel,
+                textTheme: textTheme,
+                diagramFuelWidget: _DiagramFuelWidget(
+                  cityFuel: cityFuel,
+                  higwayFuel: higwayFuel,
+                  combinedFuel: combinedFuel,
+                )
+                ,),
+            )
+            ],
+        ),
       )
     );
   }
