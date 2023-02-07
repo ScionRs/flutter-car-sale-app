@@ -6,13 +6,13 @@ import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../model/car_intermediate.dart';
 import '../widgets/build_local_image.dart';
 
 class CarListScreenWidget extends StatelessWidget {
-  final CarCategory carCategory;
+  final List<CarIntermediate> cars;
 
-  const CarListScreenWidget({required this.carCategory, Key? key})
-      : super(key: key);
+  const CarListScreenWidget({required this.cars, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +22,15 @@ class CarListScreenWidget extends StatelessWidget {
         child: AppBarWidget(),
       ),
       body: ListView.separated(
-        itemCount: carCategory.cars.length,
+        itemCount: cars.length,
         padding: const EdgeInsets.all(16),
         itemBuilder: (BuildContext context, int index) => GestureDetector(
             onTap: () {
               Navigator.of(context).pushNamed(
                   MainNavigationRouteName.carIntermediateScreen,
-                  arguments: carCategory.cars[index]);
+                  arguments: cars[index]);
             },
-            child: _CarCardWidget(carCategory: carCategory, index: index)),
+            child: _CarCardWidget(cars: cars, index: index)),
         separatorBuilder: (BuildContext context, int index) =>
             const SizedBox(height: 16),
       ),
@@ -39,16 +39,14 @@ class CarListScreenWidget extends StatelessWidget {
 }
 
 class _CarCardWidget extends StatelessWidget {
-  CarCategory carCategory;
+  List<CarIntermediate> cars;
   int index;
 
-  _CarCardWidget({required this.carCategory, required this.index});
+  _CarCardWidget({required this.cars, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    var modelName =
-        "${carCategory.cars[index].brand} ${carCategory.cars[index].model}";
-    // var carsNumber = carCategory.cars[index].carList.length;
+    var modelName = "${cars[index].brand} ${cars[index].model}";
     var formatPrice = NumberFormat("#,###,###", "en_US");
 
     return Container(
@@ -60,7 +58,7 @@ class _CarCardWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          BuildLocalImage(url: carCategory.cars[index].image),
+          BuildLocalImage(url: cars[index].image),
           const SizedBox(width: 20),
           Expanded(
             child: Column(

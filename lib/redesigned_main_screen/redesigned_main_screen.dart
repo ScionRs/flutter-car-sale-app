@@ -5,6 +5,7 @@ import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../model/car_intermediate.dart';
 import '../widgets/build_local_image.dart';
 
 class RedesignedMainScreenWidget extends StatefulWidget {
@@ -184,9 +185,9 @@ class _TopBrandsRowWidget extends StatelessWidget {
       ),
       itemBuilder: (BuildContext context, int index) {
         return _BrandCardShortWidget(
-          name: carCategory.image,
-          logo: carCategory.image,
-        );
+            name: carCategory.image,
+            logo: carCategory.image,
+            cars: carCategory.cars);
       },
     );
   }
@@ -195,40 +196,47 @@ class _TopBrandsRowWidget extends StatelessWidget {
 class _BrandCardShortWidget extends StatelessWidget {
   final String name;
   final String logo;
+  final List<CarIntermediate> cars;
   const _BrandCardShortWidget(
-      {Key? key, required this.name, required this.logo})
+      {Key? key, required this.name, required this.logo, required this.cars})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: AppColors.lightGrey,
-          width: 2,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: AppColors.lightGrey,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
         ),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      elevation: 0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Flexible(
-            flex: 2,
-            child: SizedBox(
-              width: 50,
-              child: SvgPicture.asset(logo),
+        elevation: 0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              flex: 2,
+              child: SizedBox(
+                width: 50,
+                child: SvgPicture.asset(logo),
+              ),
             ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Text(
-              name,
-              style: textTheme.titleSmall,
+            Flexible(
+              flex: 1,
+              child: Text(
+                name,
+                style: textTheme.titleSmall,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
