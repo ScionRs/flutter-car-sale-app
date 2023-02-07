@@ -57,7 +57,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   BuildLocalImage(url: carItem.image),
                   Padding(
