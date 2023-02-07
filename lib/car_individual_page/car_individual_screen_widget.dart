@@ -7,6 +7,7 @@ import 'package:d_chart/d_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:like_button/like_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -173,6 +174,26 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: _TitleWidget(car: widget.car),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: LikeButton(
+              size: 34.0,
+              circleColor: CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+              bubblesColor: BubblesColor(
+                dotPrimaryColor: Color(0xff33b5e5),
+                dotSecondaryColor: Color(0xff0099cc),
+              ),
+              likeBuilder: (bool isLiked) {
+                return Icon(
+                  Icons.favorite,
+                  color: isLiked ? Colors.red : Colors.grey,
+                  size: 34.0,
+                );
+              },
+            ),
+          )
+        ],
       ),
       bottomNavigationBar:
           OutlinedButton(onPressed: (){
