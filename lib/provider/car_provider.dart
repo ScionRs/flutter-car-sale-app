@@ -7,19 +7,28 @@ import 'package:flutter/material.dart';
 class CarProvider with ChangeNotifier{
 
   String imageCar = '';
-  List<Car> _favoriteCarList = [];
+  final List<Car> _favoriteCarList = [];
 
-  List<Car> get favoriteCarList => _favoriteCarList; // Поиск выбранной модели
+  List<Car> get favoriteCarList => _favoriteCarList;
+  // Поиск выбранной модели
   List<Car> searchCarModel(String searchValue){
     List<Car> filterCarList = CommonData.globalCarList.where((element) => element.model == searchValue).toList();
     return filterCarList;
   }
 
   void addToFavoriteCarList(Car car){
+    print('Автомобиль добавлен');
     _favoriteCarList.add(car);
-    notifyListeners();
   }
 
+  void removeToFavoriteCarList(Car car){
+    print('Автомобиль удален');
+    _favoriteCarList.remove(car);
+  }
+
+  List<Car> giveCarList(){
+    return favoriteCarList;
+  }
   // Поиск всех цветов данной модели
   List<dynamic> changeColor(String searchValue){
     List<Car> filterCarList = CommonData.globalCarList.where((element) => element.model == searchValue).toList();
