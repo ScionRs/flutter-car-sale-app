@@ -16,10 +16,10 @@ class CarListScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandName = cars[0].brand;
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(55),
-        child: AppBarWidget(),
+      appBar: AppBar(
+        title: Text(brandName),
       ),
       body: ListView.separated(
         itemCount: cars.length,
