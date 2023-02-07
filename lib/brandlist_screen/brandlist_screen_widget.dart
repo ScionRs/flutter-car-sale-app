@@ -212,30 +212,36 @@ class _BrandCardLongWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: AppColors.lightGrey,
-          width: 2,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
+      },
+      child: Container(
+        height: 100,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.lightGrey,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(20),
         ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          _BrandLogoWidget(logo: logo),
-          const SizedBox(width: 16),
-          Expanded(
-            child: _BrandNameWidget(
-              name: name,
-              amountOfCar: cars.length,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            _BrandLogoWidget(logo: logo),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _BrandNameWidget(
+                name: name,
+                amountOfCar: cars.length,
+              ),
             ),
-          ),
-          const Icon(
-            Icons.arrow_forward_ios_rounded,
-          ),
-        ],
+            const Icon(
+              Icons.arrow_forward_ios_rounded,
+            ),
+          ],
+        ),
       ),
     );
   }
