@@ -1,5 +1,7 @@
 import 'package:car_sale_app/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FavoritesScreenWidget extends StatefulWidget {
   const FavoritesScreenWidget({Key? key}) : super(key: key);
@@ -8,12 +10,29 @@ class FavoritesScreenWidget extends StatefulWidget {
   State<FavoritesScreenWidget> createState() => _FavoritesScreenWidgetState();
 }
 
+
+
 class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
   @override
   Widget build(BuildContext context) {
+    var carList = Provider.of<CarProvider>(context, listen: true);
+    bool isEmpty = carList.giveCarList().length > 0 ? true : false;
+    print('Из избранного ${carList.favoriteCarList.length}');
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Желаемое'),
+      ),
+      body: ChangeNotifierProvider(
+        create: (context) => CarProvider(),
+        child: ListView(
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          children: [
+           isEmpty ?  Text('${carList.favoriteCarList.length} автомобилей', style: textTheme.titleLarge)
+               : Container(child: Text('Нету автомобилей'),),
+          ],
+        ),
       ),
     );
   }

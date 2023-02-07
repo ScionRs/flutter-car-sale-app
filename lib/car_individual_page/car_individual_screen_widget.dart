@@ -53,7 +53,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle).roundToDouble();
     double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption).roundToDouble();
     double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption).roundToDouble();
-    var carList = context.read<CarProvider>().favoriteCarList;
+    var carList = context.read<CarProvider>();
     TextTheme textTheme = Theme.of(context).textTheme;
     // Список дополнительных опций автомобиля
     var tableListRowEquipment = [
@@ -175,12 +175,12 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 
     Future<bool> onLikeButtonTapped(bool isLiked) async{
       if(isLiked == true) {
-        carList.remove(widget.car);
+        //carList.remove(widget.car);
+        carList.removeToFavoriteCarList(widget.car);
       }
       else {
-        carList.add(widget.car);
+        carList.addToFavoriteCarList(widget.car);
       }
-      print(carList.length);
       return !isLiked;
     }
 
