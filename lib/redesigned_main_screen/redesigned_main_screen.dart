@@ -185,7 +185,7 @@ class _TopBrandsRowWidget extends StatelessWidget {
       ),
       itemBuilder: (BuildContext context, int index) {
         return _BrandCardShortWidget(
-          name: carCategory.image,
+          name: carCategory.name,
           logo: carCategory.image,
           cars: carCategory.cars,
         );
