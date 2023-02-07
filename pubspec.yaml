@@ -73,6 +73,7 @@ flutter:
     - images/all_wheel_drive.svg
     - images/speed.svg
     - images/img_car/
+    - images/brand_logos/
 
   fonts:
     - family: MyFlutterApp # the name of your font family

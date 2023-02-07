@@ -30,7 +30,7 @@ class MainNavigation {
 
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteName.navigationList: (context) =>
-        const MainScreenWidget(),
+        const NavigationListWidget(),
     // MainNavigationRouteName.mainScreen: (context) =>
     //     const RedesignedMainScreenWidget(),
     MainNavigationRouteName.brandListScreen: (context) =>

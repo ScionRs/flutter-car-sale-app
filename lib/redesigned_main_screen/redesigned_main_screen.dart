@@ -1,8 +1,11 @@
 import 'package:car_sale_app/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:car_sale_app/model/%D1%81ommon_data.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../widgets/build_local_image.dart';
 
 class RedesignedMainScreenWidget extends StatefulWidget {
   const RedesignedMainScreenWidget({super.key});
@@ -119,14 +122,9 @@ class _SearchWidgetState extends State<_SearchWidget> {
   }
 }
 
-class _TopBrandsWidget extends StatefulWidget {
+class _TopBrandsWidget extends StatelessWidget {
   const _TopBrandsWidget({Key? key}) : super(key: key);
 
-  @override
-  State<_TopBrandsWidget> createState() => _TopBrandsWidgetState();
-}
-
-class _TopBrandsWidgetState extends State<_TopBrandsWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -176,6 +174,7 @@ class _TopBrandsRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carCategory = CommonData.carCategoryList[0];
     return GridView.builder(
       itemCount: 3,
       physics: const BouncingScrollPhysics(),
@@ -184,20 +183,22 @@ class _TopBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return const _BrandCardShortWidget();
+        return _BrandCardShortWidget(
+          name: carCategory.image,
+          logo: carCategory.image,
+        );
       },
     );
   }
 }
 
-class _BrandCardShortWidget extends StatefulWidget {
-  const _BrandCardShortWidget({super.key});
+class _BrandCardShortWidget extends StatelessWidget {
+  final String name;
+  final String logo;
+  const _BrandCardShortWidget(
+      {Key? key, required this.name, required this.logo})
+      : super(key: key);
 
-  @override
-  State<_BrandCardShortWidget> createState() => _BrandCardShortWidgetState();
-}
-
-class _BrandCardShortWidgetState extends State<_BrandCardShortWidget> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -217,13 +218,13 @@ class _BrandCardShortWidgetState extends State<_BrandCardShortWidget> {
             flex: 2,
             child: SizedBox(
               width: 50,
-              child: SvgPicture.asset('images/bmw.svg'),
+              child: SvgPicture.asset(logo),
             ),
           ),
           Flexible(
             flex: 1,
             child: Text(
-              "BMW",
+              name,
               style: textTheme.titleSmall,
             ),
           ),
