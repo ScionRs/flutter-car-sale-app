@@ -2,6 +2,10 @@ import 'package:car_sale_app/theme/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../model/car_intermediate.dart';
+import '../model/сommon_data.dart';
+import '../widgets/navigation.dart';
+
 class BrandListScreenWidget extends StatefulWidget {
   const BrandListScreenWidget({Key? key}) : super(key: key);
 
@@ -94,6 +98,7 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carCategory = CommonData.carCategoryList[0];
     return GridView.builder(
       itemCount: 3,
       physics: const BouncingScrollPhysics(),
@@ -102,50 +107,60 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return const _BrandCardShortWidget();
+        return _BrandCardShortWidget(
+          name: carCategory.name,
+          logo: carCategory.image,
+          cars: carCategory.cars,
+        );
       },
     );
   }
 }
 
-class _BrandCardShortWidget extends StatefulWidget {
-  const _BrandCardShortWidget({super.key});
+class _BrandCardShortWidget extends StatelessWidget {
+  final String name;
+  final String logo;
+  final List<CarIntermediate> cars;
+  const _BrandCardShortWidget(
+      {Key? key, required this.name, required this.logo, required this.cars})
+      : super(key: key);
 
-  @override
-  State<_BrandCardShortWidget> createState() => _BrandCardShortWidgetState();
-}
-
-class _BrandCardShortWidgetState extends State<_BrandCardShortWidget> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: AppColors.lightGrey,
-          width: 2,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: AppColors.lightGrey,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
         ),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      elevation: 0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Flexible(
-            flex: 2,
-            child: SizedBox(
-              width: 50,
-              child: SvgPicture.asset('images/bmw.svg'),
+        elevation: 0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              flex: 2,
+              child: SizedBox(
+                width: 50,
+                child: SvgPicture.asset(logo),
+              ),
             ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Text(
-              "BMW",
-              style: textTheme.titleSmall,
+            Flexible(
+              flex: 1,
+              child: Text(
+                name,
+                style: textTheme.titleSmall,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -156,11 +171,16 @@ class _AllBrandsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carCategory = CommonData.carCategoryList[0];
     return Column(
-      children: const [
-        _AllBrandsTitleWidget(),
-        SizedBox(height: 16),
-        _BrandCardLongWidget()
+      children: [
+        const _AllBrandsTitleWidget(),
+        const SizedBox(height: 16),
+        _BrandCardLongWidget(
+          name: carCategory.name,
+          logo: carCategory.image,
+          cars: carCategory.cars,
+        )
       ],
     );
   }
@@ -183,7 +203,12 @@ class _AllBrandsTitleWidget extends StatelessWidget {
 }
 
 class _BrandCardLongWidget extends StatelessWidget {
-  const _BrandCardLongWidget({super.key});
+  final String name;
+  final String logo;
+  final List<CarIntermediate> cars;
+  const _BrandCardLongWidget(
+      {Key? key, required this.name, required this.logo, required this.cars})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -198,13 +223,16 @@ class _BrandCardLongWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        children: const [
-          _BrandLogoWidget(),
-          SizedBox(width: 16),
+        children: [
+          _BrandLogoWidget(logo: logo),
+          const SizedBox(width: 16),
           Expanded(
-            child: _BrandNameWidget(),
+            child: _BrandNameWidget(
+              name: name,
+              amountOfCar: cars.length,
+            ),
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios_rounded,
           ),
         ],
@@ -214,19 +242,24 @@ class _BrandCardLongWidget extends StatelessWidget {
 }
 
 class _BrandLogoWidget extends StatelessWidget {
-  const _BrandLogoWidget({Key? key}) : super(key: key);
+  final String logo;
+  const _BrandLogoWidget({Key? key, required this.logo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      'images/bmw.svg',
+      logo,
       width: 60,
     );
   }
 }
 
 class _BrandNameWidget extends StatelessWidget {
-  const _BrandNameWidget({Key? key}) : super(key: key);
+  final String name;
+  final int amountOfCar;
+  const _BrandNameWidget(
+      {Key? key, required this.name, required this.amountOfCar})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -236,12 +269,12 @@ class _BrandNameWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'BMW',
+          name,
           style: textTheme.titleSmall,
         ),
         const SizedBox(height: 8),
         Text(
-          'Моделей: 10',
+          'Моделей: $amountOfCar',
           style: textTheme.labelLarge,
         ),
       ],
