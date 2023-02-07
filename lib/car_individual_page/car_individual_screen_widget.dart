@@ -173,7 +173,6 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: _TitleWidget(car: widget.car),
-        centerTitle: true,
       ),
       bottomNavigationBar:
           OutlinedButton(onPressed: (){
@@ -577,13 +576,6 @@ class _TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('${car.brand} ', style: AppColors.textBigTitle),
-        Text('${car.model}', style: AppColors.textBigTitle)
-      ],
-    );
+    return Text('${car.brand} ${car.model}', style: AppColors.textBigTitle);
   }
 }
