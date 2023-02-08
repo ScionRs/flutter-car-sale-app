@@ -6,17 +6,17 @@ import 'package:car_sale_app/model/Equipment.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/model/maintenance_costs.dart';
-import 'package:car_sale_app/model/mazda_data.dart';
+import 'package:car_sale_app/model/brands_model/mazda_data.dart';
 import 'package:flutter/material.dart';
 
 import '../car_individual_page/car_individual_screen_widget.dart';
 
 class CommonData {
   static List<Car> globalCarList = [
-    MazdaData.mazdaCx5Grey1,
-    MazdaData.mazdaCx5Red1,
-    MazdaData.mazdaCx5White1,
-    MazdaData.mazdaCx5Black1,
+    MazdaData.mazdaCx5Grey,
+    MazdaData.mazdaCx5Red,
+    MazdaData.mazdaCx5White,
+    MazdaData.mazdaCx5Black,
   ];
 
   // static final listOfCities = [

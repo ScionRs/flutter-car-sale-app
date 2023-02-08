@@ -4,7 +4,7 @@ import 'package:car_sale_app/model/Equipment.dart';
 import 'package:car_sale_app/model/maintenance_costs.dart';
 
 abstract class MazdaData {
-  static Car mazdaCx5Grey1 = Car(
+  static Car mazdaCx5Grey = Car(
     id: '1',
     brand: 'Mazda',
     model: 'Cx-5',
@@ -14,7 +14,7 @@ abstract class MazdaData {
     productionYear: 2022,
     bodyType: 'Кроссовер',
     transmission: 'АКПП',
-    engineType: 'Бензин',
+    engineType: 'Бензиновый',
     engineVolume: 2.0,
     equipment: Equipment(
       id: '1',
@@ -25,10 +25,10 @@ abstract class MazdaData {
       onBoardComputer: 'Маршрутный компьютер',
       horsePower: 149,
       maxTorque: 208,
-      typeOfFuel: 'Бензин',
+      typeOfFuel: 'Бензиновый',
       accelerationTime: 10.3,
       maxSpeed: 200,
-      airConditioningSystem: '2-х зонный',
+      airConditioningSystem: 'Климат контроль (2 зоны)',
       multifunctionSteeringWheel: 'Управление аудиосистемой на рулевом колесе',
       fuelTankVolume: 58,
       centralLocking: 'Центральный замок с дистанционным управлением',
@@ -51,7 +51,7 @@ abstract class MazdaData {
         price: 3202964),
   );
 
-  static Car mazdaCx5Red1 = Car(
+  static Car mazdaCx5Red = Car(
     id: '1',
     brand: 'Mazda',
     model: 'Cx-5',
@@ -61,7 +61,7 @@ abstract class MazdaData {
     productionYear: 2022,
     bodyType: 'Кроссовер',
     transmission: 'АКПП',
-    engineType: 'Бензин',
+    engineType: 'Бензиновый',
     engineVolume: 2.0,
     equipment: Equipment(
       id: '1',
@@ -72,10 +72,10 @@ abstract class MazdaData {
       onBoardComputer: 'Маршрутный компьютер',
       horsePower: 149,
       maxTorque: 208,
-      typeOfFuel: 'Бензин',
+      typeOfFuel: 'Бензиновый',
       accelerationTime: 10.3,
       maxSpeed: 200,
-      airConditioningSystem: '2-х зонный',
+      airConditioningSystem: 'Климат контроль (2 зоны)',
       multifunctionSteeringWheel: 'Управление аудиосистемой на рулевом колесе',
       fuelTankVolume: 58,
       centralLocking: 'Центральный замок с дистанционным управлением',
@@ -98,7 +98,7 @@ abstract class MazdaData {
         price: 3202964),
   );
 
-  static Car mazdaCx5White1 = Car(
+  static Car mazdaCx5White = Car(
     id: '1',
     brand: 'Mazda',
     model: 'Cx-5',
@@ -108,7 +108,7 @@ abstract class MazdaData {
     productionYear: 2022,
     bodyType: 'Кроссовер',
     transmission: 'АКПП',
-    engineType: 'Бензин',
+    engineType: 'Бензиновый',
     engineVolume: 2.0,
     equipment: Equipment(
       id: '1',
@@ -122,7 +122,7 @@ abstract class MazdaData {
       typeOfFuel: 'Бензин',
       accelerationTime: 10.3,
       maxSpeed: 200,
-      airConditioningSystem: '2-х зонный',
+      airConditioningSystem: 'Климат контроль (2 зоны)',
       multifunctionSteeringWheel: 'Управление аудиосистемой на рулевом колесе',
       fuelTankVolume: 58,
       centralLocking: 'Центральный замок с дистанционным управлением',
@@ -145,7 +145,7 @@ abstract class MazdaData {
         price: 3202964),
   );
 
-  static Car mazdaCx5Black1 = Car(
+  static Car mazdaCx5Black = Car(
     id: '1',
     brand: 'Mazda',
     model: 'Cx-5',
@@ -155,7 +155,7 @@ abstract class MazdaData {
     productionYear: 2022,
     bodyType: 'Кроссовер',
     transmission: 'АКПП',
-    engineType: 'Бензин',
+    engineType: 'Бензиновый',
     engineVolume: 2.0,
     equipment: Equipment(
       id: '1',
@@ -169,7 +169,7 @@ abstract class MazdaData {
       typeOfFuel: 'Бензин',
       accelerationTime: 10.3,
       maxSpeed: 200,
-      airConditioningSystem: '2-х зонный',
+      airConditioningSystem: 'Климат контроль (2 зоны)',
       multifunctionSteeringWheel: 'Управление аудиосистемой на рулевом колесе',
       fuelTankVolume: 58,
       centralLocking: 'Центральный замок с дистанционным управлением',
