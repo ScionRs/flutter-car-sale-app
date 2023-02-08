@@ -18,7 +18,6 @@ class CarIndividualWidget extends StatefulWidget {
   final Car car;
 
 
-
   CarIndividualWidget({Key? key, required this.car}) : super(key: key);
 
   @override
@@ -26,6 +25,7 @@ class CarIndividualWidget extends StatefulWidget {
 }
 
 class _CarIndividualState extends State<CarIndividualWidget> {
+  bool isLiked = false;
 
   final Widget engineIcon = SvgPicture.asset(
       'images/engine.svg',
@@ -173,16 +173,6 @@ class _CarIndividualState extends State<CarIndividualWidget> {
       },
     );
 
-    Future<bool> onLikeButtonTapped(bool isLiked) async{
-      if(isLiked == true) {
-        //carList.remove(widget.car);
-        carList.removeToFavoriteCarList(widget.car);
-      }
-      else {
-        carList.addToFavoriteCarList(widget.car);
-      }
-      return !isLiked;
-    }
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -191,22 +181,20 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: LikeButton(
-              onTap: onLikeButtonTapped,
-              size: 34.0,
-              circleColor: CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
-              bubblesColor: BubblesColor(
-                dotPrimaryColor: Color(0xff33b5e5),
-                dotSecondaryColor: Color(0xff0099cc),
-              ),
-              likeBuilder: (bool isLiked) {
-                return Icon(
-                  Icons.favorite,
-                  color: isLiked ? Colors.red : Colors.grey,
-                  size: 34.0,
-                );
+            child: IconButton(
+              onPressed: (){
+                setState(() {
+                  if(isLiked == false){
+                    isLiked = true;
+                  } else{
+                    isLiked = false;
+                  }
+                  print(isLiked);
+                });
               },
-            ),
+              icon: const Icon(Icons.favorite),
+              color: isLiked ? Colors.red : Colors.grey,
+            )
           )
         ],
       ),
