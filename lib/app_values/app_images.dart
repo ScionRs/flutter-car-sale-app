@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppImages {
   static const mazdaLogo = 'images/brand_logos/mazda_logo.svg';
-  static const mazda_cx_5_white =
+  static const mazdaCx5White =
       'images/img_car/mazda-cx-5-vnedorozhnik-belyy-11.png';
-  static const mazda_cx_5_pink =
+  static const mazdaCx5Red =
       'images/img_car/mazda-cx-5-vnedorozhnik-krasnyy-bordovyy-rozovyy-0.png';
-  static const mazda_cx_5_black =
+  static const mazdaCx5Black =
       'images/img_car/mazda-cx-5-vnedorozhnik-chernyy-0.png';
-  static const mazda_cx_5_grey =
+  static const mazdaCx5Grey =
       'images/img_car/mazda-cx-5-vnedorozhnik-seryy-0.png';
-  static const mazda_cx_5_darkblue =
+  static const mazdaCx5Darkblue =
       'images/img_car/mazda-cx-5-vnedorozhnik-siniy-goluboy-fioletovyy-0.png';
   static const audiA3Blue =
       'images/img_car/audi-a3-khetchbek-siniy-goluboy-fioletovyy-0';
