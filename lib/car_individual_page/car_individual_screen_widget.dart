@@ -186,7 +186,11 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                 setState(() {
                   if(isLiked == false){
                     isLiked = true;
-                    carList.addToFavoriteCarList(widget.car);
+                    if(carList.favoriteCarList.contains(
+                        widget.car)) {
+                    } else{
+                      carList.addToFavoriteCarList(widget.car);
+                    }
                   } else{
                     isLiked = false;
                     carList.removeToFavoriteCarList(widget.car);
@@ -274,6 +278,8 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     );
   }
 }
+
+
 
 // Кнопка для всплывающего окна
 class BottomDialogButtonWidget extends StatelessWidget {
