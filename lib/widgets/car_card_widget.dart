@@ -19,6 +19,9 @@ class CarCardWidget extends StatefulWidget {
 
 class _CarCardWidgetState extends State<CarCardWidget> {
 
+  var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
+
+  var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
