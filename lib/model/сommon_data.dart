@@ -6,381 +6,198 @@ import 'package:car_sale_app/model/Equipment.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/model/maintenance_costs.dart';
+import 'package:car_sale_app/model/mazda_data.dart';
 import 'package:flutter/material.dart';
 
 import '../car_individual_page/car_individual_screen_widget.dart';
 
 class CommonData {
   static List<Car> globalCarList = [
-    mazdaCx5Grey1,
-    mazdaCx5Red1,
-    mazdaCx5White1,
-    mazdaCx5Black1,
+    MazdaData.mazdaCx5Grey1,
+    MazdaData.mazdaCx5Red1,
+    MazdaData.mazdaCx5White1,
+    MazdaData.mazdaCx5Black1,
   ];
 
-  static Car mazdaCx5Grey1 = Car(
-      id: '1',
-      brand: 'Mazda',
-      model: 'Cx-5',
-      image: AppImages.mazda_cx_5_grey,
-      price: 3202964,
-      bodyColor: 'Серый',
-      productionYear: 2022,
-      bodyType: 'Кроссовер',
-      transmission: 'АКПП',
-      engineType: 'Бензин',
-      engineVolume: 2.0,
-      equipment: Equipment(
-          id: '1',
-          title: 'DRIVE 2WD',
-          seatUpholstery: 'Alcantara',
-          heatedSeats: 'Подогрев передних сидений',
-          airbags: '7 подушек',
-          onBoardComputer: 'Маршрутный компьютер',
-          horsePower: 149,
-          maxTorque: 208,
-          typeOfFuel: 'Бензин',
-          accelerationTime: 10.3,
-          maxSpeed: 200,
-          airConditioningSystem: '2-х зонный',
-          multifunctionSteeringWheel:
-              'Управление аудиосистемой на рулевом колесе',
-          fuelTankVolume: 58,
-          centralLocking: 'Центральный замок с дистанционным управлением',
-          trunkVolume: '442',
-          driveUnit: 'Передний',
-          additionalOptions: [
-            'Автоматическая блокировка дверных замков при начале движения',
-            'Электронный стояночный тормоз',
-            'Система Эра-Глонасс',
-          ]),
-      maintenanceCosts: MaintenanceCosts(
-          id: '1',
-          typeOfFuel: 'аи-95',
-          fuelConsumptionUrbanCycle: 8.9,
-          extraUrbanFuelConsumption: 6.2,
-          combinedFuelConsumption: 7.2,
-          travelDistance: 590,
-          horsePower: 149,
-          price: 3202964));
-
-  static Car mazdaCx5Red1 = Car(
-      id: '1',
-      brand: 'Mazda',
-      model: 'Cx-5',
-      image: AppImages.mazda_cx_5_pink,
-      price: 3102964,
-      bodyColor: 'Красный',
-      productionYear: 2022,
-      bodyType: 'Кроссовер',
-      transmission: 'АКПП',
-      engineType: 'Бензин',
-      engineVolume: 2.0,
-      equipment: Equipment(
-          id: '1',
-          title: 'ACTIVE 2WD/4WD',
-          seatUpholstery: 'Alcantara',
-          heatedSeats: 'Подогрев передних сидений',
-          airbags: '7 подушек',
-          onBoardComputer: 'Маршрутный компьютер',
-          horsePower: 149,
-          maxTorque: 208,
-          typeOfFuel: 'Бензин',
-          accelerationTime: 10.3,
-          maxSpeed: 200,
-          airConditioningSystem: '2-х зонный',
-          multifunctionSteeringWheel:
-              'Управление аудиосистемой на рулевом колесе',
-          fuelTankVolume: 58,
-          centralLocking: 'Центральный замок с дистанционным управлением',
-          trunkVolume: '442',
-          driveUnit: 'Передний',
-          additionalOptions: [
-            'Автоматическая блокировка дверных замков при начале движения',
-            'Электронный стояночный тормоз',
-            'Система Эра-Глонасс',
-          ]),
-      maintenanceCosts: MaintenanceCosts(
-          id: '1',
-          typeOfFuel: 'аи-95',
-          fuelConsumptionUrbanCycle: 8.9,
-          extraUrbanFuelConsumption: 6.2,
-          combinedFuelConsumption: 7.2,
-          travelDistance: 590,
-          horsePower: 149,
-          price: 3202964));
-
-  static Car mazdaCx5White1 = Car(
-      id: '1',
-      brand: 'Mazda',
-      model: 'Cx-5',
-      image: AppImages.mazda_cx_5_white,
-      price: 3102964,
-      bodyColor: 'Белый',
-      productionYear: 2022,
-      bodyType: 'Кроссовер',
-      transmission: 'АКПП',
-      engineType: 'Бензин',
-      engineVolume: 2.0,
-      equipment: Equipment(
-          id: '1',
-          title: 'Supreme 4WD',
-          seatUpholstery: 'Alcantara',
-          heatedSeats: 'Подогрев передних сидений',
-          airbags: '7 подушек',
-          onBoardComputer: 'Маршрутный компьютер',
-          horsePower: 149,
-          maxTorque: 208,
-          typeOfFuel: 'Бензин',
-          accelerationTime: 10.3,
-          maxSpeed: 200,
-          airConditioningSystem: '2-х зонный',
-          multifunctionSteeringWheel:
-              'Управление аудиосистемой на рулевом колесе',
-          fuelTankVolume: 58,
-          centralLocking: 'Центральный замок с дистанционным управлением',
-          trunkVolume: '442',
-          driveUnit: 'Передний',
-          additionalOptions: [
-            'Автоматическая блокировка дверных замков при начале движения',
-            'Электронный стояночный тормоз',
-            'Система Эра-Глонасс',
-          ]),
-      maintenanceCosts: MaintenanceCosts(
-          id: '1',
-          typeOfFuel: 'аи-95',
-          fuelConsumptionUrbanCycle: 8.9,
-          extraUrbanFuelConsumption: 6.2,
-          combinedFuelConsumption: 7.2,
-          travelDistance: 590,
-          horsePower: 149,
-          price: 3202964));
-
-  static Car mazdaCx5Black1 = Car(
-      id: '1',
-      brand: 'Mazda',
-      model: 'Cx-5',
-      image: AppImages.mazda_cx_5_black,
-      price: 3202964,
-      bodyColor: 'Черный',
-      productionYear: 2022,
-      bodyType: 'Кроссовер',
-      transmission: 'АКПП',
-      engineType: 'Бензин',
-      engineVolume: 2.0,
-      equipment: Equipment(
-          id: '1',
-          title: 'Executive 4WD',
-          seatUpholstery: 'Alcantara',
-          heatedSeats: 'Подогрев передних сидений',
-          airbags: '7 подушек',
-          onBoardComputer: 'Маршрутный компьютер',
-          horsePower: 149,
-          maxTorque: 208,
-          typeOfFuel: 'Бензин',
-          accelerationTime: 10.3,
-          maxSpeed: 200,
-          airConditioningSystem: '2-х зонный',
-          multifunctionSteeringWheel:
-              'Управление аудиосистемой на рулевом колесе',
-          fuelTankVolume: 58,
-          centralLocking: 'Центральный замок с дистанционным управлением',
-          trunkVolume: '442',
-          driveUnit: 'Передний',
-          additionalOptions: [
-            'Автоматическая блокировка дверных замков при начале движения',
-            'Электронный стояночный тормоз',
-            'Система Эра-Глонасс',
-          ]),
-      maintenanceCosts: MaintenanceCosts(
-          id: '1',
-          typeOfFuel: 'аи-95',
-          fuelConsumptionUrbanCycle: 8.9,
-          extraUrbanFuelConsumption: 6.2,
-          combinedFuelConsumption: 7.2,
-          travelDistance: 590,
-          horsePower: 149,
-          price: 3202964));
-
-  static final listOfCities = [
-    City(id: '1', name: 'Москва', autoShowList: [
-      Dealer(
-          id: '1',
-          image:
-              "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
-          name: 'Автосалон Mazda',
-          address: 'ул.Пильменная,23',
-          carList: [mazdaCx5Grey1, mazdaCx5Red1, mazdaCx5Grey1, mazdaCx5Black1])
-    ]),
-    City(id: '1', name: 'Нижнекамск', autoShowList: [
-      Dealer(
-          id: '1',
-          image:
-              "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
-          name: 'Автосалон Mazda',
-          address: 'ул.Пильменная,23',
-          carList: [
-            Car(
-                id: '1',
-                brand: 'Mazda',
-                model: 'Cx-5',
-                image: AppImages.mazda_cx_5_black,
-                price: 3202964,
-                bodyColor: 'Черный',
-                productionYear: 2022,
-                bodyType: 'Кроссовер',
-                transmission: 'АКПП',
-                engineType: 'Бензин',
-                engineVolume: 2.0,
-                equipment: Equipment(
-                    id: '1',
-                    title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
-                    seatUpholstery: 'Alcantara',
-                    heatedSeats: 'Подогрев передних сидений',
-                    airbags: '7 подушек безопасности',
-                    onBoardComputer: 'Маршрутный компьютер',
-                    horsePower: 149,
-                    maxTorque: 208,
-                    typeOfFuel: 'Бензин',
-                    accelerationTime: 10.3,
-                    maxSpeed: 200,
-                    airConditioningSystem: '2-х зонный',
-                    multifunctionSteeringWheel:
-                        'Управление аудиосистемой на рулевом колесе',
-                    fuelTankVolume: 58,
-                    centralLocking:
-                        'Центральный замок с дистанционным управлением',
-                    trunkVolume: '442',
-                    driveUnit: 'Передний',
-                    additionalOptions: [
-                      'Автоматическая блокировка дверных замков при начале движения',
-                      'Электронный стояночный тормоз',
-                      'Система Эра-Глонасс',
-                    ]),
-                maintenanceCosts: MaintenanceCosts(
-                    id: '1',
-                    typeOfFuel: 'аи-95',
-                    fuelConsumptionUrbanCycle: 8.9,
-                    extraUrbanFuelConsumption: 6.2,
-                    combinedFuelConsumption: 7.2,
-                    travelDistance: 590,
-                    horsePower: 149,
-                    price: 3202964)),
-          ])
-    ]),
-    City(id: '1', name: 'Москва', autoShowList: [
-      Dealer(
-          id: '1',
-          image:
-              "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
-          name: 'Автосалон Mazda',
-          address: 'ул.Пильменная,23',
-          carList: [
-            Car(
-                id: '1',
-                brand: 'Mazda',
-                model: 'Cx-5',
-                image: AppImages.mazda_cx_5_grey,
-                price: 3202964,
-                bodyColor: 'Серый',
-                productionYear: 2022,
-                bodyType: 'Кроссовер',
-                transmission: 'АКПП',
-                engineType: 'Бензин',
-                engineVolume: 2.0,
-                equipment: Equipment(
-                    id: '1',
-                    title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
-                    seatUpholstery: 'Alcantara',
-                    heatedSeats: 'Подогрев передних сидений',
-                    airbags: '7 подушек безопасности',
-                    onBoardComputer: 'Маршрутный компьютер',
-                    horsePower: 149,
-                    maxTorque: 208,
-                    typeOfFuel: 'Бензин',
-                    accelerationTime: 10.3,
-                    maxSpeed: 200,
-                    airConditioningSystem: '2-х зонный',
-                    multifunctionSteeringWheel:
-                        'Управление аудиосистемой на рулевом колесе',
-                    fuelTankVolume: 58,
-                    centralLocking:
-                        'Центральный замок с дистанционным управлением',
-                    trunkVolume: '442',
-                    driveUnit: 'Передний',
-                    additionalOptions: [
-                      'Автоматическая блокировка дверных замков при начале движения',
-                      'Электронный стояночный тормоз',
-                      'Система Эра-Глонасс',
-                    ]),
-                maintenanceCosts: MaintenanceCosts(
-                    id: '1',
-                    typeOfFuel: 'аи-95',
-                    fuelConsumptionUrbanCycle: 8.9,
-                    extraUrbanFuelConsumption: 6.2,
-                    combinedFuelConsumption: 7.2,
-                    travelDistance: 590,
-                    horsePower: 149,
-                    price: 3202964)),
-          ])
-    ]),
-    City(id: '1', name: 'Казань', autoShowList: [
-      Dealer(
-          id: '1',
-          image:
-              "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
-          name: 'Автосалон Mazda',
-          address: 'ул.Пильменная,23',
-          carList: [
-            Car(
-                id: '1',
-                brand: 'Mazda',
-                model: 'Cx-5',
-                image: AppImages.mazda_cx_5_pink,
-                price: 3202964,
-                bodyColor: 'Красный',
-                productionYear: 2022,
-                bodyType: 'Кроссовер',
-                transmission: 'АКПП',
-                engineType: 'Бензин',
-                engineVolume: 2.0,
-                equipment: Equipment(
-                    id: '1',
-                    title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
-                    seatUpholstery: 'Alcantara',
-                    heatedSeats: 'Подогрев передних сидений',
-                    airbags: '7 подушек безопасности',
-                    onBoardComputer: 'Маршрутный компьютер',
-                    horsePower: 149,
-                    maxTorque: 208,
-                    typeOfFuel: 'Бензин',
-                    accelerationTime: 10.3,
-                    maxSpeed: 200,
-                    airConditioningSystem: '2-х зонный',
-                    multifunctionSteeringWheel:
-                        'Управление аудиосистемой на рулевом колесе',
-                    fuelTankVolume: 58,
-                    centralLocking:
-                        'Центральный замок с дистанционным управлением',
-                    trunkVolume: '442',
-                    driveUnit: 'Передний',
-                    additionalOptions: [
-                      'Автоматическая блокировка дверных замков при начале движения',
-                      'Электронный стояночный тормоз',
-                      'Система Эра-Глонасс',
-                    ]),
-                maintenanceCosts: MaintenanceCosts(
-                    id: '1',
-                    typeOfFuel: 'аи-95',
-                    fuelConsumptionUrbanCycle: 8.9,
-                    extraUrbanFuelConsumption: 6.2,
-                    combinedFuelConsumption: 7.2,
-                    travelDistance: 590,
-                    horsePower: 149,
-                    price: 3202964)),
-          ])
-    ])
-  ];
+  // static final listOfCities = [
+  //   City(id: '1', name: 'Москва', autoShowList: [
+  //     Dealer(
+  //         id: '1',
+  //         image:
+  //             "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
+  //         name: 'Автосалон Mazda',
+  //         address: 'ул.Пильменная,23',
+  //         carList: [mazdaCx5Grey1, mazdaCx5Red1, mazdaCx5Grey1, mazdaCx5Black1])
+  //   ]),
+  //   City(id: '1', name: 'Нижнекамск', autoShowList: [
+  //     Dealer(
+  //         id: '1',
+  //         image:
+  //             "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
+  //         name: 'Автосалон Mazda',
+  //         address: 'ул.Пильменная,23',
+  //         carList: [
+  //           Car(
+  //               id: '1',
+  //               brand: 'Mazda',
+  //               model: 'Cx-5',
+  //               image: AppImages.mazda_cx_5_black,
+  //               price: 3202964,
+  //               bodyColor: 'Черный',
+  //               productionYear: 2022,
+  //               bodyType: 'Кроссовер',
+  //               transmission: 'АКПП',
+  //               engineType: 'Бензин',
+  //               engineVolume: 2.0,
+  //               equipment: Equipment(
+  //                   id: '1',
+  //                   title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+  //                   seatUpholstery: 'Alcantara',
+  //                   heatedSeats: 'Подогрев передних сидений',
+  //                   airbags: '7 подушек безопасности',
+  //                   onBoardComputer: 'Маршрутный компьютер',
+  //                   horsePower: 149,
+  //                   maxTorque: 208,
+  //                   typeOfFuel: 'Бензин',
+  //                   accelerationTime: 10.3,
+  //                   maxSpeed: 200,
+  //                   airConditioningSystem: '2-х зонный',
+  //                   multifunctionSteeringWheel:
+  //                       'Управление аудиосистемой на рулевом колесе',
+  //                   fuelTankVolume: 58,
+  //                   centralLocking:
+  //                       'Центральный замок с дистанционным управлением',
+  //                   trunkVolume: '442',
+  //                   driveUnit: 'Передний',
+  //                   additionalOptions: [
+  //                     'Автоматическая блокировка дверных замков при начале движения',
+  //                     'Электронный стояночный тормоз',
+  //                     'Система Эра-Глонасс',
+  //                   ]),
+  //               maintenanceCosts: MaintenanceCosts(
+  //                   id: '1',
+  //                   typeOfFuel: 'аи-95',
+  //                   fuelConsumptionUrbanCycle: 8.9,
+  //                   extraUrbanFuelConsumption: 6.2,
+  //                   combinedFuelConsumption: 7.2,
+  //                   travelDistance: 590,
+  //                   horsePower: 149,
+  //                   price: 3202964)),
+  //         ])
+  //   ]),
+  //   City(id: '1', name: 'Москва', autoShowList: [
+  //     Dealer(
+  //         id: '1',
+  //         image:
+  //             "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
+  //         name: 'Автосалон Mazda',
+  //         address: 'ул.Пильменная,23',
+  //         carList: [
+  //           Car(
+  //               id: '1',
+  //               brand: 'Mazda',
+  //               model: 'Cx-5',
+  //               image: AppImages.mazda_cx_5_grey,
+  //               price: 3202964,
+  //               bodyColor: 'Серый',
+  //               productionYear: 2022,
+  //               bodyType: 'Кроссовер',
+  //               transmission: 'АКПП',
+  //               engineType: 'Бензин',
+  //               engineVolume: 2.0,
+  //               equipment: Equipment(
+  //                   id: '1',
+  //                   title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+  //                   seatUpholstery: 'Alcantara',
+  //                   heatedSeats: 'Подогрев передних сидений',
+  //                   airbags: '7 подушек безопасности',
+  //                   onBoardComputer: 'Маршрутный компьютер',
+  //                   horsePower: 149,
+  //                   maxTorque: 208,
+  //                   typeOfFuel: 'Бензин',
+  //                   accelerationTime: 10.3,
+  //                   maxSpeed: 200,
+  //                   airConditioningSystem: '2-х зонный',
+  //                   multifunctionSteeringWheel:
+  //                       'Управление аудиосистемой на рулевом колесе',
+  //                   fuelTankVolume: 58,
+  //                   centralLocking:
+  //                       'Центральный замок с дистанционным управлением',
+  //                   trunkVolume: '442',
+  //                   driveUnit: 'Передний',
+  //                   additionalOptions: [
+  //                     'Автоматическая блокировка дверных замков при начале движения',
+  //                     'Электронный стояночный тормоз',
+  //                     'Система Эра-Глонасс',
+  //                   ]),
+  //               maintenanceCosts: MaintenanceCosts(
+  //                   id: '1',
+  //                   typeOfFuel: 'аи-95',
+  //                   fuelConsumptionUrbanCycle: 8.9,
+  //                   extraUrbanFuelConsumption: 6.2,
+  //                   combinedFuelConsumption: 7.2,
+  //                   travelDistance: 590,
+  //                   horsePower: 149,
+  //                   price: 3202964)),
+  //         ])
+  //   ]),
+  //   City(id: '1', name: 'Казань', autoShowList: [
+  //     Dealer(
+  //         id: '1',
+  //         image:
+  //             "https://www.tts.ru/bitrix/templates/redisign/media/img/logo-TTS30.svg",
+  //         name: 'Автосалон Mazda',
+  //         address: 'ул.Пильменная,23',
+  //         carList: [
+  //           Car(
+  //               id: '1',
+  //               brand: 'Mazda',
+  //               model: 'Cx-5',
+  //               image: AppImages.mazda_cx_5_pink,
+  //               price: 3202964,
+  //               bodyColor: 'Красный',
+  //               productionYear: 2022,
+  //               bodyType: 'Кроссовер',
+  //               transmission: 'АКПП',
+  //               engineType: 'Бензин',
+  //               engineVolume: 2.0,
+  //               equipment: Equipment(
+  //                   id: '1',
+  //                   title: 'Mazda CX-5 ACTIV 2.0AT 2WD KGB4914 <2019>',
+  //                   seatUpholstery: 'Alcantara',
+  //                   heatedSeats: 'Подогрев передних сидений',
+  //                   airbags: '7 подушек безопасности',
+  //                   onBoardComputer: 'Маршрутный компьютер',
+  //                   horsePower: 149,
+  //                   maxTorque: 208,
+  //                   typeOfFuel: 'Бензин',
+  //                   accelerationTime: 10.3,
+  //                   maxSpeed: 200,
+  //                   airConditioningSystem: '2-х зонный',
+  //                   multifunctionSteeringWheel:
+  //                       'Управление аудиосистемой на рулевом колесе',
+  //                   fuelTankVolume: 58,
+  //                   centralLocking:
+  //                       'Центральный замок с дистанционным управлением',
+  //                   trunkVolume: '442',
+  //                   driveUnit: 'Передний',
+  //                   additionalOptions: [
+  //                     'Автоматическая блокировка дверных замков при начале движения',
+  //                     'Электронный стояночный тормоз',
+  //                     'Система Эра-Глонасс',
+  //                   ]),
+  //               maintenanceCosts: MaintenanceCosts(
+  //                   id: '1',
+  //                   typeOfFuel: 'аи-95',
+  //                   fuelConsumptionUrbanCycle: 8.9,
+  //                   extraUrbanFuelConsumption: 6.2,
+  //                   combinedFuelConsumption: 7.2,
+  //                   travelDistance: 590,
+  //                   horsePower: 149,
+  //                   price: 3202964)),
+  //         ])
+  //   ])
+  // ];
 
   static var carCategoryList = [
     CarCategory(
