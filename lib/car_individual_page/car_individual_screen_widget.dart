@@ -186,8 +186,10 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                 setState(() {
                   if(isLiked == false){
                     isLiked = true;
+                    carList.addToFavoriteCarList(widget.car);
                   } else{
                     isLiked = false;
+                    carList.removeToFavoriteCarList(widget.car);
                   }
                   print(isLiked);
                 });

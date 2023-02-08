@@ -29,7 +29,7 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [
-           isEmpty ?  Text('${carList.favoriteCarList.length} автомобилей', style: textTheme.titleLarge)
+           isEmpty ?  Text('Желаемых автомобилей: ${carList.favoriteCarList.length}', style: textTheme.titleLarge)
                : Container(child: Text('Нету автомобилей'),),
           ],
         ),
