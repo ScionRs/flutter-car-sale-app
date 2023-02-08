@@ -180,19 +180,27 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         title: _TitleWidget(car: widget.car),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: (){
                 setState(() {
                   if(isLiked == false){
                     isLiked = true;
+                    if(carList.favoriteCarList.contains(
+                        widget.car)) {
+                    } else{
+                      carList.addToFavoriteCarList(widget.car);
+                    }
                   } else{
                     isLiked = false;
+                    carList.removeToFavoriteCarList(widget.car);
                   }
                   print(isLiked);
                 });
               },
-              icon: const Icon(Icons.favorite),
+              icon: const Icon(Icons.favorite, size: 30.0,),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               color: isLiked ? Colors.red : Colors.grey,
             )
           )
@@ -270,6 +278,8 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     );
   }
 }
+
+
 
 // Кнопка для всплывающего окна
 class BottomDialogButtonWidget extends StatelessWidget {
