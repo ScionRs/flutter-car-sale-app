@@ -18,13 +18,14 @@ class CarProvider with ChangeNotifier{
 
   void addToFavoriteCarList(Car car){
     print('Автомобиль добавлен');
-    _favoriteCarList.add(car);
+    favoriteCarList.add(car);
+    print(favoriteCarList.length);
     notifyListeners();
   }
 
   void removeToFavoriteCarList(Car car){
     print('Автомобиль удален');
-    _favoriteCarList.remove(car);
+    favoriteCarList.remove(car);
     notifyListeners();
   }
 

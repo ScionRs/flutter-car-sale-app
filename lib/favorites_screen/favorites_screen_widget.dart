@@ -39,7 +39,7 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
                  padding: EdgeInsets.only(left: 8.0),
                  child: Text('Нету автомобилей'),
                ),
-            CarCardWidget(carList: carList.favoriteCarList)
+            CarCardWidget(carList: carList.favoriteCarList, isFavorite: true,)
           ],
         ),
       ),
