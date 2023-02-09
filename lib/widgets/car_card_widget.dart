@@ -22,10 +22,12 @@ class CarCardWidget extends StatefulWidget {
 class _CarCardWidgetState extends State<CarCardWidget> {
 
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
-
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
+
   bool isLiked = false;
   bool isLikedFavorites = true;
+
+
   @override
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
@@ -35,6 +37,7 @@ class _CarCardWidgetState extends State<CarCardWidget> {
         itemCount: widget.carList.length,
         itemBuilder: (BuildContext context, int index){
           final carItem = widget.carList[index];
+          print(carItem);
           return GestureDetector(
             onTap: () {
               Navigator.of(context).pushNamed(
@@ -57,7 +60,8 @@ class _CarCardWidgetState extends State<CarCardWidget> {
                       Positioned(
                         right: 10,
                         top: 10,
-                        child: widget.isFavorite? IconButton(
+                        child: widget.isFavorite?
+                        IconButton(
                           onPressed: (){
                             setState(() {
                               if(isLiked != false){

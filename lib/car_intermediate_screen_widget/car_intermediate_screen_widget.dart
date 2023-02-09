@@ -4,6 +4,7 @@ import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:car_sale_app/model/Car.dart';
+import 'package:car_sale_app/widgets/car_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -125,6 +126,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var carList = context.read<CarProvider>().favoriteCarList;
     var formatPrice = NumberFormat("#,###,###", "en_US");
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
     var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
@@ -170,7 +172,6 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                     ],
                   ),
                 ),
-               // defaultImage != '' ? BuildImage(url: selectImg) : BuildImage(url: widget.carIntermediate.image),
                   defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -273,7 +274,8 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   collapsedTextColor: Colors.white,
                   textColor: Color.fromRGBO(0, 73, 183, 1),
                   children: <Widget>[
-                    buildCar(model),
+                    //buildCar(model),
+                    CarCardWidget(carList: model,providerCarList: carList, isFavorite: false,),
                   ],
                 ),
                 Column(
