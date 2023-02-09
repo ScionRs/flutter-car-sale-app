@@ -11,7 +11,9 @@ import 'navigation.dart';
 
 class CarCardWidget extends StatefulWidget {
   final List<Car> carList;
-  CarCardWidget({Key? key, required this.carList}) : super(key: key);
+  final List<Car> providerCarList;
+  final bool isFavorite;
+  CarCardWidget({Key? key, required this.carList, required this.providerCarList, required this.isFavorite}) : super(key: key);
 
   @override
   _CarCardWidgetState createState() => _CarCardWidgetState();
@@ -48,7 +50,25 @@ class _CarCardWidgetState extends State<CarCardWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    BuildLocalImage(url: carItem.image),
+                    Stack(
+                        children: [
+                      BuildLocalImage(url: carItem.image),
+                      Positioned(
+                        right: 10,
+                        top: 10,
+                        child: IconButton(
+                          onPressed: (){
+                            setState(() {
+                              
+                            });
+                          },
+                          icon: const Icon(Icons.favorite, size: 35.0,),
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          color: Colors.red,
+                        ),
+                      )
+                    ]),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(carItem.equipment.title,
