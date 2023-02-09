@@ -126,8 +126,6 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var carList = context.read<CarProvider>().favoriteCarList;
-    var formatPrice = NumberFormat("#,###,###", "en_US");
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
     var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
     var image = context.read<CarProvider>().imageCar;
@@ -275,7 +273,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                   textColor: Color.fromRGBO(0, 73, 183, 1),
                   children: <Widget>[
                     //buildCar(model),
-                    CarCardWidget(carList: model,providerCarList: carList, isFavorite: false,),
+                    CarCardWidget(carList: model, isFavorite: false,),
                   ],
                 ),
                 Column(
