@@ -24,7 +24,8 @@ class _CarCardWidgetState extends State<CarCardWidget> {
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
-
+  bool isLiked = false;
+  bool isLikedFavorites = true;
   @override
   Widget build(BuildContext context) {
     var formatPrice = NumberFormat("#,###,###", "en_US");
@@ -56,16 +57,43 @@ class _CarCardWidgetState extends State<CarCardWidget> {
                       Positioned(
                         right: 10,
                         top: 10,
-                        child: IconButton(
+                        child: widget.isFavorite? IconButton(
                           onPressed: (){
                             setState(() {
-                              
+                              if(isLiked != false){
+                                isLiked = false;
+                                widget.providerCarList.add(carItem);
+                              } else{
+                                widget.providerCarList.remove(carItem);
+                              }
+                              print(isLiked);
                             });
                           },
                           icon: const Icon(Icons.favorite, size: 35.0,),
                           splashColor: Colors.transparent,
                           highlightColor: Colors.transparent,
-                          color: Colors.red,
+                          color: isLiked ? Colors.grey : Colors.red,
+                        ) :  IconButton(
+                          onPressed: (){
+                            setState(() {
+                              if(isLiked == false){
+                                isLiked = true;
+                                if(widget.providerCarList.contains(
+                                    carItem)) {
+                                } else{
+                                  widget.providerCarList.add(carItem);
+                                }
+                              } else{
+                                isLiked = false;
+                                widget.providerCarList.remove(carItem);
+                              }
+                              print(isLiked);
+                            });
+                          },
+                          icon: const Icon(Icons.favorite, size: 35.0,),
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          color: isLiked ? Colors.red : Colors.grey,
                         ),
                       )
                     ]),
