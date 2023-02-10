@@ -4,6 +4,8 @@ import 'package:car_sale_app/widgets/car_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../model/Car.dart';
+
 class FavoritesScreenWidget extends StatefulWidget {
   const FavoritesScreenWidget({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class FavoritesScreenWidget extends StatefulWidget {
 
 
 class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
+  List<Car> templateList = [];
   @override
   Widget build(BuildContext context) {
     var carList = Provider.of<CarProvider>(context, listen: true);
@@ -31,15 +34,16 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [
-           isEmpty ?  Padding(
-             padding: const EdgeInsets.only(left: 12.0),
-             child: Text('Количество автомобилей: ${carList.favoriteCarList.length}', style: textTheme.titleLarge),
-           )
-               : const Padding(
-                 padding: EdgeInsets.only(left: 8.0),
-                 child: Text('Нету автомобилей'),
-               ),
-            CarCardWidget(carList: carList.favoriteCarList, isFavorite: true,)
+            isEmpty ?  Padding(
+              padding: const EdgeInsets.only(left: 12.0),
+              child: Text('Количество автомобилей: ${carList.favoriteCarList.length}', style: textTheme.titleLarge),
+            )
+                : const Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Text('Нету автомобилей'),
+            ),
+            CarCardWidget(carList: carList.favoriteCarList)
+
           ],
         ),
       ),
