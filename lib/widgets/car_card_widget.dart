@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,8 +12,7 @@ import 'package:provider/provider.dart';
 
 class CarCardWidget extends StatefulWidget {
   final List<Car> carList;
-  final bool isFavorite;
-  CarCardWidget({Key? key, required this.carList, required this.isFavorite}) : super(key: key);
+  CarCardWidget({Key? key, required this.carList}) : super(key: key);
 
   @override
   _CarCardWidgetState createState() => _CarCardWidgetState();
@@ -31,7 +29,8 @@ class _CarCardWidgetState extends State<CarCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var carProvider = context.read<CarProvider>();
+    //var carProvider = context.read<CarProvider>();
+    var carProvider = Provider.of<CarProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => CarProvider(),
       child: ListView.builder(
@@ -42,24 +41,25 @@ class _CarCardWidgetState extends State<CarCardWidget> {
             final carItem = widget.carList[index];
             print(carItem);
             return GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                    MainNavigationRouteName.carIndividual,
-                    arguments: widget.carList[index]);
-              },
-              child: IndividualCarCardWidget(
-                  key: Key(widget.carList[index].toString()),
-                  car: carItem,
-                  isSelected: (bool value) {
-                    setState(() {
-                      if (value) {
-                            carProvider.addToFavoriteCarList(widget.carList[index]);
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                      MainNavigationRouteName.carIndividual,
+                      arguments: widget.carList[index]);
+                },
+                child: IndividualCarCardWidget(
+                    key: Key(widget.carList[index].id),
+                    car: carItem,
+                    isSelected: (bool value) {
+                      setState(() {
+                        if (value) {
+                          print("Check from car_card $value");
                         } else{
-                            carProvider.removeToFavoriteCarList(carItem);
+                          print("Check from car_card $value");
+
                         }
                         print(value);
-                    });
-                  })
+                      });
+                    })
             );
           }
       ),

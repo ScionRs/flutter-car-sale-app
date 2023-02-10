@@ -32,8 +32,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   var textStyle = const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
 
   var textStylePrice = const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold);
+  List<Car> templateList = [];
 
-  
+
   String defaultImage = '';
   var formatPrice = NumberFormat("#,###,###", "en_US");
 
@@ -66,10 +67,10 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                     child: Text(carItem.equipment.title,
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Padding(
@@ -91,11 +92,11 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                               child: Icon(MyFlutterApp.engine, size: 30.0,),
                             ),
                             Text('${carItem.equipment.horsePower} лс',
-                            style: TextStyle(
-                                fontSize: 15.0,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold
-                            ),),
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold
+                              ),),
                           ],
                         ),
                         Padding(
@@ -127,6 +128,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   @override
   Widget build(BuildContext context) {
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
+    var carToFavorite = context.read<CarProvider>();
     var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
     var image = context.read<CarProvider>().imageCar;
 
@@ -146,161 +148,192 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
 
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
-      backgroundColor: AppColors.customBackgroundWhite,
-      appBar: AppBar(),
-      body: ChangeNotifierProvider(
-        create: (context) => CarProvider(),
-        child: ListView(
-          shrinkWrap: true,
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          physics: const BouncingScrollPhysics(),
-          children:[
-            Container(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('${widget.carIntermediate.brand} ',style: textStyle,),
-                      Text(widget.carIntermediate.model,style: textStyle,),
-                    ],
-                  ),
-                ),
-                  defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /*
+        backgroundColor: AppColors.customBackgroundWhite,
+        appBar: AppBar(),
+        body: ChangeNotifierProvider(
+          create: (context) => CarProvider(),
+          child: ListView(
+            shrinkWrap: true,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            physics: const BouncingScrollPhysics(),
+            children:[
+              Container(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('${widget.carIntermediate.brand} ',style: textStyle,),
+                          Text(widget.carIntermediate.model,style: textStyle,),
+                        ],
+                      ),
+                    ),
+                    defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          /*
                       Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                       Text('-', style: textStylePrice,),
                       Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
                        */
-                    ],
-                  ),
-                ),
-          GridView.builder(
-              shrinkWrap: true,
-              itemCount: colors.length,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                childAspectRatio: 1.96,
-                crossAxisSpacing: 6,
-                mainAxisSpacing: 6,
-              ),
-              itemBuilder: (BuildContext context, int index){
-                final btnItem = colors[index];
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10,bottom: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                      Row(children: [
-                        if (btnItem == 'Белый')...[
-                          FloatingActionButton(
-                            heroTag: "btnWhite",
-                            backgroundColor: Colors.white,
-                            onPressed: () {
-                              setState(() {
-                                image = btnItem;
-                                defaultImage = btnItem;
-                                print("Tech $image");
-                              });
-                            },
-                            child: const Text(''),
-                          ),]
-                        else if(btnItem == 'Красный')...[
-                          FloatingActionButton(
-                            heroTag: "btnRed",
-                            backgroundColor: Colors.red,
-                            onPressed: () {
-                              setState(() {
-                                image = btnItem;
-                                defaultImage = btnItem;
-                                print(defaultImage);
-                              });
-                            },
-                            child: const Text(''),
-                          ),
-                        ]
-                        else if(btnItem == 'Серый')...[
-                            FloatingActionButton(
-                              heroTag: "btnGrey",
-                              backgroundColor: Colors.grey,
-                              onPressed: () {
-                                setState(() {
-                                  image = btnItem;
-                                  defaultImage = btnItem;
-                                  print(defaultImage);
-                                });
-                              },
-                              child: const Text(''),
+                        ],
+                      ),
+                    ),
+                    GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: colors.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 1.96,
+                          crossAxisSpacing: 6,
+                          mainAxisSpacing: 6,
+                        ),
+                        itemBuilder: (BuildContext context, int index){
+                          final btnItem = colors[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10,bottom: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                Row(children: [
+                                  if (btnItem == 'Белый')...[
+                                    FloatingActionButton(
+                                      heroTag: "btnWhite",
+                                      backgroundColor: Colors.white,
+                                      onPressed: () {
+                                        setState(() {
+                                          image = btnItem;
+                                          defaultImage = btnItem;
+                                          print("Tech $image");
+                                        });
+                                      },
+                                      child: const Text(''),
+                                    ),]
+                                  else if(btnItem == 'Красный')...[
+                                    FloatingActionButton(
+                                      heroTag: "btnRed",
+                                      backgroundColor: Colors.red,
+                                      onPressed: () {
+                                        setState(() {
+                                          image = btnItem;
+                                          defaultImage = btnItem;
+                                          print(defaultImage);
+                                        });
+                                      },
+                                      child: const Text(''),
+                                    ),
+                                  ]
+                                  else if(btnItem == 'Серый')...[
+                                      FloatingActionButton(
+                                        heroTag: "btnGrey",
+                                        backgroundColor: Colors.grey,
+                                        onPressed: () {
+                                          setState(() {
+                                            image = btnItem;
+                                            defaultImage = btnItem;
+                                            print(defaultImage);
+                                          });
+                                        },
+                                        child: const Text(''),
+                                      ),
+                                    ]
+                                    else if(btnItem == 'Черный')...[
+                                        FloatingActionButton(
+                                          heroTag: "btnBlack",
+                                          backgroundColor: Colors.black,
+                                          onPressed: () {
+                                            setState(() {
+                                              image = btnItem;
+                                              defaultImage = btnItem;
+                                              print(defaultImage);
+                                            });
+                                          },
+                                          child: const Text(''),
+                                        ),
+                                      ]
+                                ]),
+                              ],
                             ),
-                          ]
-                          else if(btnItem == 'Черный')...[
-                              FloatingActionButton(
-                                heroTag: "btnBlack",
-                                backgroundColor: Colors.black,
-                                onPressed: () {
-                                  setState(() {
-                                    image = btnItem;
-                                    defaultImage = btnItem;
-                                    print(defaultImage);
-                                  });
-                                },
-                                child: const Text(''),
-                              ),
-                            ]
-                      ]),
-                    ],
-                  ),
-                );
-              }
-          ),
-                 SizedBox(height: 10,),
-                 ExpansionTile(
-                  title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                   collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
-                  collapsedTextColor: Colors.white,
-                  textColor: Color.fromRGBO(0, 73, 183, 1),
-                  children: <Widget>[
-                    //buildCar(model),
-                    CarCardWidget(carList: model, isFavorite: false,),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                          );
+                        }
+                    ),
+                    SizedBox(height: 10,),
+                    ExpansionTile(
+                      title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+                      collapsedTextColor: Colors.white,
+                      textColor: Color.fromRGBO(0, 73, 183, 1),
+                      children: <Widget>[
+                        //buildCar(model),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: model.length,
+                            itemBuilder: (BuildContext context, int index){
+                              final carItem = model[index];
+                              print(carItem);
+                              return GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        MainNavigationRouteName.carIndividual,
+                                        arguments: model[index]);
+                                  },
+                                  child: IndividualCarCardWidget(
+                                      key: Key(model[index].id),
+                                      car: carItem,
+                                      isSelected: (bool value) {
+                                        setState(() {
+                                          if (value) {
+                                            print("Check from car_card $value");
+                                            carToFavorite.addToFavoriteCarList(carItem);
+
+                                          } else{
+                                            print("Check from car_card $value");
+                                            carToFavorite.removeToFavoriteCarList(carItem);
+                                          }
+                                          print(value);
+                                        });
+                                      })
+                              );
+                            }
+                        )
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
+                          ), textAlign: TextAlign.left),
+                        ),
+                      ],
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                      child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                      ), textAlign: TextAlign.left),
-                    ),
+                      child: Text('${widget.carIntermediate.description}',style: TextStyle(
+                        fontSize: 17.0,
+                      ), textAlign: TextAlign.justify,),
+                    )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Text('${widget.carIntermediate.description}',style: TextStyle(
-                    fontSize: 17.0,
-                  ), textAlign: TextAlign.justify,),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-        ),
-      )
+        )
     );
   }
 }
