@@ -16,6 +16,12 @@ class CarProvider with ChangeNotifier{
     return filterCarList;
   }
 
+  //Поиск одноклассников
+  List<Car> searchCarClassmatesModel(String model, String searchValue){
+    List<Car> filterCarList = CommonData.globalCarList.where((element) => element.bodyType == searchValue && element.model != model).toList();
+    return filterCarList;
+  }
+
   void addToFavoriteCarList(Car car){
     print('Автомобиль добавлен');
     _favoriteCarList.add(car);

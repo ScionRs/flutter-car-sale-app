@@ -291,6 +291,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                                   child: IndividualCarCardWidget(
                                       key: Key(model[index].id),
                                       car: carItem,
+                                      isLikedDefault: false,
                                       isSelected: (bool value) {
                                         setState(() {
                                           if (value) {
@@ -309,31 +310,59 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                         )
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                          child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
-                          ), textAlign: TextAlign.left),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                      child: Text('${widget.carIntermediate.description}',style: TextStyle(
-                        fontSize: 17.0,
-                      ), textAlign: TextAlign.justify,),
-                    )
+                    _TitleModelWidget(widget: widget),
+                    _DescriptionModelWidget(widget: widget)
                   ],
                 ),
               ),
             ],
           ),
         )
+    );
+  }
+}
+
+class _DescriptionModelWidget extends StatelessWidget {
+  const _DescriptionModelWidget({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final CarIntermediateWidget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      child: Text('${widget.carIntermediate.description}',style: TextStyle(
+        fontSize: 17.0,
+      ), textAlign: TextAlign.justify,),
+    );
+  }
+}
+
+class _TitleModelWidget extends StatelessWidget {
+  const _TitleModelWidget({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final CarIntermediateWidget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+          ), textAlign: TextAlign.left),
+        ),
+      ],
     );
   }
 }

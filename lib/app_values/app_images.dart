@@ -22,6 +22,7 @@ class AppImages {
       'images/img_car/audi-a3-khetchbek-siniy-goluboy-fioletovyy-0';
   static const audiA3White = 'images/img_car/audi-a3-sedan-belyy_0';
   static const audiA3Black = 'images/img_car/audi-a3-sedan-chernyy-0';
+  static const audiQ3Red = 'images/img_car/audi-q3-vnedorozhnik-krasnyy-bordovyy-rozovyy-0.png';
   static const bmwX5White = 'images/img_car/bmw-x5-vnedorozhnik-belyy-0';
   static const bmwX5Black = 'images/img_car/bmw-x5-vnedorozhnik-chernyy-0';
   static const bmwX5Blue =

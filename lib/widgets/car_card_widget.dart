@@ -11,8 +11,10 @@ import 'navigation.dart';
 import 'package:provider/provider.dart';
 
 class CarCardWidget extends StatefulWidget {
+  final CarProvider carProvider;
   final List<Car> carList;
-  CarCardWidget({Key? key, required this.carList}) : super(key: key);
+  bool isFavorites;
+  CarCardWidget({Key? key, required this.carList,required this.carProvider, required this.isFavorites}) : super(key: key);
 
   @override
   _CarCardWidgetState createState() => _CarCardWidgetState();
@@ -30,7 +32,7 @@ class _CarCardWidgetState extends State<CarCardWidget> {
   @override
   Widget build(BuildContext context) {
     //var carProvider = context.read<CarProvider>();
-    var carProvider = Provider.of<CarProvider>(context);
+    //var carProvider = Provider.of<CarProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => CarProvider(),
       child: ListView.builder(
@@ -49,13 +51,15 @@ class _CarCardWidgetState extends State<CarCardWidget> {
                 child: IndividualCarCardWidget(
                     key: Key(widget.carList[index].id),
                     car: carItem,
+                    isLikedDefault: widget.isFavorites,
                     isSelected: (bool value) {
                       setState(() {
                         if (value) {
-                          print("Check from car_card $value");
+                         widget.carProvider.removeToFavoriteCarList(carItem);
+                         print("Check from car_card $value");
                         } else{
+                          widget.carProvider.removeToFavoriteCarList(carItem);
                           print("Check from car_card $value");
-
                         }
                         print(value);
                       });
@@ -70,9 +74,10 @@ class _CarCardWidgetState extends State<CarCardWidget> {
 class IndividualCarCardWidget extends StatefulWidget {
   final Key key;
   final Car car;
+  final bool isLikedDefault;
   final ValueChanged<bool> isSelected;
 
-  IndividualCarCardWidget({required this.key, required this.car, required this.isSelected});
+  IndividualCarCardWidget({required this.key, required this.car,required this.isSelected, required this.isLikedDefault});
 
   @override
   _IndividualCarCardWidgetState createState() => _IndividualCarCardWidgetState();
@@ -101,7 +106,18 @@ class _IndividualCarCardWidgetState extends State<IndividualCarCardWidget> {
                   Positioned(
                     right: 10,
                     top: 10,
-                    child: IconButton(
+                    child: widget.isLikedDefault? IconButton(
+                      onPressed: (){
+                        setState(() {
+                          isSelected = !isSelected;
+                          widget.isSelected(isSelected);
+                        });
+                      },
+                      icon: const Icon(Icons.favorite, size: 35.0,),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: widget.isLikedDefault ? Colors.red : Colors.grey,
+                    ) : IconButton(
                       onPressed: (){
                         setState(() {
                           isSelected = !isSelected;

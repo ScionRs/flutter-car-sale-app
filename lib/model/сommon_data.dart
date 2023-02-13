@@ -25,6 +25,7 @@ class CommonData {
     AudiModel.audiA3Black,
     AudiModel.audiA3Blue,
     AudiModel.audiA3White,
+    AudiModel.audiQ3Red,
     BmwModel.bmwX5Black,
     BmwModel.bmwX5Blue,
     BmwModel.bmwX5White,
