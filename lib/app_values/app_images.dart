@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppImages {
   static const mazdaLogo = 'images/brand_logos/mazda_logo.svg';
+  static const audiLogo = 'images/brand_logos/audi_logo.svg';
+  static const bmwLogo = 'images/brand_logos/bmw_logo.svg';
+  static const hyundaiLogo = 'images/brand_logos/hyundai_logo.svg';
+  static const lexusLogo = 'images/brand_logos/lexus_logo.svg';
+  static const mitsubishiLogo = 'images/brand_logos/mitsubishi_logo.svg';
+
   static const mazdaCx5White =
       'images/img_car/mazda-cx-5-vnedorozhnik-belyy-11.png';
   static const mazdaCx5Red =
