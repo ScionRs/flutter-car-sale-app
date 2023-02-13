@@ -324,6 +324,7 @@ class _ExpansionForClassmatesCarWidgetState extends State<_ExpansionForClassmate
                   },
                   child: IndividualCarCardWidget(
                       key: Key(widget.classmates[index].id),
+                      isLikedDefault: false,
                       car: carItem,
                       isSelected: (bool value) {
                         setState(() {
