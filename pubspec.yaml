@@ -69,7 +69,6 @@ flutter:
   assets:
     - images/mazda_6.png
     - images/logo.svg
-    - images/bmw.svg
     - images/engine.svg
     - images/all_wheel_drive.svg
     - images/speed.svg
