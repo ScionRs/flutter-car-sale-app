@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../provider/car_provider.dart';
+import '../widgets/car_card_widget.dart';
+import '../widgets/navigation.dart';
 
 
 class CarIndividualWidget extends StatefulWidget {
@@ -50,6 +52,8 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var carProvider = context.read<CarProvider>();
+    var searchClassmatesCarModels = context.read<CarProvider>().searchCarClassmatesModel(widget.car.model, widget.car.bodyType);
     double cityFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.fuelConsumptionUrbanCycle).roundToDouble();
     double higwayFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.extraUrbanFuelConsumption).roundToDouble();
     double combinedFuel = widget.car.maintenanceCosts.calculateCycle(widget.car.maintenanceCosts.typeOfFuel, widget.car.maintenanceCosts.combinedFuelConsumption).roundToDouble();
@@ -271,7 +275,10 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                   combinedFuel: combinedFuel,
                 )
                 ,),
-            )
+            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: _ExpansionForClassmatesCarWidget(carProvider: carProvider, classmates: searchClassmatesCarModels,))
             ],
         ),
       )
@@ -279,6 +286,65 @@ class _CarIndividualState extends State<CarIndividualWidget> {
   }
 }
 
+// Поиск одноклассников
+class _ExpansionForClassmatesCarWidget extends StatefulWidget{
+  final List<Car> classmates;
+  final CarProvider carProvider;
+  _ExpansionForClassmatesCarWidget({
+    Key? key,
+    required this.classmates,
+    required this.carProvider,
+  }) : super(key: key);
+
+  @override
+  State<_ExpansionForClassmatesCarWidget> createState() => _ExpansionForClassmatesCarWidgetState();
+}
+
+class _ExpansionForClassmatesCarWidgetState extends State<_ExpansionForClassmatesCarWidget> {
+  @override
+  Widget build(BuildContext context){
+    return  ExpansionTile(
+      title: const Text('Одноклассники', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      collapsedBackgroundColor: const Color.fromRGBO(0, 73, 183, 1),
+      collapsedTextColor: Colors.white,
+      textColor: const Color.fromRGBO(0, 73, 183, 1),
+      children: <Widget>[
+        ListView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: widget.classmates.length,
+            itemBuilder: (BuildContext context, int index){
+              final carItem = widget.classmates[index];
+              print(carItem);
+              return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                        MainNavigationRouteName.carIndividual,
+                        arguments: widget.classmates[index]);
+                  },
+                  child: IndividualCarCardWidget(
+                      key: Key(widget.classmates[index].id),
+                      car: carItem,
+                      isSelected: (bool value) {
+                        setState(() {
+                          if (value) {
+                            print("Check from car_card $value");
+                            widget.carProvider.addToFavoriteCarList(carItem);
+
+                          } else{
+                            print("Check from car_card $value");
+                            widget.carProvider.removeToFavoriteCarList(carItem);
+                          }
+                          print(value);
+                        });
+                      })
+              );
+            }
+        )
+      ],
+    );
+  }
+}
 
 
 // Кнопка для всплывающего окна
