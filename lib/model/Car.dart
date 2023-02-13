@@ -41,6 +41,12 @@ class Car{
     required this.maintenanceCosts
   });
 
+
+  @override
+  String toString() {
+    return 'Car{id: $id, brand: $brand, model: $model, image: $image, price: $price, bodyColor: $bodyColor, productionYear: $productionYear, bodyType: $bodyType, transmission: $transmission, engineType: $engineType, engineVolume: $engineVolume, equipment: $equipment, maintenanceCosts: $maintenanceCosts}';
+  }
+
   factory Car.fromJson(Map<String, dynamic> parsedJson){
     return Car(
         id: parsedJson['_id'],

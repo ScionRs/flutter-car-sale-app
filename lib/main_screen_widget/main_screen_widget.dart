@@ -82,9 +82,10 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
               ],
             ),
           ),
-          // isBtnSelected
-          //     ? _BuildCityListWidget(CommonData.listOfCities)
-          //     : _BuildCarListWidget(CommonData.carCategoryList)
+          /*isBtnSelected
+              ? _BuildCityListWidget(CommonData.listOfCities)
+              : _BuildCarListWidget(CommonData.carCategoryList)
+        */
         ],
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
