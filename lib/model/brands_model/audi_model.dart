@@ -153,4 +153,53 @@ abstract class AudiModel {
       price: 5466654,
     ),
   );
+  static Car audiQ3Red = Car(
+    id: '3',
+    brand: 'Audi',
+    model: 'Q3',
+    image: AppImages.audiQ3Red,
+    price: 5466654,
+    bodyColor: 'Красный',
+    productionYear: 2021,
+    bodyType: 'Кроссовер',
+    transmission: 'АКПП',
+    engineType: 'Бензиновый',
+    engineVolume: 2.0,
+    equipment: Equipment(
+      id: '2',
+      title: 'Sedan 35 TFSI tiptronic',
+      seatUpholstery: 'Argument',
+      heatedSeats: 'Подогрев передних сидений',
+      airbags: '6 подушек',
+      onBoardComputer: 'Маршрутный компьютер',
+      horsePower: 180,
+      maxTorque: 250,
+      typeOfFuel: 'Бензиновый',
+      accelerationTime: 8.2,
+      maxSpeed: 224,
+      airConditioningSystem: 'Климат контроль',
+      multifunctionSteeringWheel:
+      'Многофункциональный кожаный руль с функция переключения',
+      fuelTankVolume: 50,
+      centralLocking:
+      'Центральный замок с дистанционным управлением без функции Safelock',
+      trunkVolume: '425',
+      driveUnit: 'Полный',
+      additionalOptions: [
+        'Адаптация для стран с холодным климатом',
+        'Камера заднего вида',
+        'Система Эра-Глонасс',
+      ],
+    ),
+    maintenanceCosts: MaintenanceCosts(
+      id: '2',
+      typeOfFuel: 'аи-95',
+      fuelConsumptionUrbanCycle: 5.9,
+      extraUrbanFuelConsumption: 4.1,
+      combinedFuelConsumption: 4.8,
+      travelDistance: 510,
+      horsePower: 150,
+      price: 5466654,
+    ),
+  );
 }
