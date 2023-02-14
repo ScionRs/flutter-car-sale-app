@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/provider/car_provider.dart';
@@ -128,6 +130,8 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
   @override
   Widget build(BuildContext context) {
     var model = context.read<CarProvider>().searchCarModel(widget.carIntermediate.model);
+    int giveMaxPriceFromCar() => model.map((e) => e.price).reduce(max);
+    int giveMinPriceFromCar() => model.map((e) => e.price).reduce(min);
     var carToFavorite = context.read<CarProvider>();
     var colors = context.read<CarProvider>().changeColor(widget.carIntermediate.model);
     var image = context.read<CarProvider>().imageCar;
@@ -178,11 +182,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          /*
-                      Text('${formatPrice.format(widget.carIntermediate.giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
+                      Text('${formatPrice.format(giveMinPriceFromCar()).replaceAll(',', ' ')} ₽ ',style: textStylePrice,),
                       Text('-', style: textStylePrice,),
-                      Text(' ${formatPrice.format(widget.carIntermediate.giveExpMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
-                       */
+                      Text(' ${formatPrice.format(giveMaxPriceFromCar()).replaceAll(',', ' ')} ₽',style: textStylePrice),
                         ],
                       ),
                     ),
