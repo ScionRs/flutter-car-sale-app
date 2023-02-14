@@ -8,16 +8,14 @@ import 'package:flutter_svg/svg.dart';
 import '../model/car_intermediate.dart';
 import '../widgets/build_local_image.dart';
 
-class RedesignedMainScreenWidget extends StatefulWidget {
-  const RedesignedMainScreenWidget({super.key});
+class MainScreenWidget extends StatefulWidget {
+  const MainScreenWidget({super.key});
 
   @override
-  State<RedesignedMainScreenWidget> createState() =>
-      _RedesignedMainScreenWidgetState();
+  State<MainScreenWidget> createState() => _MainScreenWidgetState();
 }
 
-class _RedesignedMainScreenWidgetState
-    extends State<RedesignedMainScreenWidget> {
+class _MainScreenWidgetState extends State<MainScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

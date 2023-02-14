@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../bottom_navigation_bar/bottom_navigation_bar.dart';
 import '../favorites_screen/favorites_screen_widget.dart';
-import '../redesigned_main_screen/redesigned_main_screen.dart';
+import '../main_screen/main_screen_widget.dart';
 
 class NavigationListWidget extends StatefulWidget {
   const NavigationListWidget({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _NavigationListWidgetState extends State<NavigationListWidget> {
       body: IndexedStack(
         index: _selectedTab,
         children: const [
-          RedesignedMainScreenWidget(),
+          MainScreenWidget(),
           FavoritesScreenWidget(),
         ],
       ),
