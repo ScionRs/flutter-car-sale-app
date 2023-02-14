@@ -41,7 +41,9 @@ dependencies:
   provider: ^6.0.4
   d_chart: ^1.0.1
   url_launcher: ^6.1.8
-  like_button: ^2.0.5
+  pdf: ^3.9.0
+  path_provider: ^2.0.12
+  open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:
