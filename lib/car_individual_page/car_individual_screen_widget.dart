@@ -76,7 +76,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
         TableRowCustomWidget(description: "Обороты:", car: widget.car.equipment.maxTorque.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
-        TableRowCustomWidget(description: "Типо топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
+        TableRowCustomWidget(description: "Тип топлива:", car: widget.car.equipment.typeOfFuel.toString(), textTheme: textTheme)
       ]),
       TableRow(children: [
         TableRowCustomWidget(description: "Подушки безопасности:", car: widget.car.equipment.airbags.toString(), textTheme: textTheme)
@@ -144,8 +144,6 @@ class _CarIndividualState extends State<CarIndividualWidget> {
     Future openDialog() => showDialog(
       context: context,
       builder: (BuildContext context) {
-        double width = MediaQuery.of(context).size.width;
-        double height = MediaQuery.of(context).size.height;
         return AlertDialog(
             backgroundColor: Colors.transparent,
             contentPadding: EdgeInsets.zero,
@@ -157,16 +155,16 @@ class _CarIndividualState extends State<CarIndividualWidget> {
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(10.0))),
+                      BorderRadius.all(Radius.circular(10.0))),
                   child: Column(
                     children: [
                       BottomDialogButtonWidget(textCustom: 'Написать в Telegram', colorCustom: Colors.blue, icon: Icons.messenger,),
-                      Divider(),
+                      const Divider(),
                       BottomDialogButtonWidget(textCustom: 'Написать в WhatsApp', colorCustom: Colors.green,icon: Icons.messenger,),
-                      Divider(),
+                      const Divider(),
                       BottomDialogButtonWidget(textCustom: 'Позвонить', colorCustom: Colors.red,icon: Icons.call,)
                     ],
                   ),
@@ -214,7 +212,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
             openDialog();
           },
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(70, 70)),
+                minimumSize: MaterialStateProperty.all(const Size(70, 70)),
                 backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0, 73, 183, 1)),
                 padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0)),
                 shape: MaterialStateProperty.all(const RoundedRectangleBorder(
@@ -289,7 +287,7 @@ class _CarIndividualState extends State<CarIndividualWidget> {
 class _ExpansionForClassmatesCarWidget extends StatefulWidget{
   final List<Car> classmates;
   final CarProvider carProvider;
-  _ExpansionForClassmatesCarWidget({
+  const _ExpansionForClassmatesCarWidget({
     Key? key,
     required this.classmates,
     required this.carProvider,
@@ -390,7 +388,7 @@ class BottomDialogButtonWidget extends StatelessWidget {
     },
         style: ButtonStyle(
           side:  MaterialStateProperty.all(
-              BorderSide(color: Colors.transparent,)),
+              const BorderSide(color: Colors.transparent,)),
           minimumSize: MaterialStateProperty.all(const Size(50, 50)),
           backgroundColor: MaterialStateProperty.all(AppColors.white),
           padding: MaterialStateProperty.all(
@@ -409,7 +407,7 @@ class BottomDialogButtonWidget extends StatelessWidget {
             Text(textCustom,
               style: TextStyle(color: colorCustom, fontSize: 20.0),
               textAlign: TextAlign.center,),
-            SizedBox(width: 5.0,),
+            const SizedBox(width: 5.0,),
             Icon(icon, color: AppColors.white, size: 30.0,),
           ],)
     );
@@ -525,7 +523,7 @@ class _ExpansionTileWidget extends StatelessWidget {
       title: Text('${name}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
       collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
       collapsedTextColor: Colors.white,
-      textColor: Color.fromRGBO(0, 73, 183, 1),
+      textColor: const Color.fromRGBO(0, 73, 183, 1),
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -563,7 +561,7 @@ class _ExpansionTileDiagramWidget extends StatelessWidget {
       title: Text('${name}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
       collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
       collapsedTextColor: Colors.white,
-      textColor: Color.fromRGBO(0, 73, 183, 1),
+      textColor: const Color.fromRGBO(0, 73, 183, 1),
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -594,7 +592,7 @@ class _TableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-        border:TableBorder(
+        border:const TableBorder(
             horizontalInside: BorderSide(
                 width: 1,
                 color: AppColors.grey,

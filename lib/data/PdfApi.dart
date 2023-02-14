@@ -2,7 +2,6 @@
 
 import 'dart:io';
 
-import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart';
@@ -13,7 +12,6 @@ class PdfApi{
   static Future<File> generateTable(List<Car> cars) async {
     final pdf = Document();
 
-    //final cars = CarProvider().giveCarList();
     print(cars.length);
     final data = cars.map((car) => [car.brand, car.model, car.equipment.title, car.price]).toList();
     final headers = ['Brand','Model','Equipment','Price'];
