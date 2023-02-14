@@ -69,9 +69,9 @@ class _MostSearchedBrandsWidgetState extends State<_MostSearchedBrandsWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        _MostSearchedBrandsTitleWidget(),
-        SizedBox(height: 16),
+      children: [
+        const _MostSearchedBrandsTitleWidget(),
+        const SizedBox(height: 16),
         _MostSearchedBrandsRowWidget(),
       ],
     );
@@ -95,11 +95,12 @@ class _MostSearchedBrandsTitleWidget extends StatelessWidget {
 }
 
 class _MostSearchedBrandsRowWidget extends StatelessWidget {
-  const _MostSearchedBrandsRowWidget({Key? key}) : super(key: key);
+  _MostSearchedBrandsRowWidget({Key? key}) : super(key: key);
+
+  final carCategoryList = CommonData.carCategoryList;
 
   @override
   Widget build(BuildContext context) {
-    final carCategory = CommonData.carCategoryList[0];
     return GridView.builder(
       itemCount: 3,
       physics: const BouncingScrollPhysics(),
@@ -109,9 +110,8 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
       ),
       itemBuilder: (BuildContext context, int index) {
         return _BrandCardShortWidget(
-          name: carCategory.name,
-          logo: carCategory.image,
-          cars: carCategory.cars,
+          carCategoryList: carCategoryList,
+          index: index,
         );
       },
     );
@@ -119,20 +119,20 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
 }
 
 class _BrandCardShortWidget extends StatelessWidget {
-  final String name;
-  final String logo;
-  final List<CarIntermediate> cars;
+  final List<CarCategory> carCategoryList;
+  final int index;
   const _BrandCardShortWidget(
-      {Key? key, required this.name, required this.logo, required this.cars})
+      {Key? key, required this.carCategoryList, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    final carCategory = carCategoryList[index];
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
+        Navigator.of(context).pushNamed(MainNavigationRouteName.carListScreen,
+            arguments: carCategory.cars);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -150,13 +150,13 @@ class _BrandCardShortWidget extends StatelessWidget {
               flex: 2,
               child: SizedBox(
                 width: 50,
-                child: SvgPicture.asset(logo),
+                child: SvgPicture.asset(carCategory.image),
               ),
             ),
             Flexible(
               flex: 1,
               child: Text(
-                name,
+                carCategory.name,
                 style: textTheme.titleSmall,
               ),
             ),
