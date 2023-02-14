@@ -4,10 +4,13 @@ import 'package:car_sale_app/theme/constants.dart';
 import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../model/car_intermediate.dart';
+import '../provider/car_provider.dart';
 import '../widgets/brand_card_short_widget.dart';
 import '../widgets/build_local_image.dart';
+import '../widgets/car_card_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({super.key});
@@ -26,12 +29,15 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         toolbarHeight: 78,
       ),
       body: ListView(
+        // shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: const [
           SizedBox(height: 10),
           _SearchWidget(),
           SizedBox(height: 26),
           _TopBrandsWidget(),
+          SizedBox(height: 26),
+          RecomendationsWidget(),
         ],
       ),
     );
@@ -189,6 +195,67 @@ class _TopBrandsRowWidget extends StatelessWidget {
           index: index,
         );
       },
+    );
+  }
+}
+
+class RecomendationsWidget extends StatefulWidget {
+  const RecomendationsWidget({Key? key}) : super(key: key);
+
+  @override
+  State<RecomendationsWidget> createState() => _RecomendationsWidgetState();
+}
+
+class _RecomendationsWidgetState extends State<RecomendationsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: const [
+        RecomendationsTitleWidget(),
+        SizedBox(height: 16),
+        // RecomendationsRowWidget(),
+      ],
+    );
+  }
+}
+
+class RecomendationsTitleWidget extends StatelessWidget {
+  const RecomendationsTitleWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return Align(
+      alignment: const Alignment(-1, 0),
+      child: Text(
+        'Рекомендации',
+        style: textTheme.titleLarge,
+      ),
+    );
+  }
+}
+
+class RecomendationsRowWidget extends StatelessWidget {
+  const RecomendationsRowWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final globalCarList = CommonData.globalCarList;
+    return ListView.separated(
+      itemCount: 5,
+      // shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (BuildContext context, int index) {
+        final car = globalCarList[index];
+        return IndividualCarCardWidget(
+          key: UniqueKey(),
+          car: car,
+          isLikedDefault: false,
+          isSelected: (bool value) {},
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 16),
     );
   }
 }
