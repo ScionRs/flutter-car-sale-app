@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../model/car_intermediate.dart';
+import '../widgets/brand_card_short_widget.dart';
 import '../widgets/build_local_image.dart';
 
 class MainScreenWidget extends StatefulWidget {
@@ -127,9 +128,9 @@ class _TopBrandsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        _TopBrandsTitleWidget(),
-        SizedBox(height: 16),
+      children: [
+        const _TopBrandsTitleWidget(),
+        const SizedBox(height: 16),
         _TopBrandsRowWidget(),
       ],
     );
@@ -169,11 +170,12 @@ class _TopBrandsTitleWidget extends StatelessWidget {
 }
 
 class _TopBrandsRowWidget extends StatelessWidget {
-  const _TopBrandsRowWidget({Key? key}) : super(key: key);
+  _TopBrandsRowWidget({Key? key}) : super(key: key);
+
+  final carCategoryList = CommonData.carCategoryList;
 
   @override
   Widget build(BuildContext context) {
-    final carCategory = CommonData.carCategoryList[0];
     return GridView.builder(
       itemCount: 3,
       physics: const BouncingScrollPhysics(),
@@ -182,61 +184,11 @@ class _TopBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return _BrandCardShortWidget(
-          name: carCategory.name,
-          logo: carCategory.image,
-          cars: carCategory.cars,
+        return BrandCardShortWidget(
+          carCategoryList: carCategoryList,
+          index: index,
         );
       },
-    );
-  }
-}
-
-class _BrandCardShortWidget extends StatelessWidget {
-  final String name;
-  final String logo;
-  final List<CarIntermediate> cars;
-  const _BrandCardShortWidget(
-      {Key? key, required this.name, required this.logo, required this.cars})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    return InkWell(
-      onTap: () {
-        Navigator.of(context)
-            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: AppColors.lightGrey,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        elevation: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 2,
-              child: SizedBox(
-                width: 50,
-                child: SvgPicture.asset(logo),
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Text(
-                name,
-                style: textTheme.titleSmall,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
