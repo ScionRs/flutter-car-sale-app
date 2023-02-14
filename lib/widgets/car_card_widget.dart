@@ -31,8 +31,6 @@ class _CarCardWidgetState extends State<CarCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //var carProvider = context.read<CarProvider>();
-    //var carProvider = Provider.of<CarProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => CarProvider(),
       child: ListView.builder(

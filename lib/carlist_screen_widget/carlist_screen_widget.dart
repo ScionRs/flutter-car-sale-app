@@ -1,10 +1,12 @@
 import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
 import 'package:car_sale_app/model/car_category.dart';
+import 'package:car_sale_app/provider/car_provider.dart';
 import 'package:car_sale_app/widgets/app_bar_widget.dart';
 import 'package:car_sale_app/widgets/build_image.dart';
 import 'package:car_sale_app/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../model/car_intermediate.dart';
 import '../widgets/build_local_image.dart';
@@ -17,22 +19,26 @@ class CarListScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brandName = cars[0].brand;
+    var carProvider = context.read<CarProvider>();
     return Scaffold(
       appBar: AppBar(
         title: Text(brandName),
       ),
-      body: ListView.separated(
-        itemCount: cars.length,
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (BuildContext context, int index) => GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                  MainNavigationRouteName.carIntermediateScreen,
-                  arguments: cars[index]);
-            },
-            child: _CarCardWidget(cars: cars, index: index)),
-        separatorBuilder: (BuildContext context, int index) =>
-            const SizedBox(height: 16),
+      body: ChangeNotifierProvider(
+        create: (context) => CarProvider(),
+        child: ListView.separated(
+          itemCount: cars.length,
+          padding: const EdgeInsets.all(16),
+          itemBuilder: (BuildContext context, int index) => GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                    MainNavigationRouteName.carIntermediateScreen,
+                    arguments: cars[index]);
+              },
+              child: _CarCardWidget(cars: cars, index: index, realCarsCount: carProvider.searchCarModel(cars[index].model).length,)),
+          separatorBuilder: (BuildContext context, int index) =>
+              const SizedBox(height: 16),
+        ),
       ),
     );
   }
@@ -41,8 +47,9 @@ class CarListScreenWidget extends StatelessWidget {
 class _CarCardWidget extends StatelessWidget {
   List<CarIntermediate> cars;
   int index;
+  int realCarsCount;
 
-  _CarCardWidget({required this.cars, required this.index});
+  _CarCardWidget({required this.cars, required this.index, required this.realCarsCount});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,7 @@ class _CarCardWidget extends StatelessWidget {
       child: Row(
         children: [
           BuildLocalImage(url: cars[index].image),
-          const SizedBox(width: 20),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,14 +81,16 @@ class _CarCardWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Flexible(child: Text('${realCarsCount} автомобиля в наличии',maxLines: 2, overflow: TextOverflow.ellipsis,)),
+                    /*const Text(
                       "От ",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    ),*/
                     /*Text(
                       "${formatPrice.format(price).replaceAll(',', ' ')} ₽",
                       style: const TextStyle(
