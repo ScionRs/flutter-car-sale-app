@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/Car.dart';
+import '../widgets/PdfApi.dart';
 
 class FavoritesScreenWidget extends StatefulWidget {
   const FavoritesScreenWidget({Key? key}) : super(key: key);
@@ -27,6 +28,23 @@ class _FavoritesScreenWidgetState extends State<FavoritesScreenWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Желаемое'),
+        actions: [
+          isEmpty?
+          Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: IconButton(
+                  icon: const Icon(Icons.print, size: 30.0,),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  color: Colors.blue,
+                onPressed: () async {
+                    final pdfFile = await PdfApi.generateTable(carList.favoriteCarList);
+                    PdfApi.openFile(pdfFile);
+                   },
+              )
+          ) :
+              const Text(''),
+        ],
       ),
       body: ChangeNotifierProvider(
         create: (context) => CarProvider(),
