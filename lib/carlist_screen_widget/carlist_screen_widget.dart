@@ -30,12 +30,18 @@ class CarListScreenWidget extends StatelessWidget {
           itemCount: cars.length,
           padding: const EdgeInsets.all(16),
           itemBuilder: (BuildContext context, int index) => GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                    MainNavigationRouteName.carIntermediateScreen,
-                    arguments: cars[index]);
-              },
-              child: _CarCardWidget(cars: cars, index: index, realCarsCount: carProvider.searchCarModel(cars[index].model).length,)),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                  MainNavigationRouteName.carIntermediateScreen,
+                  arguments: cars[index]);
+            },
+            child: _CarCardWidget(
+              cars: cars,
+              index: index,
+              realCarsCount:
+                  carProvider.searchCarModel(cars[index].model).length,
+            ),
+          ),
           separatorBuilder: (BuildContext context, int index) =>
               const SizedBox(height: 16),
         ),
@@ -49,7 +55,8 @@ class _CarCardWidget extends StatelessWidget {
   int index;
   int realCarsCount;
 
-  _CarCardWidget({required this.cars, required this.index, required this.realCarsCount});
+  _CarCardWidget(
+      {required this.cars, required this.index, required this.realCarsCount});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +90,12 @@ class _CarCardWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(child: Text('${realCarsCount} автомобиля в наличии',maxLines: 2, overflow: TextOverflow.ellipsis,)),
+                    Flexible(
+                        child: Text(
+                      '${realCarsCount} автомобиля в наличии',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    )),
                     /*const Text(
                       "От ",
                       style: TextStyle(

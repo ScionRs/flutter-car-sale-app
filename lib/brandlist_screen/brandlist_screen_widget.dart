@@ -22,6 +22,7 @@ class _BrandListScreenWidgetState extends State<BrandListScreenWidget> {
         title: const Text('Бренды'),
       ),
       body: ListView(
+        shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: const [
           SizedBox(height: 10),
@@ -207,6 +208,7 @@ class _AllBrandsListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) =>
           _BrandCardLongWidget(carCategoryList: carCategoryList, index: index),
       itemCount: carCategoryList.length,
