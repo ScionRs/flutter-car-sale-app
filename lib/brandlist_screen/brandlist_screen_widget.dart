@@ -1,3 +1,4 @@
+import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/theme/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -171,16 +172,11 @@ class _AllBrandsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carCategory = CommonData.carCategoryList[0];
     return Column(
       children: [
         const _AllBrandsTitleWidget(),
         const SizedBox(height: 16),
-        _BrandCardLongWidget(
-          name: carCategory.name,
-          logo: carCategory.image,
-          cars: carCategory.cars,
-        )
+        _AllBrandsListWidget(),
       ],
     );
   }
@@ -202,20 +198,38 @@ class _AllBrandsTitleWidget extends StatelessWidget {
   }
 }
 
+class _AllBrandsListWidget extends StatelessWidget {
+  _AllBrandsListWidget({super.key});
+
+  final carCategoryList = CommonData.carCategoryList;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index) =>
+          _BrandCardLongWidget(carCategoryList: carCategoryList, index: index),
+      itemCount: carCategoryList.length,
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(height: 16),
+    );
+  }
+}
+
 class _BrandCardLongWidget extends StatelessWidget {
-  final String name;
-  final String logo;
-  final List<CarIntermediate> cars;
+  final List<CarCategory> carCategoryList;
+  final int index;
   const _BrandCardLongWidget(
-      {Key? key, required this.name, required this.logo, required this.cars})
+      {Key? key, required this.carCategoryList, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final carCategory = carCategoryList[index];
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(MainNavigationRouteName.carListScreen, arguments: cars);
+        Navigator.of(context).pushNamed(MainNavigationRouteName.carListScreen,
+            arguments: carCategory.cars);
       },
       child: Container(
         height: 100,
@@ -229,12 +243,12 @@ class _BrandCardLongWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            _BrandLogoWidget(logo: logo),
+            _BrandLogoWidget(logo: carCategory.image),
             const SizedBox(width: 16),
             Expanded(
               child: _BrandNameWidget(
-                name: name,
-                amountOfCar: cars.length,
+                name: carCategory.name,
+                amountOfCar: carCategory.cars.length,
               ),
             ),
             const Icon(
