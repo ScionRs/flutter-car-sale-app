@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../model/car_intermediate.dart';
 import '../model/сommon_data.dart';
+import '../widgets/brand_card_short_widget.dart';
 import '../widgets/navigation.dart';
 
 class BrandListScreenWidget extends StatefulWidget {
@@ -110,60 +111,11 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
         crossAxisCount: 3,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return _BrandCardShortWidget(
+        return BrandCardShortWidget(
           carCategoryList: carCategoryList,
           index: index,
         );
       },
-    );
-  }
-}
-
-class _BrandCardShortWidget extends StatelessWidget {
-  final List<CarCategory> carCategoryList;
-  final int index;
-  const _BrandCardShortWidget(
-      {Key? key, required this.carCategoryList, required this.index})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    final carCategory = carCategoryList[index];
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(MainNavigationRouteName.carListScreen,
-            arguments: carCategory.cars);
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: AppColors.lightGrey,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        elevation: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 2,
-              child: SizedBox(
-                width: 50,
-                child: SvgPicture.asset(carCategory.image),
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Text(
-                carCategory.name,
-                style: textTheme.titleSmall,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
