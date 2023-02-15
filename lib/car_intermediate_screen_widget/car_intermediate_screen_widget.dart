@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../car_individual_page/car_individual_screen_widget.dart';
 import '../theme/constants.dart';
 import '../widgets/build_local_image.dart';
 import '../widgets/navigation.dart';
@@ -56,7 +57,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: AppColors.customBackgroundGreyCard,
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
@@ -68,15 +69,15 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(carItem.equipment.title,
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Divider(
                         color: Colors.grey
                     ),
@@ -89,12 +90,12 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                       children: [
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 5.0),
                               child: Icon(MyFlutterApp.engine, size: 30.0,),
                             ),
                             Text('${carItem.equipment.horsePower} лс',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 15.0,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold
@@ -153,7 +154,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
         backgroundColor: AppColors.customBackgroundWhite,
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("${widget.carIntermediate.brand} ${widget.carIntermediate.model}",style: AppColors.textBigTitle),
+        ),
         body: ChangeNotifierProvider(
           create: (context) => CarProvider(),
           child: ListView(
@@ -195,7 +198,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                         gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          childAspectRatio: 1.96,
+                          childAspectRatio: 1.7,
                           crossAxisSpacing: 6,
                           mainAxisSpacing: 6,
                         ),
@@ -263,6 +266,34 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                                           child: const Text(''),
                                         ),
                                       ]
+                                      else if(btnItem == 'Синий')...[
+                                          FloatingActionButton(
+                                            heroTag: "btnGrey",
+                                            backgroundColor: Colors.blue,
+                                            onPressed: () {
+                                              setState(() {
+                                                image = btnItem;
+                                                defaultImage = btnItem;
+                                                print(defaultImage);
+                                              });
+                                            },
+                                            child: const Text(''),
+                                          ),
+                                        ]
+                                        else if(btnItem == 'Синий')...[
+                                            FloatingActionButton(
+                                              heroTag: "btnGrey",
+                                              backgroundColor: Color.fromRGBO(192,192,192, 1),
+                                              onPressed: () {
+                                                setState(() {
+                                                  image = btnItem;
+                                                  defaultImage = btnItem;
+                                                  print(defaultImage);
+                                                });
+                                              },
+                                              child: const Text(''),
+                                            ),
+                                          ]
                                 ]),
                               ],
                             ),
