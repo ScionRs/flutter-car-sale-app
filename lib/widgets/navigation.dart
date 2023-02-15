@@ -10,7 +10,7 @@ import 'package:car_sale_app/model/City.dart';
 import 'package:car_sale_app/model/car_category.dart';
 import 'package:car_sale_app/model/car_intermediate.dart';
 import 'package:car_sale_app/navigation_list/navigation_list_widget.dart';
-import 'package:car_sale_app/redesigned_main_screen/redesigned_main_screen.dart';
+import 'package:car_sale_app/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 abstract class MainNavigationRouteName {
