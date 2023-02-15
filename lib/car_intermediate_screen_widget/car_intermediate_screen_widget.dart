@@ -106,9 +106,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Row(
                             children: [
-                              Icon(MyFlutterApp.gearshift, size: 30.0,),
+                              const Icon(MyFlutterApp.gearshift, size: 30.0,),
                               Text('${carItem.transmission}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15.0,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold
@@ -300,12 +300,12 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                           );
                         }
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     ExpansionTile(
                       title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+                      collapsedBackgroundColor: const Color.fromRGBO(0, 73, 183, 1),
                       collapsedTextColor: Colors.white,
-                      textColor: Color.fromRGBO(0, 73, 183, 1),
+                      textColor: const Color.fromRGBO(0, 73, 183, 1),
                       children: <Widget>[
                         //buildCar(model),
                         ListView.builder(
@@ -367,7 +367,7 @@ class _DescriptionModelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      child: Text('${widget.carIntermediate.description}',style: TextStyle(
+      child: Text('${widget.carIntermediate.description}',style: const TextStyle(
         fontSize: 17.0,
       ), textAlign: TextAlign.justify,),
     );
@@ -390,7 +390,7 @@ class _TitleModelWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
+          child: Text('Описание ${widget.carIntermediate.model}', style: const TextStyle(
             fontSize: 22.0,
             fontWeight: FontWeight.bold,
           ), textAlign: TextAlign.left),
