@@ -169,16 +169,6 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('${widget.carIntermediate.brand} ',style: textStyle,),
-                          Text(widget.carIntermediate.model,style: textStyle,),
-                        ],
-                      ),
-                    ),
                     defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
