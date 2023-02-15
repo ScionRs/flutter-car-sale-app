@@ -10,7 +10,7 @@ abstract class HyundaiModel {
     model: 'Elantra',
     image: AppImages.hyundaiElantraGrey,
     price: 2782150,
-    bodyColor: 'Темно-серый',
+    bodyColor: 'Серый',
     productionYear: 2022,
     bodyType: 'Седан',
     transmission: 'АКПП',

@@ -60,7 +60,7 @@ abstract class LexusModel {
     model: 'LX',
     image: AppImages.lexusLxGrey,
     price: 18490000,
-    bodyColor: 'Cветло-серый металлик',
+    bodyColor: 'Серый',
     productionYear: 2021,
     bodyType: 'Внедорожник',
     transmission: 'АКПП',

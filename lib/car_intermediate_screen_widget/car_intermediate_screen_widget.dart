@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../car_individual_page/car_individual_screen_widget.dart';
 import '../theme/constants.dart';
 import '../widgets/build_local_image.dart';
 import '../widgets/navigation.dart';
@@ -56,7 +57,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: AppColors.customBackgroundGreyCard,
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
@@ -68,15 +69,15 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(carItem.equipment.title,
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Divider(
                         color: Colors.grey
                     ),
@@ -89,12 +90,12 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                       children: [
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 5.0),
                               child: Icon(MyFlutterApp.engine, size: 30.0,),
                             ),
                             Text('${carItem.equipment.horsePower} лс',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 15.0,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold
@@ -105,9 +106,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Row(
                             children: [
-                              Icon(MyFlutterApp.gearshift, size: 30.0,),
+                              const Icon(MyFlutterApp.gearshift, size: 30.0,),
                               Text('${carItem.transmission}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15.0,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold
@@ -153,7 +154,9 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
     //var imgSelect = context.read<CarProvider>().selectImage(model, defaultImage);
     return Scaffold(
         backgroundColor: AppColors.customBackgroundWhite,
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("${widget.carIntermediate.brand} ${widget.carIntermediate.model}",style: AppColors.textBigTitle),
+        ),
         body: ChangeNotifierProvider(
           create: (context) => CarProvider(),
           child: ListView(
@@ -166,16 +169,6 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('${widget.carIntermediate.brand} ',style: textStyle,),
-                          Text(widget.carIntermediate.model,style: textStyle,),
-                        ],
-                      ),
-                    ),
                     defaultImage != '' ? BuildLocalImage(url: selectImageCar(defaultImage)) : BuildLocalImage(url: widget.carIntermediate.image),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -195,7 +188,7 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                         gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          childAspectRatio: 1.96,
+                          childAspectRatio: 1.7,
                           crossAxisSpacing: 6,
                           mainAxisSpacing: 6,
                         ),
@@ -263,18 +256,46 @@ class _CarIntermediateWidgetState extends State<CarIntermediateWidget> {
                                           child: const Text(''),
                                         ),
                                       ]
+                                      else if(btnItem == 'Синий')...[
+                                          FloatingActionButton(
+                                            heroTag: "btnGrey",
+                                            backgroundColor: Colors.blue,
+                                            onPressed: () {
+                                              setState(() {
+                                                image = btnItem;
+                                                defaultImage = btnItem;
+                                                print(defaultImage);
+                                              });
+                                            },
+                                            child: const Text(''),
+                                          ),
+                                        ]
+                                        else if(btnItem == 'Синий')...[
+                                            FloatingActionButton(
+                                              heroTag: "btnGrey",
+                                              backgroundColor: Color.fromRGBO(192,192,192, 1),
+                                              onPressed: () {
+                                                setState(() {
+                                                  image = btnItem;
+                                                  defaultImage = btnItem;
+                                                  print(defaultImage);
+                                                });
+                                              },
+                                              child: const Text(''),
+                                            ),
+                                          ]
                                 ]),
                               ],
                             ),
                           );
                         }
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     ExpansionTile(
                       title: Text('Смотреть ${model.length} авто ', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+                      collapsedBackgroundColor: const Color.fromRGBO(0, 73, 183, 1),
                       collapsedTextColor: Colors.white,
-                      textColor: Color.fromRGBO(0, 73, 183, 1),
+                      textColor: const Color.fromRGBO(0, 73, 183, 1),
                       children: <Widget>[
                         //buildCar(model),
                         ListView.builder(
@@ -336,7 +357,7 @@ class _DescriptionModelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      child: Text('${widget.carIntermediate.description}',style: TextStyle(
+      child: Text('${widget.carIntermediate.description}',style: const TextStyle(
         fontSize: 17.0,
       ), textAlign: TextAlign.justify,),
     );
@@ -359,7 +380,7 @@ class _TitleModelWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          child: Text('Описание ${widget.carIntermediate.model}', style: TextStyle(
+          child: Text('Описание ${widget.carIntermediate.model}', style: const TextStyle(
             fontSize: 22.0,
             fontWeight: FontWeight.bold,
           ), textAlign: TextAlign.left),
