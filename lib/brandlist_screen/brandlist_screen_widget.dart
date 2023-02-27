@@ -16,6 +16,35 @@ class BrandListScreenWidget extends StatefulWidget {
 }
 
 class _BrandListScreenWidgetState extends State<BrandListScreenWidget> {
+
+  var _filterProductList = <CarCategory>[];
+  final _searchController = TextEditingController();
+
+  // Поиск продукта по name параметру
+  void _searchBrand() {
+    final query = _searchController.text;
+
+    if (query.isNotEmpty) {
+      _filterProductList = CommonData.carCategoryList.where((CarCategory carCategory) {
+        return carCategory.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+    else {
+      _filterProductList = CommonData.carCategoryList;
+    }
+    setState(() {
+
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    _filterProductList = CommonData.carCategoryList;
+    _searchController.addListener(_searchBrand);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +54,13 @@ class _BrandListScreenWidgetState extends State<BrandListScreenWidget> {
       body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: const [
+        children: [
           SizedBox(height: 10),
-          _SearchWidget(),
+          _SearchWidget(textEditingController: _searchController,),
           SizedBox(height: 26),
           _MostSearchedBrandsWidget(),
           SizedBox(height: 26),
-          _AllBrandsWidget()
+          _AllBrandsWidget(carCategoryList: _filterProductList,)
         ],
       ),
     );
@@ -39,7 +68,8 @@ class _BrandListScreenWidgetState extends State<BrandListScreenWidget> {
 }
 
 class _SearchWidget extends StatefulWidget {
-  const _SearchWidget({Key? key}) : super(key: key);
+  final TextEditingController textEditingController;
+  const _SearchWidget({Key? key, required this.textEditingController}) : super(key: key);
 
   @override
   State<_SearchWidget> createState() => _SearchWidgetState();
@@ -48,8 +78,9 @@ class _SearchWidget extends StatefulWidget {
 class _SearchWidgetState extends State<_SearchWidget> {
   @override
   Widget build(BuildContext context) {
-    return const TextField(
-      decoration: InputDecoration(
+    return TextField(
+      controller: widget.textEditingController,
+      decoration: const InputDecoration(
         hintText: "Поиск брендов...",
         suffixIcon: Icon(
           Icons.search,
@@ -121,7 +152,8 @@ class _MostSearchedBrandsRowWidget extends StatelessWidget {
 }
 
 class _AllBrandsWidget extends StatelessWidget {
-  const _AllBrandsWidget({Key? key}) : super(key: key);
+  final List<CarCategory> carCategoryList;
+  const _AllBrandsWidget({Key? key, required this.carCategoryList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +161,7 @@ class _AllBrandsWidget extends StatelessWidget {
       children: [
         const _AllBrandsTitleWidget(),
         const SizedBox(height: 16),
-        _AllBrandsListWidget(),
+        _AllBrandsListWidget(carCategoryList: carCategoryList,),
       ],
     );
   }
@@ -152,9 +184,8 @@ class _AllBrandsTitleWidget extends StatelessWidget {
 }
 
 class _AllBrandsListWidget extends StatelessWidget {
-  _AllBrandsListWidget({super.key});
-
-  final carCategoryList = CommonData.carCategoryList;
+  List<CarCategory> carCategoryList;
+  _AllBrandsListWidget({super.key, required this.carCategoryList});
 
   @override
   Widget build(BuildContext context) {
