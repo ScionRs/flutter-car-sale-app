@@ -521,7 +521,7 @@ class _ExpansionTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text('${name}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-      collapsedBackgroundColor: Color.fromRGBO(0, 73, 183, 1),
+      collapsedBackgroundColor: const Color.fromRGBO(0, 73, 183, 1),
       collapsedTextColor: Colors.white,
       textColor: const Color.fromRGBO(0, 73, 183, 1),
       children: <Widget>[

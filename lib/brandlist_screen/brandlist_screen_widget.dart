@@ -55,11 +55,11 @@ class _BrandListScreenWidgetState extends State<BrandListScreenWidget> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _SearchWidget(textEditingController: _searchController,),
-          SizedBox(height: 26),
-          _MostSearchedBrandsWidget(),
-          SizedBox(height: 26),
+          const SizedBox(height: 26),
+          const _MostSearchedBrandsWidget(),
+          const SizedBox(height: 26),
           _AllBrandsWidget(carCategoryList: _filterProductList,)
         ],
       ),
