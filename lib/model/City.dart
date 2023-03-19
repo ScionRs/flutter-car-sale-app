@@ -1,4 +1,6 @@
-import 'package:car_sale_app/model/Dealer.dart';
+
+
+import 'Dealer.dart';
 
 class City {
   final String id;

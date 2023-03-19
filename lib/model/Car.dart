@@ -1,8 +1,7 @@
 
 
-import 'package:car_sale_app/model/maintenance_costs.dart';
-
 import 'Equipment.dart';
+import 'maintenance_costs.dart';
 
 class Car{
   final String id;

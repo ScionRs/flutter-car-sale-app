@@ -1,6 +1,7 @@
 
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/model/car_intermediate.dart';
+
+
+import 'car_intermediate.dart';
 
 class CarCategory{
   final String id;

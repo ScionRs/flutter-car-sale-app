@@ -1,4 +1,6 @@
-import 'package:car_sale_app/model/Car.dart';
+
+
+import 'Car.dart';
 
 class Dealer {
   final String id;

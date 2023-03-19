@@ -1,6 +1,6 @@
-import 'package:car_sale_app/theme/scroll_behavior.dart';
-import 'package:car_sale_app/theme/theme.dart';
-import 'package:car_sale_app/widgets/navigation.dart';
+import 'package:car_market/theme/scroll_behavior.dart';
+import 'package:car_market/theme/theme.dart';
+import 'package:car_market/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

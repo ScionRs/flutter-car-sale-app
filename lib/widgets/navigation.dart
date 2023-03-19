@@ -1,17 +1,14 @@
-import 'package:car_sale_app/brandlist_screen/brandlist_screen_widget.dart';
-import 'package:car_sale_app/car_individual_page/car_individual_screen_widget.dart';
-import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
-import 'package:car_sale_app/carlist_screen_widget/carlist_screen_widget.dart';
-import 'package:car_sale_app/dealerlist_screen_widget/dealerlist_screen_widget.dart';
-import 'package:car_sale_app/favorites_screen/favorites_screen_widget.dart';
-import 'package:car_sale_app/model/%D1%81ommon_data.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/model/City.dart';
-import 'package:car_sale_app/model/car_category.dart';
-import 'package:car_sale_app/model/car_intermediate.dart';
-import 'package:car_sale_app/navigation_list/navigation_list_widget.dart';
-import 'package:car_sale_app/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../brandlist_screen/brandlist_screen_widget.dart';
+import '../car_individual_page/car_individual_screen_widget.dart';
+import '../car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
+import '../carlist_screen_widget/carlist_screen_widget.dart';
+import '../dealerlist_screen_widget/dealerlist_screen_widget.dart';
+import '../model/Car.dart';
+import '../model/City.dart';
+import '../model/car_intermediate.dart';
+import '../navigation_list/navigation_list_widget.dart';
 
 abstract class MainNavigationRouteName {
   static const navigationList = '/';

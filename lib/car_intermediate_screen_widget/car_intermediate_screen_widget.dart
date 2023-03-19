@@ -1,20 +1,18 @@
 
 import 'dart:math';
-
-import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
-import 'package:car_sale_app/model/car_intermediate.dart';
-import 'package:car_sale_app/provider/car_provider.dart';
-import 'package:car_sale_app/widgets/build_image.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/widgets/car_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../car_individual_page/car_individual_screen_widget.dart';
+import '../icons/my_flutter_app_icons.dart';
+import '../model/Car.dart';
+import '../model/car_intermediate.dart';
+import '../provider/car_provider.dart';
 import '../theme/constants.dart';
 import '../widgets/build_local_image.dart';
+import '../widgets/car_card_widget.dart';
 import '../widgets/navigation.dart';
 
 

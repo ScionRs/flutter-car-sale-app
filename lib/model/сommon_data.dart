@@ -1,20 +1,14 @@
-import 'package:car_sale_app/app_values/app_images.dart';
-import 'package:car_sale_app/model/Dealer.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/model/City.dart';
-import 'package:car_sale_app/model/Equipment.dart';
-import 'package:car_sale_app/model/brands_model/audi_model.dart';
-import 'package:car_sale_app/model/brands_model/bmw_model.dart';
-import 'package:car_sale_app/model/brands_model/hyundai_model.dart';
-import 'package:car_sale_app/model/brands_model/lexus_model.dart';
-import 'package:car_sale_app/model/brands_model/mitsubishi_model.dart';
-import 'package:car_sale_app/model/car_category.dart';
-import 'package:car_sale_app/model/car_intermediate.dart';
-import 'package:car_sale_app/model/maintenance_costs.dart';
-import 'package:car_sale_app/model/brands_model/mazda_data.dart';
-import 'package:flutter/material.dart';
 
-import '../car_individual_page/car_individual_screen_widget.dart';
+import '../app_values/app_images.dart';
+import 'Car.dart';
+import 'brands_model/audi_model.dart';
+import 'brands_model/bmw_model.dart';
+import 'brands_model/hyundai_model.dart';
+import 'brands_model/lexus_model.dart';
+import 'brands_model/mazda_data.dart';
+import 'brands_model/mitsubishi_model.dart';
+import 'car_category.dart';
+import 'car_intermediate.dart';
 
 class CommonData {
   static List<Car> globalCarList = [

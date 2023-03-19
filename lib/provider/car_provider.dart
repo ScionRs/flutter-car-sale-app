@@ -1,8 +1,8 @@
 
-import 'package:car_sale_app/model/%D1%81ommon_data.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/model/Dealer.dart';
 import 'package:flutter/material.dart';
+
+import '../model/Car.dart';
+import '../model/сommon_data.dart';
 
 class CarProvider with ChangeNotifier{
 

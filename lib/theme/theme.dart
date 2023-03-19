@@ -1,5 +1,6 @@
-import 'package:car_sale_app/theme/constants.dart';
 import 'package:flutter/material.dart';
+
+import 'constants.dart';
 
 ThemeData setTheme() {
   return ThemeData(

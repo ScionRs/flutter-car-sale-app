@@ -1,8 +1,10 @@
-import 'package:car_sale_app/model/Dealer.dart';
-import 'package:car_sale_app/model/City.dart';
-import 'package:car_sale_app/widgets/app_bar_widget.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+
+import '../model/City.dart';
+import '../model/Dealer.dart';
+import '../widgets/app_bar_widget.dart';
 
 class DealerListScreenWidget extends StatelessWidget {
   final City city;

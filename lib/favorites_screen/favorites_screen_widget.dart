@@ -1,10 +1,11 @@
-import 'package:car_sale_app/provider/car_provider.dart';
-import 'package:car_sale_app/widgets/car_card_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/Car.dart';
 import '../data/PdfApi.dart';
+import '../provider/car_provider.dart';
+import '../widgets/car_card_widget.dart';
 
 class FavoritesScreenWidget extends StatefulWidget {
   const FavoritesScreenWidget({Key? key}) : super(key: key);

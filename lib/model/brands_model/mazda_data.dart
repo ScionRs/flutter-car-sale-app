@@ -1,7 +1,9 @@
-import 'package:car_sale_app/app_values/app_images.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/model/Equipment.dart';
-import 'package:car_sale_app/model/maintenance_costs.dart';
+
+
+import '../../app_values/app_images.dart';
+import '../Car.dart';
+import '../Equipment.dart';
+import '../maintenance_costs.dart';
 
 abstract class MazdaData {
   static Car mazdaCx5Grey = Car(

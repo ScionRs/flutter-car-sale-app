@@ -1,16 +1,16 @@
-import 'package:car_sale_app/bottom_navigation_bar/bottom_navigation_bar.dart';
-import 'package:car_sale_app/model/%D1%81ommon_data.dart';
-import 'package:car_sale_app/theme/constants.dart';
-import 'package:car_sale_app/widgets/navigation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../model/car_intermediate.dart';
+import '../model/сommon_data.dart';
 import '../provider/car_provider.dart';
+import '../theme/constants.dart';
 import '../widgets/brand_card_short_widget.dart';
 import '../widgets/build_local_image.dart';
 import '../widgets/car_card_widget.dart';
+import '../widgets/navigation.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({super.key});

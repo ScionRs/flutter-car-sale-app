@@ -1,8 +1,4 @@
 
-import 'package:car_sale_app/icons/my_flutter_app_icons.dart';
-import 'package:car_sale_app/model/Car.dart';
-import 'package:car_sale_app/theme/constants.dart';
-import 'package:car_sale_app/widgets/build_local_image.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../model/Car.dart';
 import '../provider/car_provider.dart';
+import '../theme/constants.dart';
+import '../widgets/build_local_image.dart';
 import '../widgets/car_card_widget.dart';
 import '../widgets/navigation.dart';
 

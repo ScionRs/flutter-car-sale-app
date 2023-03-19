@@ -1,15 +1,12 @@
-import 'package:car_sale_app/car_intermediate_screen_widget/car_intermediate_screen_widget.dart';
-import 'package:car_sale_app/model/car_category.dart';
-import 'package:car_sale_app/provider/car_provider.dart';
-import 'package:car_sale_app/widgets/app_bar_widget.dart';
-import 'package:car_sale_app/widgets/build_image.dart';
-import 'package:car_sale_app/widgets/navigation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../model/car_intermediate.dart';
+import '../provider/car_provider.dart';
 import '../widgets/build_local_image.dart';
+import '../widgets/navigation.dart';
 
 class CarListScreenWidget extends StatelessWidget {
   final List<CarIntermediate> cars;

@@ -1,7 +1,8 @@
 
-import 'package:car_sale_app/model/City.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../model/City.dart';
 
 
 class CityCardWidget extends StatefulWidget {

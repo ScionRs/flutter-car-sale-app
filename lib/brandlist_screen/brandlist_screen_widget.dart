@@ -1,10 +1,10 @@
-import 'package:car_sale_app/model/car_category.dart';
-import 'package:car_sale_app/theme/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../model/car_intermediate.dart';
+import '../model/car_category.dart';
 import '../model/сommon_data.dart';
+import '../theme/constants.dart';
 import '../widgets/brand_card_short_widget.dart';
 import '../widgets/navigation.dart';
 
